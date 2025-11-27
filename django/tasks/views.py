@@ -30,11 +30,21 @@ from django.db import transaction # <-- ¡AÑADE ESTA IMPORTACIÓN!
 
 
 # --- (Las vistas home, signup, tasks, etc. no cambian) ---
+# Modifica la vista home agregando el decorador
+@never_cache
+@login_required(login_url='signin')  # <--- AGREGA ESTA LÍNEA
 def home(request):
     lista_de_preguntas = PreguntasExamen.objects.prefetch_related('alternativasexamen_set').all()
     context = { 'preguntas': lista_de_preguntas }
     return render(request, 'home.html', context)
+
+
+
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('exam_dashboard') # O redirige a 'home' si prefieres
+    # --------------------------------
+
     if request.method == 'GET':
         return render(request, 'signup.html', {"form": UserCreationForm})
     else:
@@ -74,10 +84,19 @@ def create_task(request):
 @login_required
 def signout(request):
     logout(request)
-    return redirect('home')
+    return redirect('signin')
 
 # --- VISTA SIGNIN MODIFICADA ---
+@never_cache
 def signin(request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return redirect('professor_dashboard')
+        else:
+            return redirect('exam_dashboard')
+    # --------------------------------
+
+
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -225,50 +244,81 @@ def welcome_exam(request, examen_id):
 def exam_page(request, examen_id):
     # 1. Obtener el examen
     examen = get_object_or_404(Examen, pk=examen_id)
+
+
+
+    # ====================================================
+    # --- Seguridad ---
+    # Verificar si el alumno terminó
+    # ====================================================
+    estado_actual = check_exam_status(request.user, examen_id)
     
-    # 2. Definir una clave única para la sesión de este usuario y este examen
-    # Esto sirve para recordar qué preguntas le tocaron a ESTE alumno
+    if estado_actual == 'F':
+        messages.info(request, "Ya has finalizado este examen.") # Mensaje informativo
+        return redirect('exam_dashboard')
+    
+    if estado_actual == 'D':
+        messages.error(request, "Este examen está bloqueado o ha sido cancelado.") # Mensaje de error
+        return redirect('exam_dashboard')
+    # ====================================================
+
+
+
+    
+    # 2. Definir una clave única para la sesión
     session_key = f'exam_{examen_id}_questions_order_{request.user.id}'
 
     # 3. Verificar si ya tiene preguntas asignadas en su sesión
     if session_key in request.session:
-        # Si ya existen, recuperamos los IDs en el orden que se guardaron
         selected_ids = request.session[session_key]
-        
-        # Recuperamos los objetos (Django no garantiza el orden con filter, así que lo reordenamos manual)
         preguntas_queryset = PreguntasExamen.objects.filter(pk__in=selected_ids)
         preguntas = sorted(preguntas_queryset, key=lambda q: selected_ids.index(q.pk))
-        
     else:
-        # 4. Si es la primera vez que entra (o se borró la sesión): GENERAR NUEVO SORTEO
-        
-        # Obtenemos TODOS los IDs de las preguntas de este examen
+        # 4. Si es la primera vez: GENERAR NUEVO SORTEO
         all_ids = list(PreguntasExamen.objects.filter(id_examen=examen).values_list('id_preguntas_examen', flat=True))
-        
-        # Si el profesor configuró un límite y es menor al total, hacemos un sample
         limit = examen.cantidad_preguntas
         
         if limit > 0 and limit < len(all_ids):
-            # Elige 'limit' preguntas al azar
             selected_ids = random.sample(all_ids, limit)
         else:
-            # Si es 0 o el límite es mayor al total, usamos todas, pero las mezclamos
             selected_ids = all_ids
-            random.shuffle(selected_ids) # Mezclar aleatoriamente
+            random.shuffle(selected_ids)
             
-        # 5. Guardamos este orden en la sesión del usuario
         request.session[session_key] = selected_ids
-        
-        # Recuperamos los objetos
         preguntas_queryset = PreguntasExamen.objects.filter(pk__in=selected_ids)
         preguntas = sorted(preguntas_queryset, key=lambda q: selected_ids.index(q.pk))
 
-    return render(request, 'home.html', { # O el nombre de tu template de examen
+    # ==============================================================================
+    # 5. LÓGICA DE TIEMPOS (¡AQUÍ ES DONDE LA APLICAS!)
+    # ==============================================================================
+    
+    tiempo_pregunta_segundos = 0
+    usar_timer_pregunta = False
+    
+    total_preguntas_reales = len(preguntas)
+    if total_preguntas_reales == 0: total_preguntas_reales = 1
+
+    # CASO 2: Tiempo Fijo por Pregunta
+    if examen.modo_tiempo == 'POR_PREGUNTA':
+        tiempo_pregunta_segundos = examen.tiempo_base_minutos * 60 
+        usar_timer_pregunta = True
+
+    # CASO 1A: Tiempo General Repartido
+    elif examen.modo_tiempo == 'REPARTIDO':
+        # Convertimos el total a segundos y dividimos
+        total_segundos = examen.tiempo_base_minutos * 60
+        tiempo_pregunta_segundos = int(total_segundos / total_preguntas_reales)
+        usar_timer_pregunta = True
+        
+    # CASO 1B ('LIBRE'): usar_timer_pregunta se queda en False.
+
+    return render(request, 'home.html', {
         'examen': examen,
         'preguntas': preguntas,
-        'examen_id': examen_id
+        'examen_id': examen_id,
+        'tiempo_pregunta': tiempo_pregunta_segundos, 
+        'usar_timer_pregunta': usar_timer_pregunta,
     })
-
 
 # --- (La vista cancel_exam se queda igual) ---
 @login_required
@@ -306,73 +356,89 @@ def submit_exam(request):
         try:
             data = json.loads(request.body)
             examen_id = data.get('examen_id')
-            respuestas = data.get('respuestas') # Esto será una lista
+            respuestas_enviadas = data.get('respuestas') # Lista [{pregunta: 1, alternativa: 2}, ...]
             user = request.user
 
-            if not examen_id or not respuestas:
+            if not examen_id:
                 return JsonResponse({'status': 'error', 'message': 'Faltan datos'}, status=400)
 
-            # --- INICIO DE LÓGICA DE CÁLCULO CORREGIDA ---
-            
-            # 1. Obtener el objeto Examen para ver la configuración
             examen_obj = get_object_or_404(Examen, pk=examen_id)
-            
-            # 2. Contar el total real de preguntas en la base de datos (Banco de preguntas)
-            total_questions_in_db = PreguntasExamen.objects.filter(id_examen_id=examen_id).count()
-            
-            # 3. Determinar sobre cuántas preguntas se debe calificar (El DIVISOR)
-            # Si cantidad_preguntas es > 0 y menor que el total del banco, usamos ese límite.
-            # Si es 0 o mayor que el banco, usamos el total del banco.
-            limit = examen_obj.cantidad_preguntas
-            
-            if limit > 0 and limit < total_questions_in_db:
-                total_questions_to_grade = limit
-            else:
-                total_questions_to_grade = total_questions_in_db
 
-            # Validación para evitar división por cero
-            if total_questions_to_grade == 0:
-                return JsonResponse({'status': 'error', 'message': 'Examen inválido, no tiene preguntas disponibles.'}, status=400)
+            # 1. RECUPERAR LAS PREGUNTAS ASIGNADAS (De la sesión)
+            session_key = f'exam_{examen_id}_questions_order_{user.id}'
+            assigned_question_ids = request.session.get(session_key, [])
+
+            # Fallback de seguridad: Si por alguna razón extrema se borró la sesión,
+            # recuperamos todas las del examen para no dejar al alumno con 0.
+            if not assigned_question_ids:
+                assigned_question_ids = list(PreguntasExamen.objects.filter(id_examen_id=examen_id).values_list('id_preguntas_examen', flat=True))
+
+            # 2. CREAR MAPA DE RESPUESTAS ENVIADAS para búsqueda rápida
+            # { 'ID_PREGUNTA_STR': 'ID_ALTERNATIVA' }
+            #mapa_respuestas = {str(r['pregunta']): r['alternativa'] for r in respuestas_enviadas}
+            mapa_respuestas = {str(r['pregunta']): r for r in data.get('respuestas', [])}
+
 
             correct_answers = 0
+            # Calificamos sobre el total de preguntas que SE LE ASIGNARON al alumno
+            total_questions_to_grade = len(assigned_question_ids)
 
-            # Recorremos cada respuesta enviada
-            for res in respuestas:
-                pregunta_id = res.get('pregunta')
-                alternativa_id = res.get('alternativa')
-                
-                # Guardar la respuesta del usuario
-                RespuestasUsuario.objects.update_or_create(
-                    user=user,
-                    id_examen_id=examen_id,
-                    id_preguntas_examen_id=pregunta_id,
-                    defaults={'id_alternativas_examen_id': alternativa_id}
-                )
-                
-                # Comprobar si esa alternativa es correcta
-                is_correct = AlternativasExamen.objects.filter(
-                    id_alternativas_examen=alternativa_id,
-                    valor='C'  # 'C' de Correcta
-                ).exists()
-                
-                if is_correct:
-                    correct_answers += 1
             
-            # 4. Calcular la nota final sobre 20 usando el divisor correcto
-            nota_final = (correct_answers / total_questions_to_grade) * 20
+            with transaction.atomic():
+                for p_id in assigned_question_ids: # (Usar lógica de ids asignados como tenías)
+                    p_id_str = str(p_id)
+                    dato = mapa_respuestas.get(p_id_str)
+                    
+                    alt_id = None
+                    texto = None
+                    
+                    # Detectar si es texto o ID
+                    # Detectar datos (Corregido para leer texto explícito)
+                    if dato:
+                        # 1. Intentamos leer el campo de texto explícito
+                        texto_enviado = dato.get('respuesta_texto') 
+                        
+                        # 2. Leemos el campo de alternativa
+                        val = dato.get('alternativa') 
 
-            # 5. Guardar la nota y el estado 'F' (Finalizado)
-            estado_obj, created = EstadoExamen.objects.get_or_create(
-                user=user,
-                id_examen_id=examen_id
-            )
+                        # LÓGICA DE ASIGNACIÓN
+                        if val and str(val).isdigit(): 
+                            # Si 'alternativa' es un número, es un ID de opción múltiple
+                            alt_id = val
+                            # Si también enviaron texto (raro pero posible), lo guardamos
+                            if texto_enviado:
+                                texto = texto_enviado
+                        else:
+                            # Si 'alternativa' NO es número, asumimos que usaron ese campo para enviar el texto
+                            # O usamos el campo 'respuesta_texto' si existe.
+                            texto = texto_enviado if texto_enviado else val
+
+                    # Guardar
+                    RespuestasUsuario.objects.update_or_create(
+                        user=user,
+                        id_examen_id=examen_id,
+                        id_preguntas_examen_id=p_id,
+                        defaults={
+                            'id_alternativas_examen_id': alt_id,
+                            'respuesta_texto': texto
+                        }
+                    )
+
+            # --- RECALCULAR NOTA ---
+            # Llamamos a la función inteligente que creamos arriba
+            # --- ¡AQUÍ SE LLAMA AL CEREBRO! ---
+            # Esto calcula la nota inicial (las de texto valdrán 0 hasta que corrijas)
+            recalcular_nota_examen(user, examen_obj) 
+            
+            # Marcar como Finalizado
+            estado_obj, _ = EstadoExamen.objects.get_or_create(user=user, id_examen=examen_id)
             estado_obj.estado = 'F'
-            estado_obj.nota = nota_final
             estado_obj.save()
             
-            # --- FIN DE LÓGICA DE CÁLCULO ---
-            
-            print(f"Respuestas guardadas. Aciertos: {correct_answers}/{total_questions_to_grade}. Nota: {nota_final}")
+            # Limpieza de sesión
+            if session_key in request.session:
+                del request.session[session_key]
+
             return JsonResponse({'status': 'success', 'message': 'Examen guardado correctamente.'})
         
         except Exception as e:
@@ -380,6 +446,8 @@ def submit_exam(request):
             return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
     
     return JsonResponse({'status': 'error', 'message': 'Método no permitido'}, status=405)
+
+
 
 
 @never_cache
@@ -670,22 +738,23 @@ def professor_assign_students(request, examen_id):
 
 
 ###detalle examen
+# tasks/views.py
+
 @login_required
 @professor_required
 def professor_review_exam(request, examen_id, alumno_id):
     """
     Permite al profesor ver el detalle del examen resuelto por un alumno específico.
+    CORREGIDO: Maneja preguntas abiertas y evita el error de atributo.
     """
-    # 1. Seguridad: Verificar que el examen pertenece a un curso de este profesor
+    # 1. Seguridad y Datos Básicos
     examen = get_object_or_404(Examen, id_examen=examen_id, id_curso__id_profesor=request.user)
     alumno = get_object_or_404(User, id=alumno_id)
-    
-    # 2. Obtener el estado del alumno (para ver la nota y confirmar que lo dio)
     estado_examen = get_object_or_404(EstadoExamen, user=alumno, id_examen=examen)
 
-    # 3. Obtener SOLO las preguntas que respondió este alumno
+    # 2. Obtener preguntas que respondió el alumno (o se le asignaron)
     ids_respondidos = RespuestasUsuario.objects.filter(
-        user=alumno, # Filtramos por el alumno seleccionado
+        user=alumno, 
         id_examen=examen
     ).values_list('id_preguntas_examen', flat=True)
 
@@ -697,18 +766,39 @@ def professor_review_exam(request, examen_id, alumno_id):
     for pregunta in preguntas:
         alternativas = AlternativasExamen.objects.filter(id_preguntas_examen=pregunta)
         
-        # Buscar la respuesta de ESTE alumno
         respuesta_usuario = RespuestasUsuario.objects.filter(
             user=alumno,              
             id_preguntas_examen=pregunta     
         ).first()
         
-        alternativa_seleccionada_id = respuesta_usuario.id_alternativas_examen.pk if respuesta_usuario else None
+        # --- INICIO DE LA CORRECCIÓN ---
+        alternativa_seleccionada_id = None
+        texto_respuesta = None
+        puntaje_obtenido = 0
+        respuesta_id = None
+        comentario = ""
+
+        if respuesta_usuario:
+            # A. Si es de Marcar: Sacamos el ID de la alternativa (Solo si existe)
+            if respuesta_usuario.id_alternativas_examen:
+                alternativa_seleccionada_id = respuesta_usuario.id_alternativas_examen.pk
+            
+            # B. Si es Abierta o para mostrar feedback: Sacamos los otros datos
+            texto_respuesta = respuesta_usuario.respuesta_texto
+            puntaje_obtenido = respuesta_usuario.puntaje_obtenido
+            respuesta_id = respuesta_usuario.pk
+            comentario = respuesta_usuario.comentario_profesor
+        # --------------------------------
         
         resultados.append({
             'pregunta': pregunta,
             'alternativas': alternativas,
-            'seleccionada_id': alternativa_seleccionada_id
+            'seleccionada_id': alternativa_seleccionada_id,
+            # Pasamos los datos nuevos a la plantilla
+            'respuesta_texto': texto_respuesta,
+            'puntaje_obtenido': puntaje_obtenido,
+            'respuesta_id': respuesta_id,
+            'comentario': comentario,
         })
 
     context = {
@@ -717,7 +807,6 @@ def professor_review_exam(request, examen_id, alumno_id):
         'resultados': resultados,
         'nota': estado_examen.nota
     }
-    # Usaremos una plantilla nueva para esto
     return render(request, 'profesor/professor_review_exam.html', context)
 
 
@@ -864,23 +953,56 @@ def professor_create_alternative(request, pregunta_id):
     
     return render(request, 'profesor/professor_alternative_form.html', {'form': form, 'titulo': f'Nueva Alternativa para: "{pregunta.texto_pregunta}"'})
 
+# tasks/views.py
+
+
+
 @login_required
 @professor_required
 def professor_edit_alternative(request, alternativa_id):
     """
-    Edita una alternativa.
+    Edita una alternativa y RECALCULA las notas de todos los alumnos
+    si la respuesta correcta cambió.
     """
-    alternativa = get_object_or_404(AlternativasExamen, id_alternativas_examen=alternativa_id, id_preguntas_examen__id_examen__id_curso__id_profesor=request.user)
+    alternativa = get_object_or_404(
+        AlternativasExamen, 
+        id_alternativas_examen=alternativa_id, 
+        id_preguntas_examen__id_examen__id_curso__id_profesor=request.user
+    )
+
     if request.method == 'POST':
         form = AlternativaForm(request.POST, instance=alternativa)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Alternativa actualizada.')
-            return redirect('professor_manage_alternatives', pregunta_id=alternativa.id_preguntas_examen.id_preguntas_examen)
+            alternativa_guardada = form.save()
+            
+            # --- LÓGICA DE ACTUALIZACIÓN MASIVA ---
+            # 1. Identificar el examen
+            pregunta = alternativa_guardada.id_preguntas_examen
+            examen = pregunta.id_examen
+            
+            # 2. Buscar alumnos que ya finalizaron este examen
+            estados_finalizados = EstadoExamen.objects.filter(id_examen=examen, estado='F')
+            
+            # 3. Recalcular la nota para cada uno
+            contador_actualizados = 0
+            for estado in estados_finalizados:
+                recalcular_nota_examen(estado.user, examen)
+                contador_actualizados += 1
+            
+            # --------------------------------------
+
+            msg_extra = f" y se recalcularon {contador_actualizados} notas." if contador_actualizados > 0 else "."
+            messages.success(request, f'Alternativa actualizada{msg_extra}')
+            
+            return redirect('professor_manage_alternatives', pregunta_id=pregunta.id_preguntas_examen)
     else:
         form = AlternativaForm(instance=alternativa)
     
     return render(request, 'profesor/professor_alternative_form.html', {'form': form, 'titulo': 'Editar Alternativa'})
+
+
+
+
 
 @login_required
 @professor_required
@@ -1031,47 +1153,50 @@ def professor_assign_students_to_exam_in_salon(request, examen_id, salon_id):
 
 
 
+# tasks/views.py
+
 @login_required
 def ver_resultados_examen(request, examen_id):
     examen = get_object_or_404(Examen, id_examen=examen_id)
     
-    # Validar que el examen esté finalizado
+    # Validar estado
     estado = get_object_or_404(EstadoExamen, user=request.user, id_examen=examen)
     if estado.estado != 'F':
         return redirect('exam_dashboard')
 
-    # --- CAMBIO CLAVE AQUÍ ---
-    # 1. Primero buscamos cuáles fueron las preguntas que este usuario respondió en este examen
     ids_respondidos = RespuestasUsuario.objects.filter(
-        user=request.user,
-        id_examen=examen
+        user=request.user, id_examen=examen
     ).values_list('id_preguntas_examen', flat=True)
 
-    # 2. Ahora filtramos la tabla de preguntas usando SOLO esos IDs
-    preguntas = PreguntasExamen.objects.filter(
-        id_preguntas_examen__in=ids_respondidos
-    )
-    # -------------------------
+    preguntas = PreguntasExamen.objects.filter(id_preguntas_examen__in=ids_respondidos)
     
     resultados = []
     for pregunta in preguntas:
-        # Obtener alternativas de esta pregunta
         alternativas = AlternativasExamen.objects.filter(id_preguntas_examen=pregunta)
+        respuesta_usuario = RespuestasUsuario.objects.filter(user=request.user, id_preguntas_examen=pregunta).first()
+        
+        # --- DATOS EXTENDIDOS ---
+        seleccionada_id = None
+        respuesta_texto = None
+        puntaje_obtenido = 0
+        comentario = ""
 
-        respuesta_usuario = RespuestasUsuario.objects.filter(
-            user=request.user,              
-            id_preguntas_examen=pregunta     
-        ).first()
-        
         if respuesta_usuario:
-            alternativa_seleccionada_id = respuesta_usuario.id_alternativas_examen.pk
-        else:
-            alternativa_seleccionada_id = None
-        
+            if respuesta_usuario.id_alternativas_examen:
+                seleccionada_id = respuesta_usuario.id_alternativas_examen.pk
+            
+            respuesta_texto = respuesta_usuario.respuesta_texto
+            puntaje_obtenido = respuesta_usuario.puntaje_obtenido
+            comentario = respuesta_usuario.comentario_profesor
+        # ------------------------
+
         resultados.append({
             'pregunta': pregunta,
             'alternativas': alternativas,
-            'seleccionada_id': alternativa_seleccionada_id
+            'seleccionada_id': seleccionada_id,
+            'respuesta_texto': respuesta_texto,     # <--- Nuevo
+            'puntaje_obtenido': puntaje_obtenido,   # <--- Nuevo
+            'comentario': comentario                # <--- Nuevo
         })
 
     context = {
@@ -1080,6 +1205,8 @@ def ver_resultados_examen(request, examen_id):
         'nota': estado.nota
     }
     return render(request, 'ver_resultados.html', context)
+
+
 
 
 
@@ -1314,3 +1441,90 @@ def subir_preguntas_excel(request, examen_id):
             messages.error(request, f'Error al procesar el archivo: {str(e)}')
             
     return redirect('professor_manage_questions', examen_id=examen_id)
+
+
+
+# tasks/views.py
+
+# tasks/views.py
+
+def recalcular_nota_examen(user, examen):
+    """
+    Calcula la nota real sumando puntajes automáticos y manuales.
+    Actualiza la tabla EstadoExamen.
+    """
+    # 1. Traer todas las respuestas del alumno
+    respuestas = RespuestasUsuario.objects.filter(user=user, id_examen=examen).select_related('id_preguntas_examen', 'id_alternativas_examen')
+    
+    total_puntos_obtenidos = 0
+    total_puntos_posibles = 0 # La suma de lo que valen las preguntas que le tocaron
+    
+    for resp in respuestas:
+        pregunta = resp.id_preguntas_examen
+        total_puntos_posibles += pregunta.puntaje_maximo
+        
+        # --- LÓGICA MIXTA ---
+        if pregunta.tipo_pregunta == 'M': 
+            # CASO A: Marcar (Automático)
+            # Si marcó algo Y es la correcta ('C'), gana el puntaje máximo de esa pregunta
+            if resp.id_alternativas_examen and resp.id_alternativas_examen.valor == 'C':
+                resp.puntaje_obtenido = pregunta.puntaje_maximo
+            else:
+                resp.puntaje_obtenido = 0
+            resp.save() # Guardamos el cálculo individual
+            
+        elif pregunta.tipo_pregunta == 'A':
+            # CASO B: Abierta (Manual)
+            # Aquí NO tocamos el puntaje, usamos el que el profesor ya puso (o 0 si no ha corregido)
+            pass 
+            
+        total_puntos_obtenidos += resp.puntaje_obtenido
+
+    # 2. Cálculo final (Escala vigesimal 0-20)
+    if total_puntos_posibles > 0:
+        # Regla de tres simple
+        nota_final = (total_puntos_obtenidos * 20) / total_puntos_posibles
+    else:
+        nota_final = 0
+
+    # 3. Guardar en EstadoExamen
+    estado, created = EstadoExamen.objects.get_or_create(user=user, id_examen=examen)
+    estado.nota = nota_final
+    estado.save()
+    
+    return nota_final
+
+
+# tasks/views.py
+
+@login_required
+@professor_required
+def calificar_respuesta_ajax(request):
+    """
+    Recibe el puntaje manual del profesor para una pregunta abierta.
+    """
+    if request.method == 'POST':
+        import json
+        data = json.loads(request.body)
+        respuesta_id = data.get('id_respuesta')
+        puntaje_asignado = data.get('puntaje')
+        
+        try:
+            resp = RespuestasUsuario.objects.get(id_respuesta=respuesta_id)
+            maximo = resp.id_preguntas_examen.puntaje_maximo
+            
+            # Validar tope
+            if float(puntaje_asignado) > float(maximo):
+                return JsonResponse({'status': 'error', 'message': f'Máximo {maximo} puntos.'})
+            
+            resp.puntaje_obtenido = puntaje_asignado
+            resp.save()
+            
+            # --- ¡RECALCULO AUTOMÁTICO! ---
+            # Al guardar la nota manual, recalculamos el promedio final del alumno
+            nueva_nota = recalcular_nota_examen(resp.user, resp.id_examen)
+            
+            return JsonResponse({'status': 'success', 'nueva_nota_total': nueva_nota})
+            
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)})

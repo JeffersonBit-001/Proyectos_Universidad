@@ -27,23 +27,76 @@
                 {% if not forloop.first %}d-none{% endif %}
             ">
                 <div class="card-body p-4">
-                    <h5 class="card-title">Pregunta {{ forloop.counter }}</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title mb-0">Pregunta {{ forloop.counter }}</h5>
+                        
+                        {% if usar_timer_pregunta %}
+                        <span class="badge bg-warning text-dark fs-6">
+                            <i class="bi bi-hourglass-split"></i> 
+                            <span class="pregunta-timer">{{ tiempo_pregunta }}</span> s
+                        </span>
+                        {% endif %}
+                    </div>
+
                     <p class="card-text fs-5">
                         {{ pregunta.texto_pregunta }}
                     </p>
-                    {% for alternativa in pregunta.alternativasexamen_set.all %}
-                    <div class="form-check">
-                        <input class="form-check-input" 
-                               type="radio" 
-                               name="pregunta-{{ pregunta.id_preguntas_examen }}" 
-                               id="alt-{{ alternativa.id_alternativas_examen }}">
-                        <label class="form-check-label" for="alt-{{ alternativa.id_alternativas_examen }}">
-                            {{ alternativa.texto_alternativa }}
-                        </label>
-                    </div>
-                    {% endfor %}
+
+
+
+
+                    {# --- LÓGICA HÍBRIDA --- #}
+    
+                    {% if pregunta.tipo_pregunta == 'M' %}
+                        {# CASO 1: OPCIÓN MÚLTIPLE (Radio Buttons) #}
+                        {% for alternativa in pregunta.alternativasexamen_set.all %}
+                        <div class="form-check">
+                            <input class="form-check-input input-respuesta" 
+                                type="radio" 
+                                data-tipo="M"
+                                name="pregunta-{{ pregunta.id_preguntas_examen }}" 
+                                id="alt-{{ alternativa.id_alternativas_examen }}"
+                                value="{{ alternativa.id_alternativas_examen }}">
+                            <label class="form-check-label" for="alt-{{ alternativa.id_alternativas_examen }}">
+                                {{ alternativa.texto_alternativa }}
+                            </label>
+                        </div>
+                        {% endfor %}
+
+                    {% else %}
+                        <div class="mt-3">
+                            <textarea class="form-control input-respuesta"  name="pregunta-{{ pregunta.id_preguntas_examen }}" 
+                                id="text-{{ pregunta.id_preguntas_examen }}"
+                                rows="5" 
+                                placeholder="Escribe tu respuesta aquí...">
+                            </textarea>
+
+                            <input type="radio" name="pregunta-{{ pregunta.id_preguntas_examen }}" value="TEXTO_ENVIADO" style="display:none;" id="dummy-{{ pregunta.id_preguntas_examen }}">
+                        
+                        
+                        </div>
+                        
+                        <script>
+                            // Script pequeño para marcar el radio oculto cuando escriba
+                            document.getElementById("text-{{ pregunta.id_preguntas_examen }}").addEventListener("input", function() {
+                                const dummy = document.getElementById("dummy-{{ pregunta.id_preguntas_examen }}");
+                                if(this.value.trim().length > 0) {
+                                    dummy.checked = true;
+                                    dummy.value = this.value; // Pasamos el texto al value para que collectAnswers lo vea
+                                } else {
+                                    dummy.checked = false;
+                                }
+                            });
+                        </script>
+                    {% endif %}
+
+
+
                 </div>
             </div>
+
+
+
             {% endfor %}
             <div class="card question-card d-none">
                 <div class="card-body p-5 text-center">
@@ -62,6 +115,11 @@
 
         </div>
     </div>
+
+    <div id="examen-timer" style="position: fixed; top: 10px; right: 20px; z-index: 9999; background: #212529; color: #fff; padding: 10px 20px; border-radius: 30px; font-weight: bold; font-family: monospace; font-size: 1.2rem; display: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <i class="bi bi-clock"></i> <span id="time-display">--:--</span>
+    </div>
+
 </div>
 
 <style>
@@ -69,169 +127,302 @@
 </style>
 
 
-
 <script>
+    // ==========================================
+    // VARIABLES GLOBALES
+    // ==========================================
     let currentQuestionIndex = 0;
     const questions = document.querySelectorAll('.question-card');
     const nextButton = document.getElementById('next-btn');
     const examenId = {{ examen_id|default:"null" }};
+    
+    // Configuración de Tiempo
+    const usarTimerPregunta = {{ usar_timer_pregunta|yesno:"true,false" }};
+    const tiempoBasePregunta = {{ tiempo_pregunta|default:0 }}; 
+    const tiempoLimiteMinutos = {{ examen.tiempo_limite|default:0 }};
+    const examKey = 'exam_end_time_{{ examen.id_examen }}'; 
+    
+    let questionInterval;
+    let globalTimerInterval;
+    let examenIniciado = false; 
 
-    // --- (Lógica de pantalla completa se queda igual) ---
+    // ==========================================
+    // 1. INICIO DEL EXAMEN (BOTÓN PANTALLA COMPLETA)
+    // ==========================================
     const fullscreenBlocker = document.getElementById('fullscreen-blocker');
     const startFullscreenButton = document.getElementById('start-fullscreen-btn');
+
     startFullscreenButton.addEventListener('click', function() {
+        // Intentamos activar pantalla completa
         document.documentElement.requestFullscreen().then(() => {
-            fullscreenBlocker.style.display = 'none';
+            // Si funciona, iniciamos
+            iniciarExamenReal();
         }).catch(err => {
-            alert('Error al entrar en pantalla completa. Por favor, permítelo para continuar.');
+            console.warn("No se pudo entrar en pantalla completa:", err);
+            // --- CORRECCIÓN AQUÍ ---
+            // Si falla, NO mostramos alerta bloqueante. Iniciamos igual.
+            // La extensión se encargará de reportar si no está en fullscreen.
+            iniciarExamenReal();
         });
     });
 
-    // --- (Funciones getCookie y collectAnswers se quedan igual) ---
+    function iniciarExamenReal() {
+        fullscreenBlocker.style.display = 'none';
+        examenIniciado = true;
+
+        // Si es la primera vez (no hay fecha guardada), es un inicio limpio
+        if (!localStorage.getItem(examKey)) {
+             // Aquí podrías limpiar variables si fuera necesario
+        }
+
+        // ¡AHORA SÍ ARRANCAN LOS RELOJES!
+        iniciarRelojGlobal();
+        iniciarTimerPregunta();
+    }
+
+    // ==========================================
+    // 2. NAVEGACIÓN (SIGUIENTE / FINALIZAR)
+    // ==========================================
+    function mostrarSiguiente() {
+        const currentCard = questions[currentQuestionIndex];
+        
+        
+        // Validación más inteligente
+        let isAnswered = false;
+        
+        // Revisar si hay radio marcado
+        if (currentCard.querySelector('input[type="radio"]:checked')) {
+            isAnswered = true;
+        }
+        // Revisar si hay texto escrito (si existe textarea)
+        const textArea = currentCard.querySelector('textarea');
+        if (textArea && textArea.value.trim().length > 0) {
+            isAnswered = true;
+        }
+
+        const alertBox = document.getElementById('alerta-pregunta');
+
+        if (!isAnswered) {
+            alertBox.classList.remove('d-none'); 
+            return; 
+        }
+
+
+
+        avanzarSlide();
+    }
+
+    function avanzarForzado() {
+        // Avanza sin validar (para cuando se acaba el tiempo de la pregunta)
+        document.getElementById('alerta-pregunta').classList.add('d-none');
+        avanzarSlide();
+    }
+
+    function avanzarSlide() {
+        questions[currentQuestionIndex].classList.add('d-none');
+        currentQuestionIndex++;
+        
+        if (currentQuestionIndex < questions.length) {
+            questions[currentQuestionIndex].classList.remove('d-none');
+            
+            // REINICIAMOS EL RELOJ DE LA PREGUNTA (Si el examen ya inició)
+            if (examenIniciado) {
+                iniciarTimerPregunta(); 
+            }
+        }
+
+        // Configuración del botón en la última etapa
+        if (currentQuestionIndex >= questions.length - 1) {
+            if (currentQuestionIndex >= questions.length) {
+                // Se acabaron las preguntas -> Enviar
+                enviarYTerminar();
+            } else {
+                // Es la última pregunta visual
+                questions[currentQuestionIndex].classList.remove('d-none');
+                nextButton.textContent = 'Enviar y Volver al Panel';
+                
+                // Cambiamos el comportamiento del botón para ENVIAR
+                // (Clonamos para eliminar listeners anteriores y evitar duplicados)
+                const newBtn = nextButton.cloneNode(true);
+                nextButton.parentNode.replaceChild(newBtn, nextButton);
+                
+                newBtn.addEventListener('click', function() {
+                    enviarYTerminar();
+                });
+            }
+        }
+    }
+
+    // ==========================================
+    // 3. LÓGICA DE ENVÍO UNIFICADA
+    // ==========================================
+    async function enviarYTerminar() {
+        const btn = document.getElementById('next-btn'); // Recapturamos el botón
+        if (btn.disabled) return;
+        
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
+        document.body.style.opacity = '0.7';
+
+        const respuestas = collectAnswers();
+        const csrftoken = getCookie('csrftoken');
+
+        try {
+            // 1. Enviar al Backend
+            const response = await fetch("{% url 'submit_exam' %}", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrftoken },
+                body: JSON.stringify({ examen_id: examenId, respuestas: respuestas })
+            });
+
+            if (!response.ok) throw new Error('Error en la respuesta del servidor');
+
+            // 2. AVISO A LA EXTENSIÓN (Vital para que no te bloquee)
+            window.postMessage({ type: 'FROM_PAGE_EXAM_FINISHED' }, '*');
+            
+            // Esperamos un momento para asegurar que la extensión procese el mensaje
+            await new Promise(r => setTimeout(r, 500));
+
+            // 3. Limpieza
+            localStorage.removeItem(examKey);
+            
+            if (document.fullscreenElement) {
+                try { await document.exitFullscreen(); } catch(e) {}
+            }
+            
+            // 4. Salida
+            window.location.href = "{% url 'exam_dashboard' %}";
+
+        } catch (e) {
+            console.error(e);
+            alert('Error al enviar el examen: ' + e.message);
+            btn.disabled = false;
+            btn.textContent = 'Reintentar Enviar';
+            document.body.style.opacity = '1';
+        }
+    }
+
+    // ==========================================
+    // 4. CRONÓMETROS
+    // ==========================================
+    function iniciarTimerPregunta() {
+        // PROTECCIÓN: Si tiempo es 0 o no se usa, salimos
+        if (!usarTimerPregunta || tiempoBasePregunta <= 0) return;
+
+        clearInterval(questionInterval);
+        const timerDisplay = questions[currentQuestionIndex].querySelector('.pregunta-timer');
+        if (!timerDisplay) return;
+
+        let timeLeft = tiempoBasePregunta;
+        timerDisplay.textContent = timeLeft;
+        timerDisplay.parentElement.classList.remove('bg-danger', 'text-white');
+        timerDisplay.parentElement.classList.add('bg-warning');
+
+        questionInterval = setInterval(() => {
+            timeLeft--;
+            timerDisplay.textContent = timeLeft;
+
+            if (timeLeft <= 10) {
+                timerDisplay.parentElement.classList.remove('bg-warning');
+                timerDisplay.parentElement.classList.add('bg-danger', 'text-white');
+            }
+            if (timeLeft < 0) {
+                clearInterval(questionInterval);
+                avanzarForzado(); // Se acabó el tiempo de esta pregunta
+            }
+        }, 1000);
+    }
+
+    function iniciarRelojGlobal() {
+        if (tiempoLimiteMinutos <= 0) return;
+
+        const timerContainer = document.getElementById('examen-timer');
+        timerContainer.style.display = 'block';
+
+        let examEndTime = localStorage.getItem(examKey);
+        if (!examEndTime) {
+            const now = new Date().getTime();
+            const duration = tiempoLimiteMinutos * 60 * 1000;
+            examEndTime = now + duration;
+            localStorage.setItem(examKey, examEndTime);
+        }
+
+        if (globalTimerInterval) clearInterval(globalTimerInterval);
+
+        globalTimerInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = examEndTime - now;
+
+            if (distance < 0) {
+                clearInterval(globalTimerInterval);
+                document.getElementById("time-display").textContent = "00:00";
+                alert("¡Tiempo total agotado! Se enviará el examen.");
+                enviarYTerminar(); // Se acabó el tiempo total
+                return;
+            }
+
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("time-display").textContent = 
+                (m < 10 ? "0"+m : m) + ":" + (s < 10 ? "0"+s : s);
+
+            if (distance < 60000) { 
+                timerContainer.style.background = '#dc3545';
+                timerContainer.classList.add('animate__pulse');
+            }
+        }, 1000);
+    }
+
+    // --- Funciones Auxiliares ---
     function getCookie(name) {
-        let cookieValue = null;
+        let v = null;
         if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
+            const c = document.cookie.split(';');
+            for (let i = 0; i < c.length; i++) {
+                const cookie = c[i].trim();
                 if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    v = decodeURIComponent(cookie.substring(name.length + 1));
                     break;
                 }
             }
         }
-        return cookieValue;
+        return v;
     }
+    
     function collectAnswers() {
         const answers = [];
-        const checkedInputs = document.querySelectorAll('input[type="radio"]:checked');
-        checkedInputs.forEach(input => {
+        
+        // 1. RECOLECTAR RADIOS (Opción Múltiple)
+        document.querySelectorAll('input[type="radio"]:checked').forEach(input => {
+            // Solo procesamos los radios reales de preguntas (no los dummy ocultos)
+            if (input.dataset.tipo === 'M') {
+                answers.push({
+                    pregunta: input.name.split('-')[1],
+                    alternativa: input.value, // ID de la alternativa
+                    tipo: 'M'
+                });
+            }
+        });
+
+        // 2. RECOLECTAR TEXTOS (Abiertas)
+        // 2. RECOLECTAR TEXTOS (Abiertas)
+        document.querySelectorAll('textarea.input-respuesta').forEach(textarea => {
             answers.push({
-                pregunta: input.name.split('-')[1],
-                alternativa: input.id.split('-')[1]
+                pregunta: textarea.name.split('-')[1],
+                alternativa: null,            // Lo mandamos explícitamente nulo
+                respuesta_texto: textarea.value, // Usamos el campo correcto
+                tipo: 'A'
             });
         });
+
         return answers;
     }
 
-    // --- ¡FUNCIÓN 'mostrarSiguiente' MODIFICADA! ---
-    function mostrarSiguiente() {
-        const currentCard = questions[currentQuestionIndex];
-        const isChecked = currentCard.querySelector('input[type="radio"]:checked');
-        const alertBox = document.getElementById('alerta-pregunta');
-
-        // 1. VALIDACIÓN SUAVE (Sin alert() nativo)
-        if (!isChecked) {
-            // En lugar de alert(), mostramos la caja HTML
-            alertBox.classList.remove('d-none'); 
-            
-            // Opcional: Un pequeño efecto de vibración o scroll para que lo note
-            alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            return; // Detiene la función aquí
-        }
-
-        // 2. Si pasó la validación, ocultamos la alerta por si estaba abierta
-        alertBox.classList.add('d-none');
-
-        // 2. Si pasó la validación, procedemos a avanzar
-        currentCard.classList.add('d-none');
-        currentQuestionIndex++;
-
-        
-        if (currentQuestionIndex < questions.length) {
-            questions[currentQuestionIndex].classList.remove('d-none');
-        }
-
-
-
-
-        if (currentQuestionIndex === questions.length - 2) {
-            nextButton.textContent = 'Finalizar';
-        }
-        
-        // --- ¡LÓGICA DE FINALIZACIÓN MODIFICADA! ---
-        if (currentQuestionIndex === questions.length - 1) {
-            questions[currentQuestionIndex].classList.remove('d-none');
-            nextButton.textContent = 'Enviar y Volver al Panel';
-            nextButton.classList.remove('d-none');
-            
-            nextButton.onclick = async function() {
-                nextButton.disabled = true;
-                nextButton.textContent = 'Enviando...';
-                const respuestas = collectAnswers();
-                const csrftoken = getCookie('csrftoken');
-
-                if (!csrftoken) {
-                    alert('Error de seguridad (CSRF). Por favor, refresca la página e inténtalo de nuevo.');
-                    nextButton.disabled = false;
-                    nextButton.textContent = 'Enviar y Volver al Panel';
-                    return;
-                }
-
-                try {
-                    // 1. Enviar respuestas a Django
-                    const response = await fetch("{% url 'submit_exam' %}", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': csrftoken
-                        },
-                        credentials: 'include',
-                        body: JSON.stringify({
-                            examen_id: examenId,
-                            respuestas: respuestas
-                        })
-                    });
-
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        throw new Error(errorData.message || 'Error al guardar las respuestas.');
-                    }
-
-                    // --- INICIO DE LA SOLUCIÓN ROBUSTA ---
-                    
-                    // A. Preparamos una Promesa que espere la CONFIRMACIÓN de la extensión
-                    const esperarConfirmacionExtension = new Promise((resolve) => {
-                        const manejadorMensaje = (event) => {
-                            // Solo escuchamos la confirmación específica
-                            if (event.source === window && event.data && event.data.type === 'EXTENSION_ACK_FINISHED') {
-                                window.removeEventListener('message', manejadorMensaje); // Limpieza
-                                resolve(); // ¡Ya es seguro!
-                            }
-                        };
-                        window.addEventListener('message', manejadorMensaje);
-                    });
-
-                    // B. Enviamos la señal a la extensión
-                    window.postMessage({ type: 'FROM_PAGE_EXAM_FINISHED' }, '*');
-                    
-                    // C. Esperamos (await) a que la extensión responda "OK"
-                    // Esto garantiza que isFinishingExam = true ya está guardado.
-                    await esperarConfirmacionExtension;
-
-                    // --- FIN DE LA SOLUCIÓN ROBUSTA ---
-                    
-                    // 4. Sale de pantalla completa (AHORA ES 100% SEGURO)
-                    if (document.fullscreenElement) {
-                        await document.exitFullscreen();
-                    }
-
-                    // 5. Redirige al dashboard
-                    window.location.href = "{% url 'exam_dashboard' %}";
-
-                } catch (e) {
-                    console.error('Error al finalizar el examen:', e);
-                    alert('Error al enviar tus respuestas: ' + e.message);
-                    nextButton.disabled = false;
-                    nextButton.textContent = 'Enviar y Volver al Panel';
-                }
-            };
-        }
+    // RECUPERACIÓN (F5): Si ya había tiempo guardado, entramos directo
+    if (localStorage.getItem(examKey)) {
+        iniciarExamenReal();
     }
-
-
-
-
 </script>
+
 
 {% endblock %}

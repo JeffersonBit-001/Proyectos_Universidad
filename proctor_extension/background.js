@@ -1,6 +1,4 @@
-// 6TA VERSIÓN - MANEJO DE MÚLTIPLES EXÁMENES
-
-console.log("--- ¡SERVICE WORKER BACKGROUND.JS CARGADO! ---");
+console.log("--- BACKGROUND.JS: VERSIÓN AUTO-REPARABLE ---");
 
 const NATIVE_HOST_NAME = "com.examen.proctoring";
 let nativePort = null;
@@ -8,124 +6,134 @@ let examTabId = null;
 let isExamActive = false;
 let isConnecting = false;
 let examWindowId = null; 
-let activeExamenId = null; // <-- ¡NUEVO! Guardará el ID del examen activo
+let activeExamenId = null;
 
-// --- (connectNative, onNativeMessage, onNativeDisconnect, sendNativeMessage no cambian) ---
+// --- CONEXIÓN NATIVA ---
 function connectNative() {
-  if (isConnecting || nativePort) { return; }
+  if (isConnecting) return; // Evitar doble intento
   isConnecting = true; 
-  console.log(`Intentando conectar a ${NATIVE_HOST_NAME}`);
+  
+  console.log("Intentando conectar con Agente Nativo...");
   try {
     nativePort = chrome.runtime.connectNative(NATIVE_HOST_NAME);
+    
     nativePort.onMessage.addListener(onNativeMessage);
+    
+    // Si se desconecta solo (crash del python), manejarlo
     nativePort.onDisconnect.addListener(onNativeDisconnect);
-    console.log("Conectado al agente nativo.");
+    
     isConnecting = false; 
     sendMessageToContent({ type: "AGENT_STATUS", connected: true });
+    console.log("Conexión exitosa.");
+    
   } catch (error) {
-    console.error("Error al conectar con agente nativo:", error);
+    console.error("Error al conectar:", error);
     isConnecting = false; 
     sendMessageToContent({ type: "AGENT_STATUS", connected: false, error: error.message });
-    if (!isExamActive) { setTimeout(connectNative, 5000); }
   }
 }
+
 function onNativeMessage(message) {
-  console.log("Mensaje recibido del agente:", message);
+  // Reenviar todo a la pestaña activa
   sendMessageToContent(message); 
-  if (message.type === 'PLAGIO_DETECTED') {
+  
+  // Seguridad: Si el agente grita PLAGIO y estamos en examen, actuamos
+  if (message.type === 'PLAGIO_DETECTED' && isExamActive) {
     handlePlagio(`apertura de ${message.app}`);
   }
 }
+
 function onNativeDisconnect() {
-  console.error("Agente Nativo Desconectado.", chrome.runtime.lastError?.message || "Error desconocido");
+  const error = chrome.runtime.lastError ? chrome.runtime.lastError.message : "Desconexión inesperada";
+  console.warn("El Agente se desconectó:", error);
+  
   nativePort = null;
   isConnecting = false; 
+  
   sendMessageToContent({ type: "AGENT_STATUS", connected: false, error: "Agente desconectado" });
+  
   if (isExamActive) {
-    handlePlagio("desconexión del agente de seguridad");
-  } else {
-    console.log("Reintentando conexión en 5 segundos...");
-    if (!isConnecting) { setTimeout(connectNative, 5000); }
-  }
-}
-function sendNativeMessage(msg) {
-  if (nativePort) {
-    try { nativePort.postMessage(msg); } 
-    catch(e) { console.error("Error al enviar mensaje nativo:", e); }
-  } else {
-    console.error("No se puede enviar mensaje, puerto nativo no conectado.");
+    handlePlagio("desconexión crítica del agente de seguridad");
   }
 }
 
-// --- ¡LÓGICA DEL EXAMEN MODIFICADA! ---
+function sendNativeMessage(msg) {
+  if (nativePort) {
+      try {
+        nativePort.postMessage(msg);
+      } catch (e) {
+          console.error("Error enviando mensaje al nativo:", e);
+          // Si falla el envío, forzamos desconexión para intentar reconectar luego
+          onNativeDisconnect();
+      }
+  }
+}
+
+// --- LISTENER DE MENSAJES DESDE EL CONTENIDO ---
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  
+  // 1. CARGA DE PÁGINA (AQUÍ ESTÁ EL ARREGLO)
   if (message.type === 'PAGE_LOADED') {
     examTabId = sender.tab.id;
     examWindowId = sender.tab.windowId; 
-    activeExamenId = message.examen_id; // <-- ¡NUEVO! Guarda el ID del examen
-
-    console.log(`Página cargada: ${message.page}, ID de Examen: ${activeExamenId}`);
-
-    
-    
-    
-    
-    
-    // Lógica de reconexión de agente (para F5)
-    if (nativePort) {
-        sendMessageToContent({ type: "AGENT_STATUS", connected: true });
-    } else {
-        connectNative();
-    }
+    activeExamenId = message.examen_id; 
 
     if (message.page === 'welcome') {
-      isExamActive = false;
+        isExamActive = false; // Seguridad: Apagamos monitoreo activo
+        
+        // --- LA SOLUCIÓN: REINICIO FORZADO ---
+        // Si ya había un puerto abierto de una sesión anterior, lo matamos.
+        // Esto "resetea" el Python para que no se quede con hilos colgados.
+        if (nativePort) {
+            console.log("Reiniciando agente para nueva sesión...");
+            try {
+                nativePort.disconnect(); // Esto cierra el .exe
+            } catch(e) {}
+            nativePort = null;
+        }
+        // Iniciamos uno fresco
+        connectNative();
+        // --------------------------------------
+        
     } else if (message.page === 'exam') {
       isExamActive = true;
+      // Si estamos en el examen, aseguramos conexión y arrancamos monitoreo
+      if (!nativePort) connectNative();
       sendNativeMessage({ command: 'START_MONITORING' });
     }
     sendResponse({ status: "ok" });
   }
   
-  // --- ¡AÑADE ESTE BLOQUE! ---
+  // 2. REPORTE DE PLAGIO (Validado)
   else if (message.type === 'PLAGIO_DETECTED') {
-      handlePlagio(message.reason);
-      sendResponse({status: 'plagio reportado'});
+      if (isExamActive) { 
+          handlePlagio(message.reason);
+      }
   }
-  // --- FIN DEL BLOQUE ---
 
-
-// --- ¡BLOQUE MODIFICADO! ---
-  // --- ¡BLOQUE MODIFICADO! ---
+  // 3. FIN DEL EXAMEN
   else if (message.type === 'EXAM_FINISHED') {
-    console.log("Examen finalizado por el usuario.");
-    isExamActive = false; // Desactiva la guardia
+    isExamActive = false;
     activeExamenId = null;
-    examWindowId = null;
-    sendNativeMessage({ command: 'STOP_MONITORING' }); // ¡Apaga el agente!
-    
-    // Limpia el tablero de avisos
-    chrome.storage.local.remove('isFinishingExam'); 
-    chrome.storage.local.remove('plagioFlag'); // Limpia también el de plagio
-    
-    sendResponse({status: 'exam finished ack'});
+    sendNativeMessage({ command: 'STOP_MONITORING' });
+    chrome.storage.local.remove(['isFinishingExam', 'plagioFlag']); 
+    sendResponse({status: 'ack'});
   }
-  // --- FIN DEL BLOQUE ---
 
-
+  // 4. CHEQUEOS DE RUTINA
   else if (message.type === 'CHECK_ENVIRONMENT') {
     checkBrowserState(); 
-    sendNativeMessage({ command: 'CHECK_APPS' });
+    // Solo pedimos chequeo de apps si tenemos puerto
+    if (nativePort) sendNativeMessage({ command: 'CHECK_APPS' });
+    else {
+        // Si no hay puerto (caso raro), intentamos reconectar suavemente
+        connectNative();
+    }
   }
 
-
-  // --- ¡AÑADE ESTE BLOQUE! ---
   else if (message.type === 'PING') {
-    console.log("BACKGROUND: Recibido PING, enviando PONG.");
     sendResponse({ status: 'PONG' });
   }
-  // --- FIN DEL BLOQUE ---
-
 
   else if (message.type === 'CLOSE_ALL') {
     cleanBrowserState(); 
@@ -134,216 +142,93 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   return true; 
 });
 
-
-
-
-
-
-// --- (tabs.onCreated y windows.onFocusChanged no cambian) ---
+// --- MONITORES DE NAVEGADOR ---
 chrome.tabs.onCreated.addListener(function(tab) {
-    if (isExamActive) {
-        console.warn("¡ALERTA DE PLAGIO! Nueva pestaña abierta.");
-        handlePlagio("intento de abrir una nueva pestaña");
-    }
+    if (isExamActive) handlePlagio("apertura de nueva pestaña");
 });
+
 chrome.windows.onFocusChanged.addListener(function(windowId) {
-    if (!isExamActive || !examWindowId) { return; }
-    if (windowId === chrome.windows.WINDOW_ID_NONE) {
-        handlePlagio("pérdida de foco del examen (cambio a otra app o escritorio)");
-    } else if (windowId !== examWindowId) {
-        handlePlagio("cambio a otra ventana de Chrome (modo incógnito o perfil)");
+    if (!isExamActive || !examWindowId) return;
+    if (windowId !== examWindowId && windowId !== chrome.windows.WINDOW_ID_NONE) {
+        handlePlagio("cambio de ventana no autorizado");
     }
 });
 
-// --- (sendMessageToContent, checkBrowserState, cleanBrowserState no cambian) ---
+// --- FUNCIONES AUXILIARES ---
 function sendMessageToContent(message) {
   if (examTabId) {
-    chrome.tabs.sendMessage(examTabId, message, (response) => {
-      if (chrome.runtime.lastError) { /* Silenciar errores */ }
+    chrome.tabs.sendMessage(examTabId, message, () => {
+      if (chrome.runtime.lastError) {} // Ignorar si la pestaña se cerró
     });
   }
 }
+
 async function checkBrowserState() {
     if (!examWindowId) return; 
     let isClean = true;
     let failReason = "";
-    const currentWindow = await chrome.windows.get(examWindowId, { populate: true });
-    if (currentWindow.incognito) {
-        isClean = false;
-        failReason = "El examen no puede iniciarse en modo incógnito.";
-    }
-    const otherTabs = currentWindow.tabs.filter(tab => tab.id !== examTabId && !tab.url.startsWith("chrome://"));
-    if (otherTabs.length > 0) {
-        isClean = false;
-        failReason = `Hay ${otherTabs.length} pestañas abiertas.`;
-    }
-    const allWindows = await chrome.windows.getAll();
-    const otherWindows = allWindows.filter(w => w.id !== examWindowId && w.type === 'normal');
-    if (otherWindows.length > 0) {
-        isClean = false;
-        failReason = `Hay ${otherWindows.length} ventanas (normales) abiertas.`;
-    }
-    sendMessageToContent({ 
-        type: 'BROWSER_STATUS', 
-        isClean: isClean,
-        message: failReason
-    });
+    try {
+        const currentWindow = await chrome.windows.get(examWindowId, { populate: true });
+        if (currentWindow.incognito) { isClean = false; failReason = "Modo incógnito detectado"; }
+        
+        const otherTabs = currentWindow.tabs.filter(tab => tab.id !== examTabId && !tab.url.startsWith("chrome://"));
+        if (otherTabs.length > 0) { isClean = false; failReason = `${otherTabs.length} pestañas extra`; }
+        
+        const allWindows = await chrome.windows.getAll();
+        const otherWindows = allWindows.filter(w => w.id !== examWindowId && w.type === 'normal');
+        if (otherWindows.length > 0) { isClean = false; failReason = "Otras ventanas abiertas"; }
+    } catch (e) { console.log("Error checking browser:", e); }
+    
+    sendMessageToContent({ type: 'BROWSER_STATUS', isClean: isClean, message: failReason });
 }
+
 async function cleanBrowserState() {
     if (!examWindowId) return;
-    const currentWindow = await chrome.windows.get(examWindowId);
-    if (currentWindow.incognito) {
-        checkBrowserState(); 
-        return; 
-    }
-    const currentTabs = await chrome.tabs.query({ windowId: examWindowId });
-    const tabsToClose = [];
-    for (const tab of currentTabs) {
-        if (tab.id !== examTabId && !tab.url.startsWith("chrome://")) {
-            tabsToClose.push(tab.id);
-        }
-    }
-    if (tabsToClose.length > 0) {
-        await chrome.tabs.remove(tabsToClose);
-    }
+    const currentWindow = await chrome.windows.get(examWindowId, {populate: true});
+    
+    // Cerrar Tabs extra
+    const tabsToClose = currentWindow.tabs
+        .filter(tab => tab.id !== examTabId && !tab.url.startsWith("chrome://"))
+        .map(t => t.id);
+    if (tabsToClose.length > 0) await chrome.tabs.remove(tabsToClose);
+
+    // Cerrar Ventanas extra
     const allWindows = await chrome.windows.getAll();
-    const windowsToClose = [];
-    for (const w of allWindows) {
-        if (w.id !== examWindowId && w.type === 'normal') {
-            windowsToClose.push(w.id);
-        }
-    }
-    if (windowsToClose.length > 0) {
-        for (const windowId of windowsToClose) {
-            await chrome.windows.remove(windowId);
-        }
-    }
+    const windowsToClose = allWindows
+        .filter(w => w.id !== examWindowId && w.type === 'normal')
+        .map(w => w.id);
+    
+    for (const wid of windowsToClose) await chrome.windows.remove(wid);
+    
     checkBrowserState(); 
 }
 
-
-
-
-
-
-
-
-
-
-
-// ... (todo el código anterior de background.js se queda igual) ...
-
-
-
-
-
-
-
-// --- ¡FUNCIÓN handlePlagio MODIFICADA! (Arregla Bug Tecla Windows) ---
-// --- ¡FUNCIÓN handlePlagio MODIFICADA! (Arregla Bug Tecla Windows) ---
 async function handlePlagio(reason) {
-  if (!isExamActive) return; // Evita que se llame varias veces
+  if (!isExamActive) return;
   isExamActive = false;
   
-  // 1. Iniciar la cancelación en la BD (esto ya funciona)
   getCsrfTokenAndFetch(activeExamenId); 
-  
-  // 2. Parar el monitoreo del agente
   sendNativeMessage({ command: 'STOP_MONITORING' }); 
-  console.error(`ALERTA DE PLAGIO: ${reason}`);
 
-  // --- ¡SOLUCIÓN BUG 2! ---
-  // 3. Dejamos una "nota" en el "tablero de avisos" de plagio
   if (activeExamenId) {
       chrome.storage.local.set({
-          plagioFlag: {
-              examenId: activeExamenId,
-              reason: reason
-          }
+          plagioFlag: { examenId: activeExamenId, reason: reason }
       });
   }
 
-  // 4. Intentamos forzar el foco de vuelta
-  try {
-    if (examWindowId) {
-        await chrome.windows.update(examWindowId, { focused: true });
-    }
-    if (examTabId) {
-        await chrome.tabs.update(examTabId, { active: true });
-        
-        // 5. Enviamos el mensaje (puede fallar, pero la "nota" es el respaldo)
-        chrome.tabs.sendMessage(examTabId, {
-          type: "PLAGIO_ALERT",
-          reason: reason
-        });
-    }
-  } catch (error) {
-    console.error("Error al forzar el foco:", error);
-  }
-  // --- FIN DE LA SOLUCIÓN ---
-
-  // 6. Limpiar las variables
-  examWindowId = null; 
-  activeExamenId = null; 
+  chrome.tabs.sendMessage(examTabId, { type: "PLAGIO_ALERT", reason: reason });
 }
-// --- (La función getCsrfTokenAndFetch se queda igual) ---
-// ...
 
-
-
-
-
-
-
-
-// --- ¡FUNCIÓN getCsrfTokenAndFetch MODIFICADA! ---
-// Ahora acepta el ID del examen como argumento
-// --- ¡FUNCIÓN getCsrfTokenAndFetch MODIFICADA! ---
 async function getCsrfTokenAndFetch(examen_id) {
-    console.log(`Obteniendo token CSRF para cancelar examen ID: ${examen_id}...`);
-    
-    if (!examen_id) {
-        console.error("Error: Se intentó cancelar un examen sin ID.");
-        return;
-    }
-
+    if (!examen_id) return;
     try {
-        // 1. CAMBIO: Dominio real HTTPS
-        const cookie = await chrome.cookies.get({
-            url: 'https://examen.asantosb.dev', 
-            name: 'csrftoken'
-        });
-
-        if (!cookie) {
-            console.error("Error: No se encontró la cookie CSRF.");
-            return;
-        }
-
-        const csrfToken = cookie.value;
-        console.log("Token CSRF encontrado:", csrfToken);
-
-        // 2. CAMBIO: Endpoint real HTTPS
-        const response = await fetch('https://examen.asantosb.dev/exam/cancel/', {
+        const cookie = await chrome.cookies.get({ url: 'http://127.0.0.1:8000', name: 'csrftoken' });
+        if (!cookie) return;
+        
+        await fetch('http://127.0.0.1:8000/exam/cancel/', {
             method: 'POST',
-            headers: {
-                'X-CSRFToken': csrfToken,
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include', 
-            body: JSON.stringify({
-                'examen_id': examen_id 
-            })
+            headers: { 'X-CSRFToken': cookie.value, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 'examen_id': examen_id })
         });
-        
-        const data = await response.json();
-        
-        if (response.ok) {
-            console.log('Respuesta del servidor (cancelación exitosa):', data);
-        } else {
-            console.error('Error del servidor al cancelar:', data);
-        }
-
-    } catch (error) {
-        console.error('Error crítico al obtener CSRF o enviar fetch:', error);
-    }
+    } catch (error) { console.error(error); }
 }

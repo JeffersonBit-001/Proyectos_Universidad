@@ -1,71 +1,150 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container my-5">
-    <div class="card mb-4 border-primary">
-        <div class="card-body bg-light">
-            <div class="row align-items-center">
-                <div class="col-md-8">
-                    <h2 class="text-primary mb-1">Revisión de Examen</h2>
-                    <h4 class="text-dark">Alumno: <strong>{{ alumno.last_name }}, {{ alumno.first_name }}</strong></h4>
-                    <p class="text-muted mb-0">Usuario: {{ alumno.username }} | Examen: {{ examen.titulo }}</p>
-                </div>
-                <div class="col-md-4 text-end">
-                    <div class="p-3 bg-white border rounded d-inline-block text-center shadow-sm">
-                        <small class="text-muted d-block">NOTA FINAL</small>
-                        <span class="display-4 fw-bold {% if nota >= 11 %}text-primary{% else %}text-danger{% endif %}">
-                            {{ nota }}
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Revisión de Examen: {{ examen.titulo }}</h2>
+        <a href="{% url 'professor_manage_course' examen.id_curso.id_cursos %}" class="btn btn-secondary">Volver al Curso</a>
     </div>
 
-    <hr class="my-4">
-
-    {% for item in resultados %}
-    <div class="card mb-3 shadow-sm">
-        <div class="card-header bg-white">
-            <h5 class="mb-0">Pregunta {{ forloop.counter }}</h5>
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">Alumno: {{ alumno.username }}</h4>
         </div>
         <div class="card-body">
-            <p class="card-text fs-5 mb-3">{{ item.pregunta.texto_pregunta }}</p>
-            
-            <div class="list-group">
-                {% for alternativa in item.alternativas %}
-                    {%  if alternativa.id_alternativas_examen == item.seleccionada_id %}
-                        {% if alternativa.valor == 'C' %}
-                            <div class="list-group-item list-group-item-success">
-                                <i class="bi bi-check-circle-fill me-2"></i> {{ alternativa.texto_alternativa }} 
-                                <strong>(Correcta y Marcada)</strong>
-                            </div>
-                        {% else %}
-                            <div class="list-group-item list-group-item-danger">
-                                <i class="bi bi-x-circle-fill me-2"></i> {{ alternativa.texto_alternativa }} 
-                                <strong>(Incorrecta - Marcada por el alumno)</strong>
-                            </div>
-                        {% endif %}
-                    
-                    {% elif alternativa.valor == 'C' %}
-                        <div class="list-group-item list-group-item-warning">
-                            <i class="bi bi-check-circle me-2"></i> {{ alternativa.texto_alternativa }} 
-                            <span class="text-muted">(Era la respuesta correcta)</span>
-                        </div>
-                    
-                    {% else %}
-                        <div class="list-group-item">
-                            <i class="bi bi-circle me-2"></i> {{ alternativa.texto_alternativa }}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
+            <h1 class="display-4 text-center">Nota Actual: <span id="nota-global">{{ nota|default:"0.00" }}</span></h1>
         </div>
     </div>
-    {% endfor %}
 
-    <div class="text-center mt-4">
-        <button onclick="window.close()" class="btn btn-secondary btn-lg">Cerrar Revisión</button>
+    <div class="row">
+        <div class="col-md-12">
+            {% for item in resultados %}
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title">Pregunta {{ forloop.counter }}</h5>
+                        <span class="badge bg-secondary">Valor: {{ item.pregunta.puntaje_maximo }} pts</span>
+                    </div>
+                    
+                    <p class="card-text lead">{{ item.pregunta.texto_pregunta }}</p>
+
+                    <hr>
+
+                    {% if item.pregunta.tipo_pregunta == 'M' %}
+                        <ul class="list-group">
+                            {% for alt in item.alternativas %}
+                            <li class="list-group-item 
+                                {% if alt.valor == 'C' %}list-group-item-success{% endif %}
+                                {% if item.seleccionada_id == alt.id_alternativas_examen and alt.valor != 'C' %}list-group-item-danger{% endif %}">
+                                
+                                {{ alt.texto_alternativa }}
+                                
+                                {% if item.seleccionada_id == alt.id_alternativas_examen %}
+                                    <span class="badge bg-primary float-end">Marcada por el alumno</span>
+                                {% endif %}
+                                
+                                {% if alt.valor == 'C' %}
+                                    <span class="badge bg-success float-end me-2">Correcta</span>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="mt-2">
+                            <strong>Puntaje obtenido:</strong> {{ item.puntaje_obtenido }} / {{ item.pregunta.puntaje_maximo }} (Automático)
+                        </div>
+
+                    {% else %}
+                        <div class="alert alert-light border">
+                            <strong>Respuesta del Alumno:</strong>
+                            <p class="mt-2 p-2 bg-white border rounded">
+                                {% if item.respuesta_texto %}
+                                    {{ item.respuesta_texto }}
+                                {% else %}
+                                    <em class="text-muted">El alumno no escribió nada.</em>
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="bg-light p-3 rounded border border-warning">
+                            <label class="form-label fw-bold text-warning">
+                                <i class="fas fa-pencil-alt"></i> Calificación Manual:
+                            </label>
+                            <div class="row g-2 align-items-center">
+                                <div class="col-auto">
+                                    <input type="number" 
+                                           step="0.5" min="0" max="{{ item.pregunta.puntaje_maximo }}" 
+                                           class="form-control input-calificacion" 
+                                           id="input-{{ item.respuesta_id }}"
+                                           value="{{ item.puntaje_obtenido|default:0 }}">
+                                </div>
+                                <div class="col-auto">
+                                    <span class="form-text">de {{ item.pregunta.puntaje_maximo }} pts</span>
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-warning btn-guardar-nota" 
+                                            data-respuesta-id="{{ item.respuesta_id }}">
+                                        Guardar Nota
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-text text-success d-none" id="msg-{{ item.respuesta_id }}">¡Guardado!</div>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
+
+<script>
+    // Script para manejar el guardado de notas manuales
+    document.querySelectorAll('.btn-guardar-nota').forEach(button => {
+        button.addEventListener('click', async function() {
+            const respuestaId = this.getAttribute('data-respuesta-id');
+            const input = document.getElementById(`input-${respuestaId}`);
+            const puntaje = input.value;
+            const msgDiv = document.getElementById(`msg-${respuestaId}`);
+            
+            // Bloquear botón
+            this.disabled = true;
+            this.textContent = "Guardando...";
+
+            try {
+                const response = await fetch("{% url 'calificar_respuesta_ajax' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({
+                        id_respuesta: respuestaId,
+                        puntaje: puntaje
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    // Mostrar éxito
+                    msgDiv.classList.remove('d-none');
+                    setTimeout(() => msgDiv.classList.add('d-none'), 2000);
+                    
+                    // ¡ACTUALIZAR LA NOTA GLOBAL EN PANTALLA!
+                    document.getElementById('nota-global').textContent = parseFloat(data.nueva_nota_total).toFixed(2);
+                } else {
+                    alert("Error: " + data.message);
+                }
+
+            } catch (error) {
+                console.error(error);
+                alert("Error de conexión al guardar.");
+            } finally {
+                this.disabled = false;
+                this.textContent = "Guardar Nota";
+            }
+        });
+    });
+</script>
 {% endblock %}

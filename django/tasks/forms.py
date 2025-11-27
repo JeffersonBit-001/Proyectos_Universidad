@@ -1,6 +1,7 @@
 from django.forms import ModelForm, Select
 from .models import Task, Cursos, Examen, PreguntasExamen, AlternativasExamen,Salon, Cursos
 from django import forms
+from django.forms import ModelForm, RadioSelect, NumberInput
 
 
 class TaskForm(ModelForm):
@@ -21,29 +22,35 @@ class CursoForm(ModelForm):
 class ExamenForm(ModelForm):
     class Meta:
         model = Examen
-        # 1. Agregamos 'cantidad_preguntas' a la lista de campos permitidos
-        fields = ['titulo', 'cantidad_preguntas'] 
+        # Usamos SOLO los campos nuevos
+        fields = ['titulo', 'cantidad_preguntas', 'is_visible', 'modo_tiempo', 'tiempo_base_minutos']
         
         labels = {
-            'titulo': 'Título del Examen',
-            # 2. Ponemos una etiqueta bonita
-            'cantidad_preguntas': 'Cantidad de preguntas aleatorias', 
+            'modo_tiempo': '¿Cómo quieres gestionar el tiempo?',
+            'tiempo_base_minutos': 'Tiempo en Minutos',
         }
-        # 3. (Opcional) Configuración visual
         widgets = {
-            'cantidad_preguntas': forms.NumberInput(attrs={
-                'class': 'form-control', 
-                'min': 0,
-                'placeholder': '0 para mostrar todas'
-            }),
+            # RadioSelect muestra las opciones como puntitos para marcar (Check Box logic)
+            'modo_tiempo': RadioSelect(attrs={'class': 'list-unstyled mb-3'}), 
+            'tiempo_base_minutos': NumberInput(attrs={'class': 'form-control', 'min': '0', 'placeholder': 'Ej: 60'}),
         }
+
+        
 
 class PreguntaForm(ModelForm):
     class Meta:
         model = PreguntasExamen
-        fields = ['texto_pregunta']
+        fields = ['texto_pregunta', 'tipo_pregunta', 'puntaje_maximo']
+        
         labels = {
-            'texto_pregunta': 'Texto de la Pregunta',
+            'texto_pregunta': 'Enunciado',
+            'tipo_pregunta': 'Tipo de Pregunta',
+            'puntaje_maximo': 'Puntaje (Peso)',
+        }
+        widgets = {
+            'texto_pregunta': forms.Textarea(attrs={'rows': 2, 'class': 'form-control'}),
+            'tipo_pregunta': forms.Select(attrs={'class': 'form-select'}),
+            'puntaje_maximo': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.5'}),
         }
 
 class AlternativaForm(ModelForm):
@@ -81,3 +88,6 @@ class SalonForm(forms.ModelForm):
         # --- FILTRO DE SEGURIDAD ---
         # El select de cursos solo mostrará los cursos creados por ESTE profesor
         self.fields['id_curso'].queryset = Cursos.objects.filter(id_profesor=user)
+
+
+

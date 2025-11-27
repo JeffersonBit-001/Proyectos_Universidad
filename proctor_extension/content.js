@@ -1,17 +1,21 @@
-console.log("--- ¡CONTENT.JS INYECTADO Y EJECUTANDO! ---");
+console.log("--- CONTENT.JS: FUSIÓN FINAL (ESCRITURA OK + APPS DINÁMICAS) ---");
 
-let checks = { agent: false, browser: false, discord: false, zoom: false };
+// Estado
+let checks = { 
+    agent: false, 
+    browser: false, 
+    appsClean: false 
+};
 
-// Elementos del DOM
+// Elementos DOM
 let progressBar = document.getElementById('proctor-progress-bar');
 let statusMessage = document.getElementById('proctor-status-message');
 let startButton = document.getElementById('start-exam-button');
 let checkAgent = document.getElementById('check-agent');
 let checkBrowser = document.getElementById('check-browser');
-let checkDiscord = document.getElementById('check-discord');
-let checkZoom = document.getElementById('check-zoom');
+let appsContainer = document.getElementById('dynamic-apps-container');
 
-// Lógica para leer el ID del examen
+// Identificación Examen
 let currentPage = null;
 let currentExamenId = null;
 const welcomeMatch = window.location.pathname.match(/exam\/(\d+)\/welcome\//);
@@ -24,247 +28,209 @@ if (welcomeMatch) {
     currentPage = 'exam';
     currentExamenId = examMatch[1]; 
 }
+let isExamActive = (currentPage === 'exam');
 
-// Informar al background script
-chrome.runtime.sendMessage({ 
-    type: 'PAGE_LOADED', 
-    page: currentPage,
-    examen_id: currentExamenId 
-});
+chrome.runtime.sendMessage({ type: 'PAGE_LOADED', page: currentPage, examen_id: currentExamenId });
 
-// --- LÓGICA PARA LA PÁGINA DE BIENVENIDA ---
+// --- LÓGICA BIENVENIDA ---
 if (currentPage === 'welcome') {
-    setTimeout(() => {
-         chrome.runtime.sendMessage({ type: 'CHECK_ENVIRONMENT' });
-    }, 500); 
+    // Limpieza de memoria para permitir re-intentos
+    chrome.storage.local.remove(['plagioFlag', 'isFinishingExam']);
+    
+    // Limpieza de timer para que empiece de 0 si es un nuevo intento
+    if (currentExamenId) {
+        localStorage.removeItem('exam_end_time_' + currentExamenId);
+    }
+
+    setTimeout(() => chrome.runtime.sendMessage({ type: 'CHECK_ENVIRONMENT' }), 500);
     setInterval(() => {
-        if (startButton && !startButton.disabled) {
-            chrome.runtime.sendMessage({ type: 'CHECK_ENVIRONMENT' });
-        }
-    }, 3000); 
+        chrome.runtime.sendMessage({ type: 'CHECK_ENVIRONMENT' });
+    }, 2000);
+
     if (startButton) {
         startButton.addEventListener('click', onStartButtonClick);
     }
 }
 
-// --- LÓGICA DE PÁGINA DE EXAMEN ---
+// --- LÓGICA EXAMEN ---
 if (currentPage === 'exam') {
-    
-    // 1. El requestFullscreen lo maneja home.html, aquí solo atrapamos error por si acaso
-    try {
-        document.documentElement.requestFullscreen();
-    } catch (err) {
-        console.warn("No se pudo entrar en pantalla completa (puede que ya esté activa):", err);
-    }
-
-    // 2. Inicia el revisor de "buzón de mensajes" cada segundo
     const plagioCheckInterval = setInterval(checkPlagioFlag, 1000);
 
-    // 3. Función genérica para bloquear eventos
     function blockEvent(e) {
         e.preventDefault();
         e.stopPropagation();
         return false;
     }
 
-    // 4. Bloquear Clic Derecho, Copiar, Pegar, Cortar
     window.addEventListener('contextmenu', blockEvent);
     window.addEventListener('copy', blockEvent);
     window.addEventListener('paste', blockEvent);
     window.addEventListener('cut', blockEvent);
 
-    // 5. Bloquear Teclas de Función (F1-F12)
+    // --- ¡AQUÍ ESTÁ EL ARREGLO DE LA TECLA 'F'! ---
     window.addEventListener('keydown', function(e) {
-        if (e.key.startsWith('F') && !isNaN(e.key.substring(1))) {
+        // Solo bloquea F1 hasta F12. Deja pasar la letra "F" normal.
+        if (/^F([1-9]|1[0-2])$/.test(e.key)) {
             console.warn(`Tecla F bloqueada: ${e.key}`);
             blockEvent(e);
         }
     });
+    // ----------------------------------------------
 
-    // 6. Detectar si el usuario sale de pantalla completa
     window.addEventListener('fullscreenchange', async function() {
-        
-        // Revisa si la página sigue en pantalla completa
-        if (document.fullscreenElement) {
-            return; 
-        }
-
-        // Si salió, revisamos el "tablero de avisos" (Storage)
+        if (document.fullscreenElement) return; 
         try {
             const result = await chrome.storage.local.get('isFinishingExam');
-            
             if (result.isFinishingExam === true) {
-                // ¡Fue a propósito (finalizó el examen)!
-                console.log("Saliendo de pantalla completa (final del examen). No es plagio.");
-                // Limpiamos el tablero
                 chrome.storage.local.remove('isFinishingExam');
                 return; 
             }
-        } catch (e) {
-            console.error("Error al leer storage", e);
-        }
-        
-        // Si NO fue a propósito, ¡ES PLAGIO!
-        console.warn("¡ALERTA DE PLAGIO! Salió de pantalla completa (usuario forzó).");
-        chrome.runtime.sendMessage({ 
-            type: 'PLAGIO_DETECTED', 
-            reason: 'salida de pantalla completa (usuario)' 
-        });
+        } catch (e) { console.error(e); }
+        console.warn("Plagio: Salida fullscreen");
+        chrome.runtime.sendMessage({ type: 'PLAGIO_DETECTED', reason: 'salida de pantalla completa' });
     });
+
+    // Heartbeat
+    const heartbeatInterval = setInterval(() => {
+        if (!isExamActive) { clearInterval(heartbeatInterval); return; }
+        try {
+            chrome.runtime.sendMessage({ type: 'PING' }, (response) => {
+                if (chrome.runtime.lastError) {
+                    handlePlagioInPage("Extensión desactivada");
+                    clearInterval(heartbeatInterval);
+                }
+            });
+        } catch (e) {}
+    }, 3000);
 }
 
-// --- LISTENERS DE MENSAJES ---
-
+// --- LISTENER MENSAJES ---
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log("Mensaje recibido en content.js:", message);
     switch (message.type) {
         case 'AGENT_STATUS':
             checks.agent = message.connected;
-            updateCheckUI(checkAgent, checks.agent, message.error);
+            updateCheckUI(checkAgent, checks.agent, message.connected ? "Conectado" : "Desconectado");
             break;
         case 'BROWSER_STATUS':
             checks.browser = message.isClean;
-            updateCheckUI(checkBrowser, checks.browser, message.message || "Navegador limpio.");
+            updateCheckUI(checkBrowser, checks.browser, message.isClean ? "Limpio" : message.message);
             break;
         case 'APPS_STATUS':
-            checks.discord = !message.discordOpen;
-            checks.zoom = !message.zoomOpen;
-            updateCheckUI(checkDiscord, checks.discord, "Discord está abierto");
-            updateCheckUI(checkZoom, checks.zoom, "Zoom está abierto");
+            const openApps = message.openApps || [];
+            const allApps = message.allApps || [];
+            
+            checks.appsClean = (openApps.length === 0);
+            renderAppsGrid(allApps, openApps); // Renderizado dinámico
+
+            if (!checks.appsClean && statusMessage) {
+                statusMessage.textContent = "Detectado: " + openApps.join(", ");
+                statusMessage.style.color = "red";
+            } else if (statusMessage && checks.agent && checks.browser) {
+                statusMessage.textContent = "";
+            }
             break;
         case 'PLAGIO_ALERT':
+            isExamActive = false;
             handlePlagioInPage(message.reason);
             break;
     }
-    if (window.location.pathname.includes('/welcome/')) {
-        updateWelcomeUI();
-    }
+    if (currentPage === 'welcome') updateWelcomeUI();
 });
 
-function updateCheckUI(element, success, failMessage) {
+// --- RENDERIZADO DINÁMICO DE APPS ---
+function renderAppsGrid(allApps, openApps) {
+    if (!appsContainer) return;
+    appsContainer.innerHTML = '';
+    if (allApps.length === 0) {
+        appsContainer.innerHTML = '<div class="col-12 text-muted small">Conectando...</div>';
+        return;
+    }
+    allApps.forEach(appName => {
+        const isOpen = openApps.some(open => open.toLowerCase().includes(appName.toLowerCase()));
+        const colDiv = document.createElement('div');
+        colDiv.className = 'col-6 col-md-4 col-lg-3 mb-2';
+        const badgeClass = isOpen ? 'badge bg-danger w-100 py-2' : 'badge bg-success opacity-75 w-100 py-2';
+        const icon = isOpen ? '❌' : '✅';
+        colDiv.innerHTML = `
+            <div class="p-1"><span class="${badgeClass}" style="font-size:0.9em;">
+            <div class="text-truncate">${appName}</div>
+            <div class="small">${icon} ${isOpen ? 'ABIERTO' : 'Cerrado'}</div></span></div>`;
+        appsContainer.appendChild(colDiv);
+    });
+}
+
+// --- UI HELPERS ---
+function updateCheckUI(element, success, text) {
     if (!element) return;
-    if (success) {
-        element.textContent = 'OK';
-        element.className = 'badge bg-success rounded-pill';
-    } else {
-        element.textContent = 'PENDIENTE';
-        element.className = 'badge bg-danger rounded-pill';
-    }
-    if (!success && statusMessage) {
-        statusMessage.textContent = failMessage;
-    }
+    element.textContent = success ? "OK" : text;
+    element.className = success ? 'badge bg-success rounded-pill p-2 w-75' : 'badge bg-danger rounded-pill p-2 w-75 text-wrap';
 }
 
 function updateWelcomeUI() {
     if (!progressBar || !startButton) return;
-    let progress = 0;
-    if (checks.agent) progress += 25;
-    if (checks.browser) progress += 25;
-    if (checks.discord) progress += 25;
-    if (checks.zoom) progress += 25;
+    let passed = 0;
+    if (checks.agent) passed++;
+    if (checks.browser) passed++;
+    if (checks.appsClean) passed++;
+    let progress = Math.round((passed/3)*100);
+    
     progressBar.style.width = `${progress}%`;
-    progressBar.setAttribute('aria-valuenow', progress);
     progressBar.textContent = `${progress}%`;
-    const allClear = checks.agent && checks.browser && checks.discord && checks.zoom;
-    if (allClear) {
-        progressBar.classList.remove('bg-warning');
-        progressBar.classList.add('bg-success');
-        statusMessage.textContent = '¡Todo listo! Puedes comenzar el examen.';
-        startButton.disabled = false;
-        startButton.textContent = 'Comenzar Examen';
-        startButton.classList.remove('btn-primary');
-        startButton.classList.add('btn-success');
-    } else {
-        progressBar.classList.add('bg-warning');
-        progressBar.classList.remove('bg-success');
-        startButton.disabled = false; 
-        startButton.textContent = 'Cerrar Todo y Comenzar';
-        startButton.classList.add('btn-primary');
-        startButton.classList.remove('btn-success');
-        
-        if (checks.agent && checks.discord && checks.zoom && !checks.browser) {
-            // msg ya seteado
-        } else if (!checks.agent) {
-             statusMessage.textContent = "Error: El agente de seguridad no está conectado.";
+    
+    if (progress < 100) {
+        progressBar.className = "progress-bar bg-warning";
+        // Botón de pánico (Cerrar todo)
+        if (checks.agent && (!checks.browser || !checks.appsClean)) {
+            startButton.disabled = false;
+            startButton.textContent = "Corregir Todo y Comenzar";
+            startButton.className = "btn btn-primary btn-lg shadow";
+        } else {
+            startButton.disabled = true;
+            startButton.textContent = "Verificando...";
+            startButton.className = "btn btn-secondary btn-lg";
         }
+    } else {
+        progressBar.className = "progress-bar bg-success";
+        statusMessage.textContent = "Todo listo.";
+        statusMessage.style.color = "green";
+        startButton.disabled = false;
+        startButton.textContent = "Comenzar Examen";
+        startButton.className = "btn btn-success btn-lg shadow";
     }
 }
 
 function onStartButtonClick() {
     if (!startButton) return;
-
-    const allClear = checks.agent && checks.browser && checks.discord && checks.zoom;
-
-    if (allClear) {
-        startButton.disabled = true;
-        startButton.textContent = 'Iniciando...';
-        const examUrl = startButton.getAttribute('data-url');
-
-        if (examUrl) {
-            // SOLO redirigimos, el fullscreen lo pide home.html
-            window.location.href = examUrl;
-        } else {
-            console.error("No se pudo encontrar la URL del examen en el botón.");
-        }
+    if (checks.agent && checks.browser && checks.appsClean) {
+        const url = startButton.getAttribute('data-url');
+        if (url) window.location.href = url;
     } else {
-        statusMessage.textContent = 'Forzando cierre de pestañas y aplicaciones...';
-        startButton.disabled = true;
+        statusMessage.textContent = "Cerrando todo...";
         chrome.runtime.sendMessage({ type: 'CLOSE_ALL' });
-        setTimeout(() => {
-            if (startButton.disabled) {
-                startButton.disabled = false;
-                statusMessage.textContent = "Error al cerrar. Por favor, intente de nuevo o cierre manualmente.";
-            }
-        }, 5000); 
+        startButton.disabled = true;
+        setTimeout(() => { startButton.disabled = false; }, 2000);
     }
 }
 
 function handlePlagioInPage(reason) {
-    if (document.fullscreenElement) {
-        document.exitFullscreen();
-    }
-    document.body.innerHTML = `
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; background-color: #f8d7da; color: #721c24; text-align: center; font-family: sans-serif;">
-            <h1 style="font-size: 3em; margin: 0;">Examen Cancelado</h1>
-            <p style="font-size: 1.5em; margin-top: 20px;">Motivo: Intento de plagio detectado.</p>
-            <p style="font-size: 1.2em; color: #721c24;">(${reason})</p>
-            <p style="margin-top: 40px;">Serás redirigido al panel de exámenes.</p>
-        </div>
-    `;
-    setTimeout(() => {
-        // --- ¡AQUÍ ESTÁ EL CAMBIO DE DOMINIO! ---
-        window.location.href = 'https://examen.asantosb.dev/exam/dashboard/';
-    }, 5000);
+    if (document.fullscreenElement) document.exitFullscreen();
+    document.body.innerHTML = `<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;background:#f8d7da;color:#721c24;text-align:center;"><h1>Examen Cancelado</h1><p>Motivo: ${reason}</p></div>`;
+    setTimeout(() => window.location.href = 'http://127.0.0.1:8000/exam/dashboard/', 4000);
 }
 
 function checkPlagioFlag() {
-    if (!currentExamenId) return; 
-
-    chrome.storage.local.get('plagioFlag', function(result) {
-        if (result.plagioFlag) {
-            // Revisa si la bandera es PARA este examen
-            if (result.plagioFlag.examenId == currentExamenId) {
-                console.log("¡Bandera de plagio detectada por el revisor!");
-                handlePlagioInPage(result.plagioFlag.reason);
-                chrome.storage.local.remove('plagioFlag');
-            }
+    if (!currentExamenId) return;
+    chrome.storage.local.get('plagioFlag', (res) => {
+        if (res.plagioFlag && res.plagioFlag.examenId == currentExamenId) {
+            handlePlagioInPage(res.plagioFlag.reason);
+            chrome.storage.local.remove('plagioFlag');
         }
     });
 }
 
-// Listener para la comunicación segura con home.html al finalizar
-window.addEventListener("message", async (event) => {
-    if (event.source === window && event.data && event.data.type === 'FROM_PAGE_EXAM_FINISHED') {
-        
-        console.log("Content.js recibió solicitud de finalización.");
-
-        // 1. Pone el "aviso" en el tablero (Storage)
+window.addEventListener("message", async (e) => {
+    if (e.data && e.data.type === 'FROM_PAGE_EXAM_FINISHED') {
         await chrome.storage.local.set({ isFinishingExam: true });
-
-        // 2. Avisa al background para apagar el agente python
         chrome.runtime.sendMessage({ type: 'EXAM_FINISHED' });
-
-        // 3. Envía confirmación DE VUELTA a home.html
-        window.postMessage({ type: 'EXTENSION_ACK_FINISHED' }, '*');
     }
 });

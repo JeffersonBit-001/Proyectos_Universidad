@@ -99,4 +99,10 @@ urlpatterns = [
     # ... tus otras rutas ...
     # Agrega esto junto a tus otras rutas de profesor
     path('profesor/examen/<int:examen_id>/alumno/<int:alumno_id>/revision/', views.professor_review_exam, name='professor_review_exam'),
+
+
+    # --- RUTA NUEVA PARA GUARDAR LA NOTA MANUAL ---
+    path('profesor/calificar/ajax/', views.calificar_respuesta_ajax, name='calificar_respuesta_ajax'),
+
+    
 ]

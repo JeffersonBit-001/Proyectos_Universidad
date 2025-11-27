@@ -1,40 +1,84 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Resultados: {{ examen.titulo }}</h2>
-        <h3 class="text-primary">Tu Nota: {{ nota }}</h3>
+        <h3 class="text-primary">Tu Nota: {{ nota|default:"0.00" }}</h3>
     </div>
 
     {% for item in resultados %}
-    <div class="card mb-4">
-        <div class="card-header">
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
             <strong>{{ forloop.counter }}. {{ item.pregunta.texto_pregunta }}</strong>
+            
+            <span class="badge {% if item.puntaje_obtenido > 0 %}bg-success{% else %}bg-secondary{% endif %}">
+                {{ item.puntaje_obtenido }} / {{ item.pregunta.puntaje_maximo }} pts
+            </span>
         </div>
-        <ul class="list-group list-group-flush">
-            {% for alt in item.alternativas %}
-                {% if alt.valor == 'C' %}
-                    <li class="list-group-item list-group-item-success">
-                        <i class="bi bi-check-circle-fill"></i> {{ alt.texto_alternativa }} 
-                        <span class="badge bg-success float-end">Correcta</span>
-                    </li>
-                {% elif alt.id_alternativas_examen == item.seleccionada_id %}
-                    <li class="list-group-item list-group-item-danger">
-                        <i class="bi bi-x-circle-fill"></i> {{ alt.texto_alternativa }}
-                        <span class="badge bg-danger float-end">Tu elección</span>
-                    </li>
-                {% else %}
-                    <li class="list-group-item">
-                        <i class="bi bi-circle"></i> {{ alt.texto_alternativa }}
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+
+        <div class="card-body p-0"> {% if item.pregunta.tipo_pregunta == 'M' %}
+                <ul class="list-group list-group-flush">
+                    {% for alt in item.alternativas %}
+                        
+                        {% if alt.valor == 'C' %}
+                            <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="bi bi-check-circle-fill me-2"></i> {{ alt.texto_alternativa }}
+                                </div>
+                                <div>
+                                    {% if alt.id_alternativas_examen == item.seleccionada_id %}
+                                        <span class="badge bg-primary me-1">Tu elección</span>
+                                    {% endif %}
+                                    <span class="badge bg-success">Correcta</span>
+                                </div>
+                            </li>
+
+                        {% elif alt.id_alternativas_examen == item.seleccionada_id %}
+                            <li class="list-group-item list-group-item-danger d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="bi bi-x-circle-fill me-2"></i> {{ alt.texto_alternativa }}
+                                </div>
+                                <span class="badge bg-danger">Tu elección</span>
+                            </li>
+
+                        {% else %}
+                            <li class="list-group-item">
+                                <i class="bi bi-circle me-2"></i> {{ alt.texto_alternativa }}
+                            </li>
+                        {% endif %}
+
+                    {% endfor %}
+                </ul>
+
+            {% else %}
+                <div class="p-4">
+                    <h6 class="text-muted mb-2">Tu Respuesta:</h6>
+                    <div class="p-3 mb-3 bg-light border rounded text-dark">
+                        {% if item.respuesta_texto %}
+                            {{ item.respuesta_texto }}
+                        {% else %}
+                            <em class="text-muted">Sin respuesta.</em>
+                        {% endif %}
+                    </div>
+
+                    {% if item.comentario %}
+                        <div class="alert alert-info d-flex align-items-start mb-0">
+                            <i class="bi bi-chat-left-text-fill fs-4 me-3"></i>
+                            <div>
+                                <h6 class="alert-heading fw-bold">Comentario del Profesor:</h6>
+                                <p class="mb-0">{{ item.comentario }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
     </div>
     {% endfor %}
 
     <div class="text-center mb-5">
-        <a href="{% url 'exam_dashboard' %}" class="btn btn-primary">Volver al Panel</a>
+        <a href="{% url 'exam_dashboard' %}" class="btn btn-primary btn-lg">Volver al Panel</a>
     </div>
 </div>
 {% endblock %}

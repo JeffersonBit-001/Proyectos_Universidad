@@ -19,39 +19,63 @@ class Cursos(models.Model):
     def __str__(self):
         return self.nombre_curso
 
+
+
 class Examen(models.Model):
     id_examen = models.AutoField(primary_key=True)
-    
-    id_curso = models.ForeignKey(
-        Cursos, 
-        on_delete=models.DO_NOTHING,
-        db_column='id_curso'
-    )
+    id_curso = models.ForeignKey('Cursos', on_delete=models.DO_NOTHING, db_column='id_curso')
     titulo = models.CharField(max_length=255)
-
-
-
-
-    
-    # --- ¡AÑADE ESTA LÍNEA! ---
     is_visible = models.BooleanField(default=True)
-    # --- FIN DE LA ADICIÓN ---
+    cantidad_preguntas = models.IntegerField(default=0, help_text="0 para todas")
 
-
-    # --- ¡NUEVO CAMPO! ---
-    cantidad_preguntas = models.IntegerField(
-        default=0, 
-        help_text="Cantidad de preguntas aleatorias a mostrar. 0 para mostrar todas."
+    # --- NUEVA ESTRUCTURA DE TIEMPO (3 CASOS) ---
+    OPCIONES_TIEMPO = [
+        ('LIBRE', 'Caso 1B: Tiempo General Libre (Sin límite por pregunta)'),
+        ('REPARTIDO', 'Caso 1A: Tiempo General Repartido (Se divide entre preguntas)'),
+        ('POR_PREGUNTA', 'Caso 2: Tiempo Fijo por Pregunta (Se suma al general)'),
+    ]
+    
+    modo_tiempo = models.CharField(
+        max_length=20, 
+        choices=OPCIONES_TIEMPO, 
+        default='LIBRE',
+        verbose_name="Estrategia de Tiempo"
     )
-    # ---------------------
 
+    # Un solo campo numérico para evitar confusiones
+    tiempo_base_minutos = models.IntegerField(
+        default=0, 
+        help_text="Ingrese los MINUTOS (Total o por Pregunta según lo que elijas arriba)."
+    )
+    
+    # Campo interno para guardar el total calculado (sin que el usuario lo toque)
+    tiempo_limite = models.IntegerField(default=0, editable=False)
 
     class Meta:
         db_table = 'examen'
-        # managed = False <--- ¡ELIMINADO!
 
     def __str__(self):
         return self.titulo
+
+    def save(self, *args, **kwargs):
+        # Lógica automática al guardar
+        total_q = self.cantidad_preguntas
+        if total_q == 0:
+            conteo = PreguntasExamen.objects.filter(id_examen=self.id_examen).count()
+            total_q = conteo if conteo > 0 else 1
+
+        # Calculamos el tiempo límite total real para la base de datos
+        if self.modo_tiempo == 'POR_PREGUNTA':
+            # Caso 2: (Minutos por pregunta) * Cantidad
+            self.tiempo_limite = self.tiempo_base_minutos * total_q
+        else:
+            # Caso 1A y 1B: El número ingresado YA ES el total
+            self.tiempo_limite = self.tiempo_base_minutos
+            
+        super(Examen, self).save(*args, **kwargs)
+
+
+
 
 class Task(models.Model):
   title = models.CharField(max_length=200)
@@ -66,21 +90,29 @@ class Task(models.Model):
 
 class PreguntasExamen(models.Model):
     id_preguntas_examen = models.AutoField(primary_key=True)
-    id_examen = models.ForeignKey(
-        Examen, 
-        on_delete=models.DO_NOTHING,
-        db_column='id_examen'
-    )
-
+    id_examen = models.ForeignKey(Examen, on_delete=models.DO_NOTHING, db_column='id_examen')
     texto_pregunta = models.TextField()
     #texto_pregunta = models.CharField(max_length=255)
+
+    # --- NUEVO: TIPO Y PUNTAJE ---
+    TIPO_PREGUNTA = [
+        ('M', 'Opción Múltiple (Automática)'),
+        ('A', 'Abierta / Texto (Manual)'),
+    ]
+    
+    tipo_pregunta = models.CharField(max_length=1, choices=TIPO_PREGUNTA, default='M')
+    
+    # Cuánto vale esta pregunta (Ej: 4 puntos, 1 punto, etc.)
+    puntaje_maximo = models.DecimalField(max_digits=5, decimal_places=2, default=1.00)
+    # -----------------------------
+
 
     class Meta:
         db_table = 'preguntas_examen'
         # managed = False  <--- ¡ELIMINADO!
 
     def __str__(self):
-        return self.texto_pregunta
+        return f"[{self.get_tipo_pregunta_display()}] {self.texto_pregunta}"
 
 class AlternativasExamen(models.Model):
     id_alternativas_examen = models.AutoField(primary_key=True)
@@ -144,15 +176,34 @@ class RespuestasUsuario(models.Model):
         on_delete=models.CASCADE,
         db_column='id_preguntas_examen'
     )
+    
+    
+    # --- MODIFICACIÓN IMPORTANTE: permitir NULL ---
+    # Opción marcada (para tipo 'M')
     id_alternativas_examen = models.ForeignKey(
         AlternativasExamen, 
-        on_delete=models.CASCADE,
-        db_column='id_alternativas_examen'
+        on_delete=models.CASCADE, 
+        db_column='id_alternativas_examen', 
+        null=True, 
+        blank=True
     )
+    # ----------------------------------------------
+
+    # --- NUEVOS CAMPOS ---
+    respuesta_texto = models.TextField(null=True, blank=True, help_text="Respuesta escrita por el alumno")
+    
+    puntaje_obtenido = models.DecimalField(
+        max_digits=5, decimal_places=2, default=0, 
+        help_text="Puntaje ganado en esta pregunta (auto o manual)"
+    )
+    
+    comentario_profesor = models.TextField(null=True, blank=True, help_text="Feedback")
+    # ------------------------------------------------
+
+
 
     class Meta:
         db_table = 'respuestas_usuario'
-        # managed = False  <--- ¡ELIMINADO!
         constraints = [
             models.UniqueConstraint(fields=['user', 'id_examen', 'id_preguntas_examen'], name='respuesta_unica_por_pregunta')
         ]

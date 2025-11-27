@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% csrf_token %}
+
+<div id="fullscreen-blocker" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.99); z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <h2 class="mb-4 text-danger"><i class="fas fa-shield-alt"></i> Modo Seguro Requerido</h2>
+    <p class="lead mb-4 text-center px-3">Este examen tiene control de tiempo y seguridad.<br>Debes mantener la pantalla completa.</p>
+    <button id="start-fullscreen-btn" class="btn btn-danger btn-lg shadow">
+        <i class="fas fa-expand"></i> Activar Pantalla Completa y Continuar
+    </button>
+</div>
+
+<div class="container mt-5" id="exam-container" style="filter: blur(5px); pointer-events: none;">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-primary">{{ examen.titulo }}</h3>
+        <div class="alert alert-warning py-2 shadow-sm border-warning">
+            <i class="fas fa-clock"></i> Global: <span id="global-timer" class="fw-bold fs-5">--:--</span>
+        </div>
+    </div>
+
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
+            <span class="h5 mb-0">Pregunta {{ indice|add:1 }} de {{ total_preguntas }}</span>
+            
+            {% if usar_timer_pregunta %}
+            <span class="badge bg-light text-dark p-2 rounded-pill">
+                <i class="fas fa-stopwatch text-danger"></i> 
+                <span id="question-timer" class="fw-bold fs-6">{{ tiempo_pregunta }}</span> s
+            </span>
+            {% else %}
+            <span class="badge bg-info text-dark">Modo Libre</span>
+            {% endif %}
+        </div>
+        
+        <div class="card-body p-4">
+            <h4 class="card-title mb-4 text-dark">{{ pregunta.texto_pregunta }}</h4>
+            
+            <form method="POST" id="form-pregunta">
+                {% csrf_token %}
+                
+                <div class="mb-4">
+                    {# --- CORRECCIÓN: Verificar el tipo de pregunta --- #}
+                    {% if pregunta.tipo_pregunta == 'A' %}
+                        <label for="respuesta_texto" class="form-label fw-bold">Escribe tu respuesta aquí:</label>
+                        <textarea 
+                            class="form-control" 
+                            id="respuesta_texto" 
+                            name="respuesta_texto" 
+                            rows="5" 
+                            placeholder="Desarrolla tu respuesta..." 
+                            required></textarea>
+
+                    {% else %}
+                        <div class="list-group">
+                            {% for alt in alternativas %}
+                            <label class="list-group-item list-group-item-action p-3 border-start-0 border-end-0">
+                                <input class="form-check-input me-3" type="radio" name="alternativa" value="{{ alt.id_alternativas_examen }}">
+                                <span class="fs-5">{{ alt.texto_alternativa }}</span>
+                            </label>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success btn-lg shadow-sm">
+                        Siguiente Pregunta <i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ======================================================
+    // 1. LÓGICA DE PANTALLA COMPLETA (Tu código adaptado)
+    // ======================================================
+    const fullscreenBlocker = document.getElementById('fullscreen-blocker');
+    const examContainer = document.getElementById('exam-container');
+    const startFullscreenBtn = document.getElementById('start-fullscreen-btn');
+
+    // Función para activar pantalla completa y quitar borrosidad
+    function enterExamMode() {
+        document.documentElement.requestFullscreen().then(() => {
+            fullscreenBlocker.style.display = 'none';
+            examContainer.style.filter = 'none';
+            examContainer.style.pointerEvents = 'auto';
+        }).catch(err => {
+            alert('Debes permitir la pantalla completa para realizar el examen.');
+        });
+    }
+
+    startFullscreenBtn.addEventListener('click', enterExamMode);
+
+    // Detectar si sale de pantalla completa
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+            // Si sale, volvemos a bloquear
+            fullscreenBlocker.style.display = 'flex';
+            examContainer.style.filter = 'blur(5px)';
+            examContainer.style.pointerEvents = 'none';
+        }
+    });
+
+    // ======================================================
+    // 2. LÓGICA DE TEMPORIZADORES (Del servidor)
+    // ======================================================
+    const form = document.getElementById('form-pregunta');
+    const usarTimerPregunta = {{ usar_timer_pregunta|yesno:"true,false" }};
+    let timeLeftQuestion = {{ tiempo_pregunta }};
+    let timeLeftGlobal = {{ tiempo_restante_global }};
+    
+    // Timer Pregunta
+    if (usarTimerPregunta) {
+        const qDisplay = document.getElementById('question-timer');
+        const qInterval = setInterval(() => {
+            // Solo contar si NO está bloqueado por el fullscreen
+            if (document.fullscreenElement) {
+                timeLeftQuestion--;
+                if(qDisplay) qDisplay.textContent = timeLeftQuestion;
+
+                if(timeLeftQuestion <= 10 && qDisplay) {
+                    qDisplay.parentElement.classList.add('bg-danger', 'text-white');
+                }
+
+                if (timeLeftQuestion <= 0) {
+                    clearInterval(qInterval);
+                    form.submit(); // Auto-envío
+                }
+            }
+        }, 1000);
+    }
+
+    // Timer Global
+    const gDisplay = document.getElementById('global-timer');
+    setInterval(() => {
+        if (document.fullscreenElement && timeLeftGlobal > 0) {
+            timeLeftGlobal--;
+            let m = Math.floor(timeLeftGlobal / 60);
+            let s = timeLeftGlobal % 60;
+            gDisplay.textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+        } else if (timeLeftGlobal <= 0) {
+            form.submit(); // Fin del examen
+        }
+    }, 1000);
+
+    // ======================================================
+    // 3. BLOQUEO DE TECLAS Y SEGURIDAD EXTRA
+    // ======================================================
+    document.addEventListener('contextmenu', event => event.preventDefault()); // Clic derecho
+    
+    document.addEventListener('keydown', function(e) {
+        // F12, F5, F11, Ctrl+R, Ctrl+U
+        if (e.key === 'F12' || e.key === 'F5' || e.key === 'F11' || 
+            (e.ctrlKey && (e.key === 'r' || e.key === 'u' || e.key === 'c'))) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    });
+
+    // Detección de cambio de pestaña
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            // Opcional: Podrías enviar un flag al servidor aquí
+            document.title = "¡VUELVE AL EXAMEN!";
+            // Bloquear al volver
+            if (document.fullscreenElement) document.exitFullscreen();
+        } else {
+            document.title = "Examen en curso";
+        }
+    });
+
+</script>
+
+<style>
+    /* Evita selección de texto para que no copien */
+    body {
+        user-select: none; 
+        -webkit-user-select: none;
+    }
+</style>
+{% endblock %}

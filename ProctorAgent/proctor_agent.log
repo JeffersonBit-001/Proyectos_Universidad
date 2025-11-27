@@ -7825,3 +7825,1921 @@
 2025-11-17 13:30:17,989 - INFO - MONITOREO DE PLAGIO DETENIDO
 2025-11-17 13:31:33,999 - WARNING - No se recibió longitud. Saliendo.
 2025-11-17 13:31:34,000 - INFO - Agente de Proctoring Finalizado.
+2025-11-21 08:35:32,820 - INFO - Agente de Proctoring Iniciado.
+2025-11-21 08:35:32,820 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:35:32,848 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:39:22,885 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:39:22,889 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:39:25,400 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:39:25,407 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:39:28,389 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:39:28,392 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:39:31,400 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:39:31,404 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:39:34,392 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:39:34,395 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:39:37,389 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:39:37,393 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:39:40,397 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:39:40,402 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:39:43,391 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:39:43,395 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:39:46,400 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:39:46,404 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:39:49,399 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:39:49,402 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:39:52,394 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:39:52,399 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:39:55,390 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:39:55,394 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:39:58,388 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:39:58,393 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:01,399 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:01,402 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:04,400 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:04,404 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:07,391 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:07,395 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:10,388 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:10,392 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:13,396 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:13,400 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:16,398 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:16,402 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:19,395 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:19,400 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:22,392 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:22,395 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:25,400 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:25,403 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:28,392 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:28,396 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:31,395 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:31,399 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:34,388 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:34,391 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:37,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:37,396 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:40,641 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:40,647 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:43,394 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:43,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:46,391 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:46,395 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:49,394 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:49,401 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:52,389 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:52,394 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:55,396 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:55,399 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:40:58,558 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:40:58,564 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:01,390 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:01,396 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:04,395 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:04,400 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:07,389 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:07,393 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:10,388 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:10,395 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:13,394 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:13,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:16,394 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:16,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:19,390 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:19,394 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:22,387 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:22,392 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:25,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:25,398 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:28,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:28,396 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:31,394 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:31,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:34,390 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:34,395 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:37,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:37,398 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:40,391 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:40,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:43,388 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:43,392 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:46,387 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:46,390 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:49,387 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:49,390 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:52,394 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:52,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:55,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:55,398 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:41:58,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:41:58,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:01,391 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:01,396 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:04,387 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:04,391 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:07,395 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:07,401 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:10,390 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:10,394 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:13,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:13,398 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:16,395 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:16,399 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:19,392 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:19,396 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:22,390 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:22,395 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:25,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:25,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:28,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:28,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:31,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:31,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:34,395 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:34,399 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:37,390 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:37,394 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:40,392 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:40,395 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:43,389 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:43,394 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:46,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:46,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:49,392 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:49,396 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:52,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:52,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:55,388 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:55,392 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:42:58,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:42:58,398 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:01,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:01,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:04,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:04,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:07,387 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:07,391 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:10,395 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:10,401 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:13,387 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:13,392 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:16,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:16,398 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:19,392 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:19,396 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:22,389 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:22,394 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:25,392 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:25,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:28,389 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:28,393 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:31,394 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:31,398 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:34,392 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:34,396 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:37,392 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:37,395 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:40,392 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:40,396 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:43,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:43,396 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:46,393 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:46,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:49,394 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:49,399 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:52,392 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:52,397 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:55,396 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:55,400 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:43:58,389 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:43:58,395 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:44:02,125 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:44:02,132 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:44:04,394 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:44:04,398 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:44:05,067 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-21 08:44:06,074 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:44:07,181 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-21 08:44:07,184 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-21 08:44:07,207 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-21 08:44:15,857 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-21 08:44:16,222 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-21 08:49:23,037 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:49:23,043 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:49:25,534 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 08:49:25,540 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 08:49:28,452 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-21 08:49:28,455 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-21 08:49:28,483 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-21 08:49:35,854 - WARNING - PLAGIO DETECTADO: Combinación de teclas prohibida: frozenset({<Key.alt_l: <164>>, <Key.tab: <9>>})
+2025-11-21 08:49:35,855 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Combinación de teclas prohibida'}
+2025-11-21 08:49:35,858 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-21 08:49:37,493 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-21 10:09:03,071 - WARNING - No se recibió longitud. Saliendo.
+2025-11-21 10:09:03,073 - INFO - Agente de Proctoring Finalizado.
+2025-11-21 10:09:05,330 - INFO - Agente de Proctoring Iniciado.
+2025-11-21 10:09:05,484 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 10:09:05,500 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 10:09:07,980 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 10:09:07,982 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 10:09:10,980 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 10:09:10,982 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:11:45,022 - INFO - Agente de Proctoring Iniciado.
+2025-11-21 11:11:45,133 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:11:45,147 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:11:57,459 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:11:57,462 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:15:41,581 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:15:41,584 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:15:44,945 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:15:44,948 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:15:47,933 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:15:47,936 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:15:50,944 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:15:50,948 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:15:53,937 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:15:53,939 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:15:56,939 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:15:56,941 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:15:59,940 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:15:59,943 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:16:02,938 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:16:02,940 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:16:05,945 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:16:05,948 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:16:08,933 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:16:08,935 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:16:11,936 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:16:11,938 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:16:14,945 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:16:14,948 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:16:17,938 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:16:17,941 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:16:20,932 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:16:20,935 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:16:23,945 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:16:23,948 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:16:26,933 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:16:26,936 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:16:29,945 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:16:29,948 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:16:32,933 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:16:32,936 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:16:35,935 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:16:35,937 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:16:38,941 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:16:38,943 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:16:41,940 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:16:41,942 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:17:17,939 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:17:17,946 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:18:17,937 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:18:17,940 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:19:17,933 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:19:17,936 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:19:24,362 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:19:24,364 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:19:26,934 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:19:26,937 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:19:29,941 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:19:29,944 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:19:32,936 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:19:32,939 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:19:35,932 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:19:35,935 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:19:38,946 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:19:38,949 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:19:41,938 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:19:41,941 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:19:44,933 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:19:44,936 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:19:47,935 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:19:47,940 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:19:50,932 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:19:50,935 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:19:53,937 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:19:53,939 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:19:56,944 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:19:56,947 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:19:59,933 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:19:59,935 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:20:02,936 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:20:02,939 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:20:05,944 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:20:05,947 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:20:08,943 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:20:08,945 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:20:11,935 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:20:11,938 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:20:14,944 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:20:14,947 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:20:17,946 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:20:17,949 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:20:20,945 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:20:20,948 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:20:23,944 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:20:23,948 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:21:17,943 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:21:17,947 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:22:17,941 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:22:17,943 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:23:17,937 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:23:17,940 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:24:17,945 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:24:17,947 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:25:17,944 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:25:17,947 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:26:17,934 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:26:17,936 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:27:17,945 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:27:17,948 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:28:17,932 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:28:17,934 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:29:17,939 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:29:17,942 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:30:17,935 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:30:17,939 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:30:22,740 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:30:22,741 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:30:23,082 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:30:23,083 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:30:24,366 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:30:24,368 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:30:33,543 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:30:33,546 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:31:57,207 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:31:57,210 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:31:59,705 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:31:59,707 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:36:22,197 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:36:22,199 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:37:36,663 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:37:36,666 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:42:02,331 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:42:02,334 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:48:05,214 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:48:05,216 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:48:06,101 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:48:06,103 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 11:48:07,197 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-21 11:48:07,200 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-21 13:36:23,526 - WARNING - No se recibió longitud. Saliendo.
+2025-11-21 13:36:23,539 - INFO - Agente de Proctoring Finalizado.
+2025-11-23 16:22:57,190 - INFO - Agente de Proctoring Iniciado.
+2025-11-23 16:22:57,191 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:22:57,205 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:23:06,286 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:23:06,288 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:28:31,071 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:28:31,074 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:31:47,851 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:31:47,853 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:01,778 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:01,780 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:04,281 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:04,283 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:07,281 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:07,284 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:10,281 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:10,283 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:13,281 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:13,284 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:16,282 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:16,284 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:19,281 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:19,283 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:22,281 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:22,284 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:25,282 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:25,284 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:28,282 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:28,284 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:31,281 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:31,283 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:34,281 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:34,283 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:37,281 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:37,283 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:40,280 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:40,282 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:44,103 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:44,105 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:47,104 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:47,106 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:50,112 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:50,114 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:53,111 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:53,114 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:56,110 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:56,112 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:33:59,110 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:33:59,112 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:02,114 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:02,117 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:05,108 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:05,110 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:08,107 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:08,108 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:11,113 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:11,115 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:14,113 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:14,115 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:16,279 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:16,281 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:19,280 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:19,282 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:22,279 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:22,283 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:26,111 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:26,112 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:29,099 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:29,101 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:32,110 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:32,112 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:35,112 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:35,114 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:38,102 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:38,105 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:41,102 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:41,104 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:44,100 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:44,103 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:47,108 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:47,111 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:50,104 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:50,106 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:53,104 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:53,106 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:56,111 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:56,114 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:34:59,105 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:34:59,107 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:35:02,099 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:35:02,101 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:35:05,104 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:35:05,106 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:35:08,108 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:35:08,110 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:35:11,107 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:35:11,109 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:35:14,113 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:35:14,114 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:35:17,110 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:35:17,111 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:35:20,112 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:35:20,115 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:35:23,112 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:35:23,113 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:36:13,113 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:36:13,115 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:37:13,108 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:37:13,110 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:38:13,112 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:38:13,114 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:39:13,112 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:39:13,115 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:40:13,104 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:40:13,106 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:41:13,105 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:41:13,107 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:42:13,108 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:42:13,110 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:43:13,112 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:43:13,114 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:44:13,104 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:44:13,106 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:45:13,107 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:45:13,109 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:46:13,103 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:46:13,105 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:47:13,106 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:47:13,108 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:48:13,103 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:48:13,104 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:48:50,763 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:48:50,766 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:48:52,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:48:52,279 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:48:55,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:48:55,281 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:48:58,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:48:58,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:01,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:01,282 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:04,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:04,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:07,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:07,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:10,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:10,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:13,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:13,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:16,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:16,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:19,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:19,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:22,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:22,281 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:25,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:25,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:28,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:28,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:31,277 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:31,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:34,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:34,281 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:37,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:37,281 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:40,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:40,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:43,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:43,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:46,277 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:46,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:49,277 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:49,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:52,277 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:52,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:55,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:55,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:49:58,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:49:58,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:01,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:01,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:04,281 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:04,284 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:07,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:07,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:10,283 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:10,286 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:13,277 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:13,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:16,281 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:16,284 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:19,280 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:19,283 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:22,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:22,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:25,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:25,281 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:28,280 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:28,282 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:31,277 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:31,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:34,277 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:34,279 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:37,284 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:37,285 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:40,278 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:40,280 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:43,283 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:43,285 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:46,282 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:46,285 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:49,281 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:49,283 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:52,283 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:52,285 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:55,282 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:55,284 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:50:58,279 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:50:58,281 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:51:01,281 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:51:01,283 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:51:04,380 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 16:51:04,382 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 16:51:04,877 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-23 16:51:04,878 - INFO - Terminando proceso: Discord.exe
+2025-11-23 16:51:04,879 - INFO - Terminando proceso: Discord.exe
+2025-11-23 16:51:04,879 - INFO - Terminando proceso: Discord.exe
+2025-11-23 16:51:04,880 - INFO - Terminando proceso: Discord.exe
+2025-11-23 16:51:04,880 - INFO - Terminando proceso: Discord.exe
+2025-11-23 16:51:04,881 - INFO - Terminando proceso: Discord.exe
+2025-11-23 16:51:05,883 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 16:51:06,892 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 16:51:06,894 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 16:51:06,903 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 16:52:06,924 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 16:52:06,951 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 17:05:36,023 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 17:05:36,026 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 17:05:38,040 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-23 17:05:38,042 - INFO - Terminando proceso: Discord.exe
+2025-11-23 17:05:38,043 - INFO - Terminando proceso: Discord.exe
+2025-11-23 17:05:38,043 - INFO - Terminando proceso: Discord.exe
+2025-11-23 17:05:38,044 - INFO - Terminando proceso: Discord.exe
+2025-11-23 17:05:38,044 - INFO - Terminando proceso: Discord.exe
+2025-11-23 17:05:38,045 - INFO - Terminando proceso: Discord.exe
+2025-11-23 17:05:39,047 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 17:05:39,047 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 17:05:39,049 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 17:05:39,788 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 17:05:39,789 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 17:05:39,796 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 17:06:01,179 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-23 17:06:01,179 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-23 17:06:01,180 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 17:06:03,815 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 17:06:09,971 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 17:06:09,973 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 17:06:27,953 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 17:06:27,954 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 17:06:27,962 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 17:06:30,263 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 17:06:36,797 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 17:06:37,521 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 17:06:37,950 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 17:06:38,136 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 17:06:38,295 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 17:06:43,907 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 17:10:01,996 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 17:10:04,124 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 17:12:05,925 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 17:12:05,927 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 17:12:06,868 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-23 17:12:07,873 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 17:12:07,873 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 17:12:07,874 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 17:12:07,880 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 17:13:09,625 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-23 17:13:09,626 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-23 17:13:09,626 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 17:13:10,926 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 18:20:31,836 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 18:20:31,843 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 18:20:32,377 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-23 18:20:32,380 - INFO - Terminando proceso: Discord.exe
+2025-11-23 18:20:32,380 - INFO - Terminando proceso: Discord.exe
+2025-11-23 18:20:32,381 - INFO - Terminando proceso: Discord.exe
+2025-11-23 18:20:32,381 - INFO - Terminando proceso: Discord.exe
+2025-11-23 18:20:32,382 - INFO - Terminando proceso: Discord.exe
+2025-11-23 18:20:32,383 - INFO - Terminando proceso: Discord.exe
+2025-11-23 18:20:33,386 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 18:20:34,334 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 18:20:34,337 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 18:20:35,435 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 18:20:35,438 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 18:20:35,448 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 18:20:36,436 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 18:20:38,452 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 18:21:24,826 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 18:21:24,828 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 18:21:27,326 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 18:21:27,328 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 18:21:30,330 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 18:21:30,332 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 18:21:33,325 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 18:21:33,328 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 18:21:36,327 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 18:21:36,329 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 18:21:39,327 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 18:21:39,329 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 18:21:42,327 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 18:21:42,329 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 18:21:45,323 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 18:21:45,326 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 18:21:45,877 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 18:21:45,879 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 18:21:46,663 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 18:21:46,664 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 18:21:46,677 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 18:23:03,460 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-23 18:23:03,460 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-23 18:23:03,461 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 18:23:04,753 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 19:14:10,609 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:14:10,628 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 19:14:11,248 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-23 19:14:11,251 - INFO - Terminando proceso: Discord.exe
+2025-11-23 19:14:11,251 - INFO - Terminando proceso: Discord.exe
+2025-11-23 19:14:11,253 - INFO - Terminando proceso: Discord.exe
+2025-11-23 19:14:11,253 - INFO - Terminando proceso: Discord.exe
+2025-11-23 19:14:11,254 - INFO - Terminando proceso: Discord.exe
+2025-11-23 19:14:11,254 - INFO - Terminando proceso: Discord.exe
+2025-11-23 19:14:12,259 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:14:13,099 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:14:13,102 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:14:13,825 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 19:14:13,827 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 19:14:13,842 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 19:14:22,300 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 19:14:22,852 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 19:14:26,524 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 19:14:26,525 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 19:14:26,537 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 19:14:38,382 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-23 19:14:38,382 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-23 19:14:38,384 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 19:14:38,548 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 19:16:13,905 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:13,908 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:17,104 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:17,106 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:20,108 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:20,111 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:23,126 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:23,128 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:26,102 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:26,104 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:29,108 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:29,110 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:32,110 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:32,112 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:35,111 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:35,114 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:38,101 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:38,104 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:41,109 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:41,111 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:44,103 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:44,108 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:47,109 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:47,111 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:50,100 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:50,104 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:53,110 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:53,113 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:56,110 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:56,113 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:16:59,108 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:16:59,110 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:17:02,107 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:17:02,109 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:17:05,106 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:17:05,108 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:17:08,109 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:17:08,111 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:17:11,114 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:17:11,116 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:17:14,108 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:17:14,110 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:18:13,106 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:18:13,108 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:19:13,113 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:19:13,116 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:20:13,106 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:20:13,108 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:21:13,101 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:21:13,104 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:22:13,115 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:22:13,118 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:23:13,109 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:23:13,111 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:23:56,815 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:23:56,818 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:23:57,972 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:23:57,975 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:24:22,821 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:24:22,824 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:24:23,732 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-23 19:24:24,738 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:24:25,319 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:24:25,321 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:24:25,814 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 19:24:25,815 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 19:24:25,825 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 19:24:33,655 - WARNING - PLAGIO DETECTADO: Combinación de teclas prohibida: frozenset({<Key.tab: <9>>, <Key.alt_l: <164>>})
+2025-11-23 19:24:33,655 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Combinación de teclas prohibida'}
+2025-11-23 19:24:33,657 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 19:24:34,835 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 19:25:52,037 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:25:52,040 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:25:52,339 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-23 19:25:53,344 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:25:53,468 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 19:25:53,469 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 19:25:53,477 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 19:26:05,558 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-23 19:26:05,558 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-23 19:26:05,560 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 19:26:08,492 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 19:33:39,182 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:33:39,185 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:33:40,096 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-23 19:33:41,102 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:33:41,212 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 19:33:41,214 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 19:33:41,223 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 19:34:46,160 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-23 19:34:46,160 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-23 19:34:46,162 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 19:34:47,289 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 19:35:40,966 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:35:40,968 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:35:41,660 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 19:35:41,661 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 19:35:41,671 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 19:35:42,660 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 19:35:44,675 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 19:36:30,698 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:36:30,700 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:36:31,140 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 19:36:31,141 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 19:36:31,152 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 19:38:38,222 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-23 19:38:38,222 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-23 19:38:38,224 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 19:38:40,280 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 19:38:57,645 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:38:57,648 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:38:58,391 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 19:38:58,392 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 19:38:58,404 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 19:39:03,718 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 19:39:04,409 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 19:39:45,948 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:39:45,951 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:39:46,509 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-23 19:39:47,516 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:39:47,516 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 19:39:47,517 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 19:39:47,525 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 19:39:51,327 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-23 19:39:51,327 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-23 19:39:51,329 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 19:39:53,547 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 19:41:27,980 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:41:27,982 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:41:28,156 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-23 19:41:29,161 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:41:29,231 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 19:41:29,231 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 19:41:29,241 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 19:41:30,229 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 19:41:32,246 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 19:41:39,430 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 19:41:39,432 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 19:41:39,804 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 19:41:39,805 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 19:41:39,817 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 19:41:46,607 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 19:41:48,826 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 20:06:24,350 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 20:06:24,356 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 20:06:24,714 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-23 20:06:24,717 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:06:24,717 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:06:24,717 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:06:24,718 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:06:24,718 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:06:24,719 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:06:25,723 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 20:06:26,591 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 20:06:26,592 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 20:06:26,617 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 20:06:27,996 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 20:06:29,619 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 20:06:49,615 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 20:06:49,618 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 20:06:49,705 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-23 20:06:50,712 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 20:06:50,712 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 20:06:50,713 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 20:06:50,722 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 20:06:51,162 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 20:06:53,724 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 20:20:31,092 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 20:20:31,094 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 20:20:31,787 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-23 20:20:31,789 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:20:31,790 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:20:31,790 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:20:31,791 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:20:31,791 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:20:31,792 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:20:32,794 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 20:20:33,591 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 20:20:33,593 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 20:20:33,771 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 20:20:33,773 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 20:20:33,784 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 20:22:40,986 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 20:22:42,920 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 20:31:15,534 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-23 20:31:15,537 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-23 20:31:16,319 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-23 20:31:16,321 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:31:16,322 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:31:16,322 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:31:16,322 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:31:16,323 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:31:16,323 - INFO - Terminando proceso: Discord.exe
+2025-11-23 20:31:17,326 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-23 20:31:17,557 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-23 20:31:17,559 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-23 20:31:17,570 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-23 20:31:27,552 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-23 20:31:29,583 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-23 21:53:42,146 - WARNING - No se recibió longitud. Saliendo.
+2025-11-23 21:53:42,159 - INFO - Agente de Proctoring Finalizado.
+2025-11-24 02:21:59,185 - INFO - Agente de Proctoring Iniciado.
+2025-11-24 02:21:59,185 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:21:59,214 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:01,209 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:01,212 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:04,213 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:04,216 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:07,207 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:07,210 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:10,211 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:10,215 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:13,204 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:13,208 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:16,206 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:16,210 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:19,205 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:19,209 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:22,205 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:22,209 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:25,208 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:25,211 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:29,106 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:29,110 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:32,113 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:32,116 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:35,107 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:35,111 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:38,107 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:38,112 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:41,109 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:41,115 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:44,113 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:44,116 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:47,108 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:47,113 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:50,114 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:50,118 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:53,113 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:53,116 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:56,109 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:56,112 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:22:59,112 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:22:59,116 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:23:01,218 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:23:01,221 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:23:04,220 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:23:04,225 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:23:07,214 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:23:07,218 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:23:10,215 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:23:10,220 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:23:13,207 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:23:13,210 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:23:13,893 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-24 02:23:13,895 - INFO - Terminando proceso: Discord.exe
+2025-11-24 02:23:13,897 - INFO - Terminando proceso: Discord.exe
+2025-11-24 02:23:13,897 - INFO - Terminando proceso: Discord.exe
+2025-11-24 02:23:13,898 - INFO - Terminando proceso: Discord.exe
+2025-11-24 02:23:13,899 - INFO - Terminando proceso: Discord.exe
+2025-11-24 02:23:13,900 - INFO - Terminando proceso: Discord.exe
+2025-11-24 02:23:14,907 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:23:16,212 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:23:16,216 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:23:17,128 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 02:23:17,130 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 02:23:17,144 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 02:23:32,608 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-24 02:23:32,609 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-24 02:23:32,611 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 02:23:34,564 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 02:23:35,169 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 02:23:51,653 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 02:27:14,905 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:27:14,909 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:27:15,747 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-24 02:27:16,757 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:27:16,906 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 02:27:16,909 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 02:27:16,923 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 02:27:32,081 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 02:27:34,948 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 02:33:19,147 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:33:19,151 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:33:20,002 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-24 02:33:21,009 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:33:21,009 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 02:33:21,010 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 02:33:21,026 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 02:35:05,219 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 02:35:06,196 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 02:52:48,439 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:52:48,443 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:52:49,305 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-24 02:52:49,309 - INFO - Terminando proceso: Discord.exe
+2025-11-24 02:52:49,311 - INFO - Terminando proceso: Discord.exe
+2025-11-24 02:52:49,312 - INFO - Terminando proceso: Discord.exe
+2025-11-24 02:52:49,312 - INFO - Terminando proceso: Discord.exe
+2025-11-24 02:52:49,313 - INFO - Terminando proceso: Discord.exe
+2025-11-24 02:52:49,314 - INFO - Terminando proceso: Discord.exe
+2025-11-24 02:52:50,320 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 02:52:50,538 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-24 02:52:51,545 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:52:51,546 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:52:51,550 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:52:52,417 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 02:52:52,418 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 02:52:52,435 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 02:52:53,357 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 02:52:55,440 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 02:53:02,353 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 02:53:02,354 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 02:53:02,369 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 02:53:03,043 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 02:53:05,606 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 02:53:08,377 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 02:57:12,285 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:57:12,291 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:57:15,114 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:57:15,118 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:57:18,115 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:57:18,119 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:57:21,411 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:57:21,418 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:57:23,782 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:57:23,787 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:57:26,787 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:57:26,792 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:57:29,782 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-24 02:57:30,789 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:57:32,787 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 02:57:32,791 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 02:57:35,127 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 02:57:35,128 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 02:57:35,145 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 02:57:37,490 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-24 02:57:37,491 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-24 02:57:37,493 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 02:57:38,149 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 03:11:26,775 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 03:11:26,782 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 03:11:27,641 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-24 03:11:27,642 - INFO - Terminando proceso: Discord.exe
+2025-11-24 03:11:27,645 - INFO - Terminando proceso: Discord.exe
+2025-11-24 03:11:27,646 - INFO - Terminando proceso: Discord.exe
+2025-11-24 03:11:27,646 - INFO - Terminando proceso: Discord.exe
+2025-11-24 03:11:27,647 - INFO - Terminando proceso: Discord.exe
+2025-11-24 03:11:27,649 - INFO - Terminando proceso: Discord.exe
+2025-11-24 03:11:28,653 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 03:11:29,281 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 03:11:29,284 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 03:11:30,300 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 03:11:30,301 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 03:11:30,316 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 03:11:31,580 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 03:11:33,320 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 03:14:46,899 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 03:14:46,904 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 03:14:47,118 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-24 03:14:47,120 - INFO - Terminando proceso: Discord.exe
+2025-11-24 03:14:47,121 - INFO - Terminando proceso: Discord.exe
+2025-11-24 03:14:47,121 - INFO - Terminando proceso: Discord.exe
+2025-11-24 03:14:47,122 - INFO - Terminando proceso: Discord.exe
+2025-11-24 03:14:47,124 - INFO - Terminando proceso: Discord.exe
+2025-11-24 03:14:47,126 - INFO - Terminando proceso: Discord.exe
+2025-11-24 03:14:48,131 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 03:14:48,181 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-24 03:14:48,186 - INFO - Terminando proceso: Discord.exe
+2025-11-24 03:14:49,191 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 03:14:49,396 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 03:14:49,399 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 03:14:49,781 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 03:14:49,782 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 03:14:49,801 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 03:15:10,963 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 03:15:13,832 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 03:16:17,928 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 03:16:17,933 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 03:16:18,464 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 03:16:18,466 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 03:16:18,484 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 03:16:26,946 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 03:16:27,499 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 03:17:05,313 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 03:17:05,318 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 03:17:05,926 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 03:17:05,928 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 03:17:05,945 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 03:17:19,317 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 03:17:19,551 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-24 03:17:19,551 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-24 03:17:20,966 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 03:17:47,482 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 03:17:47,486 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 03:17:49,137 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 03:17:49,138 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 03:17:49,155 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 03:18:04,769 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 03:18:07,180 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 03:18:59,441 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 03:18:59,445 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 03:19:02,014 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 03:19:02,015 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 03:19:02,036 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 03:19:12,044 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 03:19:14,051 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 03:20:34,654 - WARNING - No se recibió longitud. Saliendo.
+2025-11-24 03:20:34,655 - INFO - Agente de Proctoring Finalizado.
+2025-11-24 22:02:04,779 - INFO - Agente de Proctoring Iniciado.
+2025-11-24 22:02:04,780 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:04,798 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:02:06,930 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:06,932 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:02:09,909 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:09,912 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:02:12,909 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:12,913 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:02:15,909 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:15,911 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:02:18,917 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:18,919 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:02:21,921 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:21,924 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:02:24,914 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:24,916 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:02:27,909 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:27,912 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:02:30,909 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:30,912 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:02:33,920 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:33,923 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:02:36,914 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:36,916 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:02:39,909 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:39,911 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:02:41,788 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-24 22:02:41,790 - INFO - Terminando proceso: Discord.exe
+2025-11-24 22:02:41,790 - INFO - Terminando proceso: Discord.exe
+2025-11-24 22:02:41,792 - INFO - Terminando proceso: Discord.exe
+2025-11-24 22:02:41,793 - INFO - Terminando proceso: Discord.exe
+2025-11-24 22:02:41,793 - INFO - Terminando proceso: Discord.exe
+2025-11-24 22:02:41,794 - INFO - Terminando proceso: Discord.exe
+2025-11-24 22:02:42,797 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:02:42,910 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:42,911 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 22:02:45,909 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:02:45,911 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 22:02:47,385 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 22:02:47,387 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 22:02:47,397 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 22:03:16,182 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 22:03:17,427 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 22:04:09,012 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:04:09,014 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 22:04:09,970 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 22:04:09,973 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 22:04:09,982 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 22:04:28,691 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-24 22:04:28,691 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-24 22:04:28,693 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 22:04:30,998 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 22:04:45,154 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:04:45,157 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 22:04:45,581 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 22:04:45,582 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 22:04:45,594 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 22:05:30,729 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-24 22:05:30,729 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-24 22:05:30,731 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 22:05:33,635 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 22:05:39,420 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:05:39,423 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 22:05:39,848 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 22:05:39,850 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 22:05:39,862 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 22:05:54,893 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-24 22:05:54,893 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-24 22:05:54,895 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 22:05:57,881 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 22:06:00,750 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 22:06:00,751 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 22:06:00,759 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 22:06:04,966 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 22:06:13,779 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 22:06:17,180 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 22:06:18,774 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-24 22:22:50,616 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:22:50,620 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-24 22:22:51,388 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-24 22:22:51,390 - INFO - Terminando proceso: Discord.exe
+2025-11-24 22:22:51,391 - INFO - Terminando proceso: Discord.exe
+2025-11-24 22:22:51,393 - INFO - Terminando proceso: Discord.exe
+2025-11-24 22:22:51,393 - INFO - Terminando proceso: Discord.exe
+2025-11-24 22:22:51,394 - INFO - Terminando proceso: Discord.exe
+2025-11-24 22:22:51,394 - INFO - Terminando proceso: Discord.exe
+2025-11-24 22:22:52,396 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 22:22:53,120 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:22:53,122 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 22:22:54,229 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 22:22:54,230 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-24 22:22:54,242 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-24 22:23:15,221 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-24 22:23:15,223 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-24 22:23:15,873 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-24 22:23:22,709 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-24 22:23:22,709 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-24 22:23:22,711 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-24 22:23:24,270 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-25 01:48:54,106 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:48:54,125 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 01:49:46,377 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:49:46,382 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 01:49:46,786 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-25 01:49:46,790 - INFO - Terminando proceso: Discord.exe
+2025-11-25 01:49:46,792 - INFO - Terminando proceso: Discord.exe
+2025-11-25 01:49:46,793 - INFO - Terminando proceso: Discord.exe
+2025-11-25 01:49:46,796 - INFO - Terminando proceso: Discord.exe
+2025-11-25 01:49:46,796 - INFO - Terminando proceso: Discord.exe
+2025-11-25 01:49:46,797 - INFO - Terminando proceso: Discord.exe
+2025-11-25 01:49:47,800 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 01:49:48,876 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:49:48,879 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:49:51,880 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-25 01:49:51,884 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-25 01:49:51,905 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-25 01:50:05,385 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-25 01:50:05,386 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-25 01:50:05,393 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-25 01:50:06,926 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-25 01:52:21,596 - INFO - Agente de Proctoring Iniciado.
+2025-11-25 01:52:21,597 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:52:21,628 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:52:23,802 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:52:23,806 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:52:26,796 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:52:26,800 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:52:28,140 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-25 01:52:28,143 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-25 01:52:28,157 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-25 01:53:17,389 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-25 01:53:17,389 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-25 01:53:17,391 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-25 01:53:19,226 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-25 01:53:41,310 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:53:41,314 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:53:42,742 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-25 01:53:42,743 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-25 01:53:42,759 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-25 01:53:46,905 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:53:46,910 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:53:50,122 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:53:50,126 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:53:53,116 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:53:53,123 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:53:56,114 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:53:56,118 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:53:59,127 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:53:59,130 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:02,123 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:02,128 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:05,123 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:05,127 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:08,117 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:08,121 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:11,154 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:11,159 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:14,131 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:14,135 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:17,121 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:17,125 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:20,129 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:20,134 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:23,117 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:23,122 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:26,121 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:26,126 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:29,119 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:29,122 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:32,125 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:32,128 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:35,116 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:35,121 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:38,116 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:38,121 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:41,127 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:41,131 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:44,119 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:44,125 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:47,124 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:47,127 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:54:58,129 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:54:58,132 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:55:05,183 - WARNING - PLAGIO DETECTADO: Tecla prohibida presionada: Key.cmd
+2025-11-25 01:55:05,184 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Tecla prohibida (Key.cmd)'}
+2025-11-25 01:55:06,897 - WARNING - El listener de teclado se detuvo (probablemente por plagio). Deteniendo monitoreo.
+2025-11-25 01:55:06,897 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-25 01:55:18,003 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:55:18,010 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:55:19,406 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:55:19,410 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:56:39,371 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:56:39,375 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:56:41,878 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:56:41,881 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:56:50,970 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:56:50,974 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:56:53,473 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:56:53,478 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:56:57,120 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:56:57,123 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:00,124 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:00,129 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:03,127 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:03,132 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:06,115 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:06,121 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:09,127 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:09,131 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:12,118 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:12,121 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:15,119 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:15,122 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:18,120 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:18,125 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:21,140 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:21,145 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:24,125 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:24,128 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:27,126 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:27,130 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:30,128 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:30,132 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:33,116 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:33,120 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:36,129 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:36,132 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:39,122 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:39,129 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:42,114 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:42,118 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:45,129 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:45,133 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:48,118 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:48,122 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:51,119 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:51,122 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:57:58,117 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:57:58,121 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:58:58,123 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:58:58,127 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 01:59:58,123 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 01:59:58,130 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 02:00:58,124 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 02:00:58,129 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 02:01:33,186 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 02:01:33,190 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 02:01:35,078 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-25 02:01:35,081 - INFO - Terminando proceso: Discord.exe
+2025-11-25 02:01:35,084 - INFO - Terminando proceso: Discord.exe
+2025-11-25 02:01:35,085 - INFO - Terminando proceso: Discord.exe
+2025-11-25 02:01:35,086 - INFO - Terminando proceso: Discord.exe
+2025-11-25 02:01:35,087 - INFO - Terminando proceso: Discord.exe
+2025-11-25 02:01:35,087 - INFO - Terminando proceso: Discord.exe
+2025-11-25 02:01:36,093 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 02:01:36,093 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 02:01:36,098 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 02:01:37,799 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-25 02:01:38,806 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 02:01:38,806 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 02:01:38,810 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 02:01:40,519 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-25 02:01:40,520 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-25 02:01:40,592 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-25 02:01:52,139 - WARNING - PLAGIO DETECTADO: Combinación de teclas prohibida: frozenset({<Key.alt_l: <164>>, <Key.tab: <9>>})
+2025-11-25 02:01:52,139 - DEBUG - Mensaje enviado: {'type': 'PLAGIO_DETECTED', 'app': 'Combinación de teclas prohibida'}
+2025-11-25 02:01:52,141 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-25 02:01:52,612 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-25 02:07:47,292 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 02:07:47,308 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 02:07:47,985 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-25 02:07:48,995 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 02:07:48,995 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-25 02:07:48,996 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-25 02:07:49,012 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-25 02:08:18,451 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-25 02:08:19,052 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-25 03:20:44,591 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:20:44,596 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:20:47,092 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:20:47,094 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:20:50,118 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:20:50,120 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:20:53,092 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:20:53,094 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:20:56,122 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:20:56,124 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:20:59,122 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:20:59,124 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:02,114 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:02,117 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:05,125 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:05,127 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:08,126 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:08,130 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:11,125 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:11,127 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:14,116 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:14,118 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:17,124 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:17,126 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:20,119 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:20,121 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:23,121 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:23,124 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:26,117 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:26,119 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:29,114 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:29,117 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:32,119 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:32,121 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:35,123 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:35,124 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:38,117 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:38,119 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:41,112 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:41,114 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:44,116 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:44,118 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:47,115 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:47,117 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:50,121 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:50,124 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:53,125 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:53,127 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:21:58,128 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:21:58,130 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:22:58,123 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:22:58,126 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:23:58,121 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:23:58,123 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:24:58,115 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:24:58,117 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:25:58,124 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:25:58,127 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:26:58,119 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:26:58,122 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:27:58,125 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:27:58,127 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:28:58,122 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:28:58,123 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:29:58,120 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:29:58,122 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:30:58,119 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:30:58,121 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:31:58,119 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:31:58,121 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:32:58,124 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:32:58,126 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:33:58,119 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:33:58,121 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:34:58,114 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:34:58,117 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:35:58,125 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:35:58,127 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:36:58,126 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:36:58,129 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:37:58,118 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:37:58,121 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:38:58,126 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:38:58,128 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:39:58,119 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:39:58,122 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:40:58,126 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:40:58,128 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:41:58,119 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:41:58,122 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:42:58,113 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:42:58,117 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:43:58,117 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:43:58,119 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:44:58,124 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:44:58,126 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:45:58,120 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:45:58,122 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:46:58,123 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:46:58,126 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:47:58,127 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:47:58,130 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:48:58,127 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:48:58,130 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:49:58,120 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:49:58,123 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:50:58,122 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:50:58,125 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:51:58,123 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:51:58,126 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:52:58,118 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:52:58,122 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:53:58,121 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:53:58,123 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:54:58,124 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:54:58,126 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:55:58,118 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:55:58,120 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:56:37,804 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:56:37,806 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:56:38,093 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:56:38,095 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:56:41,122 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:56:41,124 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:56:44,120 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:56:44,123 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-25 03:56:46,974 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-25 03:56:46,974 - INFO - Terminando proceso: Discord.exe
+2025-11-25 03:56:46,975 - INFO - Terminando proceso: Discord.exe
+2025-11-25 03:56:46,976 - INFO - Terminando proceso: Discord.exe
+2025-11-25 03:56:46,976 - INFO - Terminando proceso: Discord.exe
+2025-11-25 03:56:46,977 - INFO - Terminando proceso: Discord.exe
+2025-11-25 03:56:46,977 - INFO - Terminando proceso: Discord.exe
+2025-11-25 03:56:47,980 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 03:56:47,980 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-25 03:56:47,981 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-25 03:56:48,111 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-25 03:56:48,112 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-25 03:56:48,120 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-25 03:57:14,407 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-25 03:57:15,140 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-25 04:20:21,776 - WARNING - No se recibió longitud. Saliendo.
+2025-11-25 04:20:21,778 - INFO - Agente de Proctoring Finalizado.
+2025-11-25 04:20:25,679 - WARNING - No se recibió longitud. Saliendo.
+2025-11-25 04:20:25,680 - INFO - Agente de Proctoring Finalizado.
+2025-11-26 21:43:11,712 - WARNING - No se recibió longitud. Saliendo.
+2025-11-26 21:43:11,713 - INFO - Agente de Proctoring Finalizado.
+2025-11-26 21:44:58,748 - INFO - Agente de Proctoring Iniciado.
+2025-11-26 21:44:58,942 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-26 21:44:58,958 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-26 21:44:59,237 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-26 21:44:59,238 - INFO - Terminando proceso: Discord.exe
+2025-11-26 21:44:59,238 - INFO - Terminando proceso: Discord.exe
+2025-11-26 21:44:59,239 - INFO - Terminando proceso: Discord.exe
+2025-11-26 21:44:59,239 - INFO - Terminando proceso: Discord.exe
+2025-11-26 21:44:59,240 - INFO - Terminando proceso: Discord.exe
+2025-11-26 21:44:59,241 - INFO - Terminando proceso: Discord.exe
+2025-11-26 21:45:00,243 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-26 21:45:00,686 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-26 21:45:00,687 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-26 21:45:00,694 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-26 21:45:11,466 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-26 21:45:12,705 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-26 21:56:26,559 - WARNING - No se recibió longitud. Saliendo.
+2025-11-26 21:56:26,559 - INFO - Agente de Proctoring Finalizado.
+2025-11-26 22:35:24,750 - INFO - Agente de Proctoring Iniciado.
+2025-11-26 22:35:24,874 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-26 22:35:24,891 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-26 22:35:25,499 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-26 22:35:25,499 - INFO - Terminando proceso: Discord.exe
+2025-11-26 22:35:25,500 - INFO - Terminando proceso: Discord.exe
+2025-11-26 22:35:25,501 - INFO - Terminando proceso: Discord.exe
+2025-11-26 22:35:25,501 - INFO - Terminando proceso: Discord.exe
+2025-11-26 22:35:25,502 - INFO - Terminando proceso: Discord.exe
+2025-11-26 22:35:25,502 - INFO - Terminando proceso: Discord.exe
+2025-11-26 22:35:26,505 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-26 22:35:27,144 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-26 22:35:27,146 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-26 22:35:27,153 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-26 22:35:46,514 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-26 22:35:48,174 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-26 22:36:00,378 - WARNING - No se recibió longitud. Saliendo.
+2025-11-26 22:36:00,379 - INFO - Agente de Proctoring Finalizado.
+2025-11-26 22:36:46,384 - INFO - Agente de Proctoring Iniciado.
+2025-11-26 22:36:46,384 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-26 22:36:46,402 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-26 22:36:46,828 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-26 22:36:46,831 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-26 22:36:46,841 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-26 22:36:55,351 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-26 22:36:55,853 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-26 22:37:41,505 - WARNING - No se recibió longitud. Saliendo.
+2025-11-26 22:37:41,506 - INFO - Agente de Proctoring Finalizado.
+2025-11-26 23:06:02,323 - INFO - Agente de Proctoring Iniciado.
+2025-11-26 23:06:02,372 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-26 23:06:02,395 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-26 23:06:02,731 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-26 23:06:02,732 - INFO - Terminando proceso: Discord.exe
+2025-11-26 23:06:02,733 - INFO - Terminando proceso: Discord.exe
+2025-11-26 23:06:02,733 - INFO - Terminando proceso: Discord.exe
+2025-11-26 23:06:02,734 - INFO - Terminando proceso: Discord.exe
+2025-11-26 23:06:02,735 - INFO - Terminando proceso: Discord.exe
+2025-11-26 23:06:02,735 - INFO - Terminando proceso: Discord.exe
+2025-11-26 23:06:03,737 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-26 23:06:03,969 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-26 23:06:04,973 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-26 23:06:04,973 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-26 23:06:04,975 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-26 23:06:05,262 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-26 23:06:05,264 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-26 23:06:05,275 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-26 23:06:30,968 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-26 23:06:32,300 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-26 23:13:06,503 - WARNING - No se recibió longitud. Saliendo.
+2025-11-26 23:13:06,503 - INFO - Agente de Proctoring Finalizado.
+2025-11-26 23:13:22,455 - INFO - Agente de Proctoring Iniciado.
+2025-11-26 23:13:22,617 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-26 23:13:22,635 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-26 23:13:25,116 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-26 23:13:25,118 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': True, 'zoomOpen': False}
+2025-11-26 23:13:25,768 - DEBUG - Mensaje recibido: {"command":"CLOSE_APPS"}
+2025-11-26 23:13:25,771 - INFO - Terminando proceso: Discord.exe
+2025-11-26 23:13:25,772 - INFO - Terminando proceso: Discord.exe
+2025-11-26 23:13:25,773 - INFO - Terminando proceso: Discord.exe
+2025-11-26 23:13:25,773 - INFO - Terminando proceso: Discord.exe
+2025-11-26 23:13:25,773 - INFO - Terminando proceso: Discord.exe
+2025-11-26 23:13:25,774 - INFO - Terminando proceso: Discord.exe
+2025-11-26 23:13:26,776 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-26 23:13:28,118 - DEBUG - Mensaje recibido: {"command":"CHECK_APPS"}
+2025-11-26 23:13:28,120 - DEBUG - Mensaje enviado: {'type': 'APPS_STATUS', 'discordOpen': False, 'zoomOpen': False}
+2025-11-26 23:13:28,440 - DEBUG - Mensaje recibido: {"command":"START_MONITORING"}
+2025-11-26 23:13:28,442 - INFO - MONITOREO DE PLAGIO INICIADO
+2025-11-26 23:13:28,454 - INFO - Listener de teclado INICIADO y BLOQUEANDO.
+2025-11-26 23:13:39,261 - DEBUG - Mensaje recibido: {"command":"STOP_MONITORING"}
+2025-11-26 23:13:40,466 - INFO - MONITOREO DE PLAGIO DETENIDO
+2025-11-27 00:29:33,148 - WARNING - No se recibió longitud. Saliendo.
+2025-11-27 00:29:33,156 - INFO - Agente de Proctoring Finalizado.
+2025-11-27 00:34:50,453 - INFO - Cerrando: discord.exe
+2025-11-27 00:34:50,454 - INFO - Cerrando: discord.exe
+2025-11-27 00:34:50,455 - INFO - Cerrando: msedge.exe
+2025-11-27 00:34:50,455 - INFO - Cerrando: msedge.exe
+2025-11-27 00:34:50,456 - INFO - Cerrando: discord.exe
+2025-11-27 00:34:50,457 - INFO - Cerrando: msedge.exe
+2025-11-27 00:34:50,457 - INFO - Cerrando: msedge.exe
+2025-11-27 00:34:50,458 - INFO - Cerrando: msedge.exe
+2025-11-27 00:34:50,458 - INFO - Cerrando: msedge.exe
+2025-11-27 00:34:50,458 - INFO - Cerrando: discord.exe
+2025-11-27 00:34:50,459 - INFO - Cerrando: discord.exe
+2025-11-27 00:34:50,459 - INFO - Cerrando: whatsapp.exe
+2025-11-27 00:34:50,472 - INFO - Cerrando: msedge.exe
+2025-11-27 00:34:50,472 - INFO - Cerrando: msedge.exe
+2025-11-27 00:34:50,473 - INFO - Cerrando: discord.exe
+2025-11-27 00:34:50,473 - INFO - Cerrando: msedge.exe
+2025-11-27 00:34:50,473 - INFO - Cerrando: msedge.exe
+2025-11-27 00:34:50,473 - INFO - Cerrando: msedge.exe
+2025-11-27 00:34:50,474 - INFO - Cerrando: msedge.exe
+2025-11-27 00:34:50,474 - INFO - Cerrando: msedge.exe
+2025-11-27 00:35:02,934 - WARNING - PLAGIO DETECTADO: WhatsApp
+2025-11-27 00:35:39,839 - WARNING - PLAGIO DETECTADO: Microsoft Edge
+2025-11-27 00:36:00,327 - WARNING - PLAGIO DETECTADO: Microsoft Edge
+2025-11-27 00:36:34,570 - WARNING - PLAGIO DETECTADO: Microsoft Edge
+2025-11-27 00:57:59,153 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,155 - INFO - Cerrando: discord.exe
+2025-11-27 00:57:59,156 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,156 - INFO - Cerrando: whatsapp.exe
+2025-11-27 00:57:59,157 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,158 - INFO - Cerrando: discord.exe
+2025-11-27 00:57:59,159 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,160 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,162 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,163 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,163 - INFO - Cerrando: discord.exe
+2025-11-27 00:57:59,164 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,165 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,165 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,166 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,167 - INFO - Cerrando: discord.exe
+2025-11-27 00:57:59,167 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,168 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,169 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,170 - INFO - Cerrando: msedge.exe
+2025-11-27 00:57:59,170 - INFO - Cerrando: discord.exe
+2025-11-27 00:57:59,171 - INFO - Cerrando: discord.exe
+2025-11-27 00:57:59,172 - INFO - Cerrando: msedge.exe
+2025-11-27 03:08:57,721 - INFO - Cerrando: discord.exe
+2025-11-27 03:08:57,722 - INFO - Cerrando: discord.exe
+2025-11-27 03:08:57,723 - INFO - Cerrando: discord.exe
+2025-11-27 03:08:57,724 - INFO - Cerrando: discord.exe
+2025-11-27 03:08:57,725 - INFO - Cerrando: discord.exe
+2025-11-27 03:08:57,725 - INFO - Cerrando: discord.exe
+2025-11-27 03:12:21,087 - INFO - Cerrando: discord.exe
+2025-11-27 03:12:21,088 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:21,088 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:21,089 - INFO - Cerrando: discord.exe
+2025-11-27 03:12:21,089 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:21,089 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:21,090 - INFO - Cerrando: whatsapp.exe
+2025-11-27 03:12:21,090 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:21,090 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:21,090 - INFO - Cerrando: discord.exe
+2025-11-27 03:12:21,091 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:21,091 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:21,092 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:21,092 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:21,092 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:21,093 - INFO - Cerrando: discord.exe
+2025-11-27 03:12:21,093 - INFO - Cerrando: discord.exe
+2025-11-27 03:12:21,093 - INFO - Cerrando: discord.exe
+2025-11-27 03:12:21,094 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:21,094 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:21,095 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:21,095 - INFO - Cerrando: msedge.exe
+2025-11-27 03:12:22,100 - ERROR - Error envio: [Errno 22] Invalid argument
+2025-11-27 03:13:04,477 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:04,478 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:04,479 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:04,480 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:04,481 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:04,481 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:04,482 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:04,483 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:04,483 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:04,484 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:04,484 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:04,485 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:43,311 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:43,312 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:43,312 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:43,313 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:43,313 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:43,314 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:43,314 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:43,314 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:43,315 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:43,315 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:43,316 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:43,316 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:43,316 - INFO - Cerrando: msedge.exe
+2025-11-27 03:13:43,317 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:09,406 - WARNING - PLAGIO DETECTADO: Microsoft Edge
+2025-11-27 03:14:17,021 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:17,022 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:17,022 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:17,023 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:17,023 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:17,024 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:17,025 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:17,026 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:17,026 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:17,027 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:17,027 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:17,027 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:17,028 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:40,228 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:40,229 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:40,230 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:40,231 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:40,232 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:40,232 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:40,232 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:40,233 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:40,234 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:40,234 - INFO - Cerrando: msedge.exe
+2025-11-27 03:14:40,235 - INFO - Cerrando: msedge.exe
+2025-11-27 03:22:43,553 - INFO - Cerrando: msedge.exe
+2025-11-27 03:22:43,554 - INFO - Cerrando: msedge.exe
+2025-11-27 03:22:43,555 - INFO - Cerrando: discord.exe
+2025-11-27 03:22:43,556 - INFO - Cerrando: discord.exe
+2025-11-27 03:22:43,557 - INFO - Cerrando: msedge.exe
+2025-11-27 03:22:43,557 - INFO - Cerrando: msedge.exe
+2025-11-27 03:22:43,558 - INFO - Cerrando: msedge.exe
+2025-11-27 03:22:43,558 - INFO - Cerrando: msedge.exe
+2025-11-27 03:22:43,559 - INFO - Cerrando: msedge.exe
+2025-11-27 03:22:43,559 - INFO - Cerrando: discord.exe
+2025-11-27 03:22:43,559 - INFO - Cerrando: msedge.exe
+2025-11-27 03:22:43,560 - INFO - Cerrando: discord.exe
+2025-11-27 03:22:43,560 - INFO - Cerrando: msedge.exe
+2025-11-27 03:22:43,561 - INFO - Cerrando: discord.exe
+2025-11-27 03:22:43,561 - INFO - Cerrando: msedge.exe
+2025-11-27 03:22:43,562 - INFO - Cerrando: msedge.exe
+2025-11-27 03:22:43,562 - INFO - Cerrando: msedge.exe
+2025-11-27 03:22:43,563 - INFO - Cerrando: discord.exe
+2025-11-27 03:22:43,563 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:08,536 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:08,537 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:08,537 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:08,538 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:08,538 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:08,539 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:08,539 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:08,539 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:08,540 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:08,540 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:08,540 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:08,541 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:08,541 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:33,802 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:33,803 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:33,804 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:33,805 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:33,805 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:33,805 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:33,805 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:33,806 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:33,806 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:33,806 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:33,807 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:33,807 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:33,807 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:57,481 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:57,481 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:57,482 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:57,482 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:57,482 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:57,483 - INFO - Cerrando: snippingtool.exe
+2025-11-27 03:23:57,483 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:57,484 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:57,484 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:57,485 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:57,486 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:57,486 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:57,486 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:57,487 - INFO - Cerrando: msedge.exe
+2025-11-27 03:23:57,487 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:02,196 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:02,197 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:02,197 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:02,198 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:02,198 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:02,199 - INFO - Cerrando: discord.exe
+2025-11-27 03:31:02,199 - INFO - Cerrando: discord.exe
+2025-11-27 03:31:02,200 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:02,201 - INFO - Cerrando: discord.exe
+2025-11-27 03:31:02,202 - INFO - Cerrando: discord.exe
+2025-11-27 03:31:02,203 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:02,203 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:02,203 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:02,204 - INFO - Cerrando: discord.exe
+2025-11-27 03:31:02,204 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:02,204 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:02,205 - INFO - Cerrando: snippingtool.exe
+2025-11-27 03:31:02,205 - INFO - Cerrando: whatsapp.exe
+2025-11-27 03:31:02,206 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:02,206 - INFO - Cerrando: discord.exe
+2025-11-27 03:31:02,207 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:36,189 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:36,189 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:36,190 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:36,190 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:36,190 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:36,191 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:36,191 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:36,192 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:36,192 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:36,193 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:36,193 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:36,193 - INFO - Cerrando: msedge.exe
+2025-11-27 03:31:36,194 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:44,714 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:44,714 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:44,715 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:44,716 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:44,716 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:44,717 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:44,717 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:44,718 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:44,718 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:44,719 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:44,719 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:44,719 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:44,720 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:44,720 - INFO - Cerrando: msedge.exe
+2025-11-27 03:39:50,357 - WARNING - PLAGIO DETECTADO: WhatsApp
+2025-11-27 03:45:38,820 - INFO - Cerrando: msedge.exe
+2025-11-27 03:45:38,821 - INFO - Cerrando: msedge.exe
+2025-11-27 03:45:38,821 - INFO - Cerrando: msedge.exe
+2025-11-27 03:45:38,822 - INFO - Cerrando: msedge.exe
+2025-11-27 03:45:38,823 - INFO - Cerrando: msedge.exe
+2025-11-27 03:45:38,823 - INFO - Cerrando: msedge.exe
+2025-11-27 03:45:38,824 - INFO - Cerrando: msedge.exe
+2025-11-27 03:45:38,824 - INFO - Cerrando: msedge.exe
+2025-11-27 03:45:38,825 - INFO - Cerrando: msedge.exe
+2025-11-27 03:45:38,825 - INFO - Cerrando: msedge.exe
+2025-11-27 03:45:38,825 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:08,828 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:08,829 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:08,830 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:08,830 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:08,831 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:08,832 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:08,832 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:08,833 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:08,833 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:08,834 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:08,834 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:08,835 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:08,835 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:08,835 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:34,228 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:34,230 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:34,230 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:34,230 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:34,231 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:34,231 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:34,231 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:34,232 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:34,232 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:34,232 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:34,233 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:34,234 - INFO - Cerrando: msedge.exe
+2025-11-27 03:46:34,234 - INFO - Cerrando: msedge.exe
+2025-11-27 03:48:10,894 - INFO - Cerrando: msedge.exe
+2025-11-27 03:48:10,894 - INFO - Cerrando: msedge.exe
+2025-11-27 03:48:10,895 - INFO - Cerrando: msedge.exe
+2025-11-27 03:48:10,896 - INFO - Cerrando: msedge.exe
+2025-11-27 03:48:10,897 - INFO - Cerrando: msedge.exe
+2025-11-27 03:48:10,897 - INFO - Cerrando: msedge.exe
+2025-11-27 03:48:10,897 - INFO - Cerrando: msedge.exe
+2025-11-27 03:48:10,898 - INFO - Cerrando: msedge.exe
+2025-11-27 03:48:10,899 - INFO - Cerrando: msedge.exe
+2025-11-27 03:48:10,900 - INFO - Cerrando: msedge.exe
+2025-11-27 03:48:10,900 - INFO - Cerrando: msedge.exe
+2025-11-27 03:48:10,901 - INFO - Cerrando: msedge.exe
+2025-11-27 03:48:10,901 - INFO - Cerrando: msedge.exe
+2025-11-27 03:48:10,901 - INFO - Cerrando: msedge.exe
