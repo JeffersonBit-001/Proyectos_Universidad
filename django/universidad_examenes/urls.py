@@ -1,6 +1,11 @@
 from django.contrib import admin
 from django.urls import path
 from tasks import views
+from django.conf import settings
+from django.conf.urls.static import static
+
+
+
 
 urlpatterns = [
     # --- Vistas Principales y de Alumno ---
@@ -104,5 +109,20 @@ urlpatterns = [
     # --- RUTA NUEVA PARA GUARDAR LA NOTA MANUAL ---
     path('profesor/calificar/ajax/', views.calificar_respuesta_ajax, name='calificar_respuesta_ajax'),
 
+
+
+    path('reportar_incidencia/', views.reportar_incidencia, name='reportar_incidencia'),
+    path('api/foto_referencia/', views.get_user_reference_photo, name='get_user_reference_photo'),
+
+
+
+    path('enrolamiento/', views.enrolamiento_biometrico, name='enrolamiento'),
+    path('api/guardar_biometria/', views.guardar_foto_biometrica, name='guardar_biometria'),
+    path('api/get_referencia/', views.get_user_reference_photo, name='get_user_reference_photo'),
+
     
 ]
+
+# AGREGA ESTO AL FINAL DEL ARCHIVO (fuera de la lista urlpatterns):
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

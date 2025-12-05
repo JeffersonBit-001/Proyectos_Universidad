@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <div class="container mt-5">
     <nav aria-label="breadcrumb">
@@ -23,7 +24,12 @@
             <table class="table table-hover align-middle">
                 <thead class="table-light">
                     <tr>
-                        <th scope="col" class="text-center" style="width: 50px;">Ver</th>
+                        <th scope="col" class="text-center" style="width: 50px;">
+                            <div class="form-check d-flex justify-content-center">
+                                <input class="form-check-input" type="checkbox" id="selectAll" title="Seleccionar todos">
+                            </div>
+                        </th>
+                        
                         <th scope="col">Alumno</th>
                         <th scope="col" style="width: 200px;">Estado</th>
                         <th scope="col" style="width: 100px;" class="text-center">Nota</th>
@@ -100,8 +106,33 @@
 </div>
 
 <script>
-function toggleStatus(checkbox, selectId) {
-    document.getElementById(selectId).disabled = !checkbox.checked;
-}
+    // Tu función original para cambios individuales
+    function toggleStatus(checkbox, selectId) {
+        document.getElementById(selectId).disabled = !checkbox.checked;
+    }
+
+    // Nueva lógica para el "Seleccionar Todos"
+    document.addEventListener("DOMContentLoaded", function() {
+        const masterCheckbox = document.getElementById('selectAll');
+        const studentCheckboxes = document.getElementsByName('assigned_students');
+
+        masterCheckbox.addEventListener('change', function() {
+            const isChecked = this.checked;
+            
+            for (let i = 0; i < studentCheckboxes.length; i++) {
+                let checkbox = studentCheckboxes[i];
+                checkbox.checked = isChecked;
+                
+                // IMPORTANTE: También debemos habilitar/deshabilitar el SELECT asociado
+                // Buscamos el ID del alumno que está en el value del checkbox
+                let studentId = checkbox.value;
+                let selectElement = document.getElementById('status_' + studentId);
+                
+                if (selectElement) {
+                    selectElement.disabled = !isChecked;
+                }
+            }
+        });
+    });
 </script>
 {% endblock %}

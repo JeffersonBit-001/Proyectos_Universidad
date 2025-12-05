@@ -122,9 +122,47 @@
 
 </div>
 
+
+<div style="position: fixed; bottom: 10px; left: 10px; width: 150px; height: 110px; border: 2px solid #333; z-index: 9999; background: black; pointer-events: none;">
+    <video id="monitoring-video" autoplay muted width="150" height="110" style="opacity: 0.7;"></video>
+</div>
+
+<div id="camera-alert" class="alert alert-danger alert-dismissible fade show fixed-top m-3 shadow-lg" role="alert" style="display:none; z-index: 9999; border: 3px solid red;">
+    <h4 class="alert-heading"><i class="bi bi-exclamation-octagon-fill"></i> ¡ADVERTENCIA DE SEGURIDAD!</h4>
+    <p id="camera-alert-msg" class="mb-0 fs-5">Infracción detectada.</p>
+</div>
+
+
 <style>
     /* ... (Tu style no cambia) ... */
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+
+
+
+
 
 
 <script>
@@ -141,6 +179,11 @@
     const tiempoBasePregunta = {{ tiempo_pregunta|default:0 }}; 
     const tiempoLimiteMinutos = {{ examen.tiempo_limite|default:0 }};
     const examKey = 'exam_end_time_{{ examen.id_examen }}'; 
+
+
+    
+
+
     
     let questionInterval;
     let globalTimerInterval;
@@ -422,7 +465,161 @@
     if (localStorage.getItem(examKey)) {
         iniciarExamenReal();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    const monVideo = document.getElementById('monitoring-video');
+    const alertBox = document.getElementById('camera-alert');
+    const alertMsg = document.getElementById('camera-alert-msg');
+    
+    // Configuración
+    let incidentCount = 0;
+    const MAX_INCIDENTS = 5; // Aumentamos a 5 porque ahora chequeará más rápido
+    const CHECK_INTERVAL = 1000; // 1000ms = 1 segundo (Más estricto)
+    let alertTimeout = null; // Variable para controlar el tiempo del cartel
+
+    // 1. Cargar modelos e iniciar
+    window.addEventListener('load', async () => {
+        try {
+            await faceapi.nets.tinyFaceDetector.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models');
+            startMonitoring();
+        } catch (e) {
+            console.error("Error cargando modelos IA:", e);
+        }
+    });
+
+    function startMonitoring() {
+        navigator.mediaDevices.getUserMedia({ video: {} }).then(stream => {
+            monVideo.srcObject = stream;
+            
+            monVideo.onloadedmetadata = () => {
+                monVideo.play();
+                // Chequear cada 1 segundo (más rápido)
+                setInterval(detectInfraccion, CHECK_INTERVAL); 
+            };
+        }).catch(err => console.error("Error cámara monitor:", err));
+    }
+
+    async function detectInfraccion() {
+        if (monVideo.paused || monVideo.ended || !monVideo.srcObject) return;
+
+        // Detectar rostros
+        const detections = await faceapi.detectAllFaces(monVideo, new faceapi.TinyFaceDetectorOptions());
+        
+        if (detections.length === 0) {
+            handleViolation("AUSENCIA", "No se detecta tu rostro.");
+        } else if (detections.length > 1) {
+            handleViolation("MULTIPLE", "Múltiples personas detectadas.");
+        }
+    }
+
+    function handleViolation(tipo, mensajeUsuario) {
+        console.warn("Infracción detectada: " + tipo);
+        incidentCount++;
+
+        // A. MOSTRAR ALERTA VISUAL (CORREGIDO)
+        if(alertBox && alertMsg) {
+            // Si ya había un temporizador para ocultar, lo cancelamos
+            if (alertTimeout) clearTimeout(alertTimeout);
+
+            alertMsg.innerHTML = `<strong>${mensajeUsuario}</strong><br>Advertencia ${incidentCount}/${MAX_INCIDENTS}`;
+            alertBox.style.display = 'block';
+            
+            // Programamos ocultar el cartel en 4 segundos, SOLO si no hay nuevas alertas
+            alertTimeout = setTimeout(() => { 
+                alertBox.style.display = 'none'; 
+            }, 4000);
+        }
+
+        // B. Tomar evidencia (foto)
+        const canvas = document.createElement('canvas');
+        canvas.width = monVideo.videoWidth;
+        canvas.height = monVideo.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(monVideo, 0, 0);
+        const imageBase64 = canvas.toDataURL('image/jpeg', 0.5);
+
+        // C. Enviar al servidor
+        const csrftoken = getCookie('csrftoken'); 
+
+        fetch('/reportar_incidencia/', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken 
+            },
+            body: JSON.stringify({
+                examen_id: "{{ examen_id }}",
+                tipo: tipo,
+                imagen: imageBase64
+            })
+        }).catch(e => {});
+
+        // D. Cancelar examen si supera el límite
+        if (incidentCount >= MAX_INCIDENTS) {
+            alert("⚠️ EXAMEN CANCELADO ⚠️\n\nSe han detectado demasiadas infracciones de comportamiento.");
+            
+            fetch("{% url 'cancel_exam' %}", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrftoken },
+                body: JSON.stringify({ examen_id: "{{ examen_id }}" })
+            }).finally(() => {
+                window.location.href = "{% url 'exam_dashboard' %}";
+            });
+        }
+    }
+
+    // Funciones auxiliares
+    function getCookie(name) {
+        let v = null;
+        if (document.cookie && document.cookie !== '') {
+            const c = document.cookie.split(';');
+            for (let i = 0; i < c.length; i++) {
+                const cookie = c[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    v = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return v;
+    }
+    
+    // (Asegúrate de mantener aquí la función collectAnswers() si la usas en otro lado del script)
+    function collectAnswers() {
+        const answers = [];
+        document.querySelectorAll('input[type="radio"]:checked').forEach(input => {
+            if (input.dataset.tipo === 'M') {
+                answers.push({ pregunta: input.name.split('-')[1], alternativa: input.value, tipo: 'M' });
+            }
+        });
+        document.querySelectorAll('textarea.input-respuesta').forEach(textarea => {
+            answers.push({ pregunta: textarea.name.split('-')[1], alternativa: null, respuesta_texto: textarea.value, tipo: 'A' });
+        });
+        return answers;
+    }
+
+
+
+
+
+
 </script>
+
+
+
+
+
 
 
 {% endblock %}

@@ -20,11 +20,15 @@
                     <input type="text" id="searchBox" class="form-control" placeholder="Buscar alumno en la lista...">
                 </div>
 
-                <div class="table-responsive" style="max_height: 500px; overflow-y: auto;">
+                <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
                     <table class="table table-hover table-striped" id="studentsTable">
                         <thead class="table-light sticky-top">
                             <tr>
-                                <th style="width: 50px;">Inscrito</th>
+                                <th style="width: 50px;" class="text-center">
+                                    <div class="form-check d-flex justify-content-center">
+                                        <input class="form-check-input" type="checkbox" id="selectAll" title="Seleccionar todos">
+                                    </div>
+                                </th>
                                 <th>Nombre de Usuario</th>
                                 <th>ID</th>
                             </tr>
@@ -69,6 +73,7 @@
 </div>
 
 <script>
+// Lógica de Búsqueda existente
 document.getElementById('searchBox').addEventListener('keyup', function() {
     let searchText = this.value.toLowerCase();
     let tableRows = document.querySelectorAll('#studentsTable tbody tr');
@@ -79,6 +84,25 @@ document.getElementById('searchBox').addEventListener('keyup', function() {
             row.style.display = '';
         } else {
             row.style.display = 'none';
+        }
+    });
+});
+
+// CAMBIO 2: Lógica para "Seleccionar Todos"
+document.addEventListener("DOMContentLoaded", function() {
+    const masterCheckbox = document.getElementById('selectAll');
+    // IMPORTANTE: Aquí buscamos por name="students", que es el nombre en este form
+    const studentCheckboxes = document.getElementsByName('students');
+
+    masterCheckbox.addEventListener('change', function() {
+        const isChecked = this.checked;
+        
+        for (let i = 0; i < studentCheckboxes.length; i++) {
+            let checkbox = studentCheckboxes[i];
+            
+            // Opcional: Solo marcar los visibles si hay búsqueda activa
+            // Si quieres marcar TODOS (incluso ocultos), usa solo la línea siguiente:
+            checkbox.checked = isChecked;
         }
     });
 });

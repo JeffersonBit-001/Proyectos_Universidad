@@ -6,7 +6,7 @@ from django.db import IntegrityError
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 # --- ¡IMPORTACIONES MODIFICADAS! ---
-from .models import Task, AlternativasExamen, PreguntasExamen, EstadoExamen,Examen, RespuestasUsuario, Cursos, Salon, SalonAlumnos, User
+from .models import Task, AlternativasExamen, PreguntasExamen, EstadoExamen,Examen, RespuestasUsuario, Cursos, Salon, SalonAlumnos, User,PerfilBiometrico,IncidenciaExamen
 from .forms import TaskForm
 import pandas as pd
 import re
@@ -27,16 +27,25 @@ from django.contrib.auth.decorators import user_passes_test
 
 from django.db import transaction # <-- ¡AÑADE ESTA IMPORTACIÓN!
 
-
+from django.core.files.base import ContentFile
+import base64
 
 # --- (Las vistas home, signup, tasks, etc. no cambian) ---
 # Modifica la vista home agregando el decorador
 @never_cache
 @login_required(login_url='signin')  # <--- AGREGA ESTA LÍNEA
 def home(request):
-    lista_de_preguntas = PreguntasExamen.objects.prefetch_related('alternativasexamen_set').all()
-    context = { 'preguntas': lista_de_preguntas }
-    return render(request, 'home.html', context)
+    # Si el usuario ya inició sesión, redirigirlo a su dashboard
+    if request.user.is_authenticated:
+        # Aquí puedes filtrar si es profesor o alumno si tienes esa distinción
+        # Por ejemplo, si usas grupos o un campo en el modelo:
+        if request.user.is_staff: # O tu lógica para detectar profesor
+             return redirect('professor_dashboard')
+        else:
+             return redirect('exam/dashboard/') # O 'exam_dashboard', la ruta de tus alumnos
+            
+    # Si no ha iniciado sesión, mostrar la página de inicio normal
+    return render(request, 'home.html')
 
 
 
@@ -222,6 +231,15 @@ def exam_dashboard(request):
 @never_cache 
 @login_required
 def welcome_exam(request, examen_id):
+
+    # --- VERIFICACIÓN BIOMÉTRICA PREVIA ---
+    if not PerfilBiometrico.objects.filter(user=request.user).exists():
+        # Si no tiene foto, lo mandamos a enrolarse y le pasamos el examen al que quería ir
+        return redirect(f'/enrolamiento/?next_exam={examen_id}')
+    # --------------------------------------
+
+
+
     estado = check_exam_status(request.user, examen_id)
     
     # --- ¡AÑADE ESTA VERIFICACIÓN! ---
@@ -1344,30 +1362,68 @@ def professor_manage_salon_students(request, salon_id):
 
 ###########excel################33
 def descargar_plantilla_excel(request):
-    # Definimos las columnas que esperamos
-    # Asumimos un formato: Pregunta | Opcion A | Valor A | Opcion B | Valor B ...
+    # Definimos dos ejemplos para que el profesor entienda cómo llenar
     data = {
-        'Pregunta': ['¿Cuál es la capital de Perú? (Ejemplo)'],
-        'Opcion_1': ['Lima'],
-        'Valor_1': ['C'], # C = Correcto, I = Incorrecto (según tu lógica)
-        'Opcion_2': ['Arequipa'],
-        'Valor_2': ['I'],
-        'Opcion_3': ['Trujillo'],
-        'Valor_3': ['I'],
-        'Opcion_4': ['Cusco'],
-        'Valor_4': ['I'],
+        'Pregunta': [
+            '¿Cuál es la capital de Perú? (Ejemplo Múltiple)', 
+            'Describa brevemente el ciclo del agua (Ejemplo Abierta)'
+        ],
+        'Tipo': [
+            'M',  # M = Múltiple (Automática)
+            'A'   # A = Abierta (Manual)
+        ],
+        'Puntaje': [
+            1.0,  # Vale 1 punto
+            4.0   # Vale 4 puntos (es más difícil)
+        ],
+        'Opcion_1': [
+            'Lima', 
+            '' # Vacío en la abierta
+        ],
+        'Valor_1': [
+            'C', # C = Correcta
+            ''
+        ],
+        'Opcion_2': [
+            'Arequipa', 
+            ''
+        ],
+        'Valor_2': [
+            'I', # I = Incorrecta
+            ''
+        ],
+        'Opcion_3': [
+            'Trujillo', 
+            ''
+        ],
+        'Valor_3': [
+            'I',
+            ''
+        ],
+        'Opcion_4': [
+            'Cusco', 
+            ''
+        ],
+        'Valor_4': [
+            'I',
+            ''
+        ],
     }
+    
+    # Creamos el DataFrame
     df = pd.DataFrame(data)
     
+    # Preparamos la respuesta HTTP para descargar el archivo
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = 'attachment; filename=plantilla_preguntas.xlsx'
+    response['Content-Disposition'] = 'attachment; filename=plantilla_examen_v2.xlsx'
     
+    # Guardamos usando openpyxl
     df.to_excel(response, index=False, engine='openpyxl')
+    
     return response
 
-
-
 ######plantilla excel
+
 
 def subir_preguntas_excel(request, examen_id):
     if request.method == 'POST' and request.FILES['archivo_excel']:
@@ -1375,9 +1431,7 @@ def subir_preguntas_excel(request, examen_id):
         
         try:
             # --- DETECCIÓN DE FORMATO ---
-            # Verificamos si el nombre termina en .csv para usar read_csv, sino usamos read_excel
             if archivo.name.endswith('.csv'):
-                # Usamos encoding='utf-8-sig' para que Excel lea bien las tildes y ñ
                 df = pd.read_csv(archivo, encoding='utf-8-sig').fillna('')
             else:
                 df = pd.read_excel(archivo).fillna('')
@@ -1395,11 +1449,7 @@ def subir_preguntas_excel(request, examen_id):
                 partes = col.split('_')
                 if len(partes) > 1 and partes[1].isdigit():
                     indices_encontrados.append(int(partes[1]))
-            
             indices_encontrados.sort()
-
-            if not indices_encontrados:
-                 messages.warning(request, "Advertencia: El archivo no tiene alternativas (Opcion_X).")
 
             # --- 3. PROCESAMIENTO ---
             with transaction.atomic():
@@ -1408,32 +1458,55 @@ def subir_preguntas_excel(request, examen_id):
 
                 for index, row in df.iterrows():
                     texto_pregunta = str(row['Pregunta']).strip()
-                    
-                    if not texto_pregunta:
-                        continue 
+                    if not texto_pregunta: continue 
 
+                    # A) LEER TIPO (Por defecto 'M' si no existe la columna)
+                    tipo_leido = 'M'
+                    if 'Tipo' in df.columns:
+                        val_tipo = str(row['Tipo']).strip().upper()
+                        # Aceptamos 'A' o 'ABIERTA', 'M' o 'MULTIPLE'
+                        if val_tipo.startswith('A'):
+                            tipo_leido = 'A'
+                        else:
+                            tipo_leido = 'M'
+                    
+                    # B) LEER PUNTAJE (Por defecto 1.0 si no existe)
+                    puntaje_leido = 1.0
+                    if 'Puntaje' in df.columns:
+                        try:
+                            val_puntaje = float(str(row['Puntaje']).replace(',', '.'))
+                            puntaje_leido = val_puntaje
+                        except:
+                            puntaje_leido = 1.0
+
+                    # C) CREAR PREGUNTA
                     nueva_pregunta = PreguntasExamen.objects.create(
                         id_examen=examen,
-                        texto_pregunta=texto_pregunta
+                        texto_pregunta=texto_pregunta,
+                        tipo_pregunta=tipo_leido,      # <--- Asignamos el tipo
+                        puntaje_maximo=puntaje_leido   # <--- Asignamos el puntaje
                     )
                     contador_preguntas += 1
 
-                    for i in indices_encontrados:
-                        col_opcion = f'Opcion_{i}'
-                        col_valor = f'Valor_{i}'
-                        
-                        opcion_texto = str(row.get(col_opcion, '')).strip()
-                        opcion_valor = str(row.get(col_valor, 'I')).strip().upper()
+                    # D) CREAR ALTERNATIVAS (SOLO SI ES TIPO 'M')
+                    if tipo_leido == 'M':
+                        for i in indices_encontrados:
+                            col_opcion = f'Opcion_{i}'
+                            col_valor = f'Valor_{i}'
+                            
+                            # Verificamos que la columna exista en el row
+                            opcion_texto = str(row.get(col_opcion, '')).strip()
+                            opcion_valor = str(row.get(col_valor, 'I')).strip().upper()
 
-                        if opcion_texto and opcion_texto.lower() != 'nan':
-                            AlternativasExamen.objects.create(
-                                id_preguntas_examen=nueva_pregunta,
-                                texto_alternativa=opcion_texto,
-                                valor=opcion_valor
-                            )
+                            if opcion_texto and opcion_texto.lower() != 'nan':
+                                AlternativasExamen.objects.create(
+                                    id_preguntas_examen=nueva_pregunta,
+                                    texto_alternativa=opcion_texto,
+                                    valor=opcion_valor
+                                )
                 
                 if contador_preguntas > 0:
-                    messages.success(request, f'¡Éxito! Se importaron {contador_preguntas} preguntas correctamente.')
+                    messages.success(request, f'¡Éxito! Se importaron {contador_preguntas} preguntas.')
                 else:
                     messages.warning(request, 'El archivo no contenía preguntas válidas.')
         
@@ -1441,6 +1514,10 @@ def subir_preguntas_excel(request, examen_id):
             messages.error(request, f'Error al procesar el archivo: {str(e)}')
             
     return redirect('professor_manage_questions', examen_id=examen_id)
+
+
+
+
 
 
 
@@ -1528,3 +1605,105 @@ def calificar_respuesta_ajax(request):
             
         except Exception as e:
             return JsonResponse({'status': 'error', 'message': str(e)})
+        
+
+# Vista para reportar incidentes desde JS
+# --- AGREGAR ANTES DE def submit_exam(request): ---
+
+@csrf_exempt
+@login_required
+def reportar_incidencia(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            examen_id = data.get('examen_id')
+            tipo = data.get('tipo')
+            imagen_b64 = data.get('imagen') # La foto en base64
+            
+            # Decodificar imagen
+            if imagen_b64:
+                format, imgstr = imagen_b64.split(';base64,') 
+                ext = format.split('/')[-1] 
+                data_img = ContentFile(base64.b64decode(imgstr), name=f'{tipo}_{request.user.id}.{ext}')
+            else:
+                data_img = None
+            
+            IncidenciaExamen.objects.create(
+                examen_id=examen_id,
+                alumno=request.user,
+                tipo=tipo,
+                minuto_ocurrencia="En vivo",
+                evidencia=data_img
+            )
+            print(f"INCIDENCIA REGISTRADA: {tipo} - Usuario {request.user.username}")
+            return JsonResponse({'status': 'ok'})
+        except Exception as e:
+            print(f"Error reportando incidencia: {e}")
+            return JsonResponse({'status': 'error', 'message': str(e)})
+    return JsonResponse({'status': 'error'})
+
+@login_required
+def get_user_reference_photo(request):
+    """Devuelve la URL de la foto de referencia para que el JS compare"""
+    try:
+        perfil = PerfilBiometrico.objects.get(user=request.user)
+        return JsonResponse({'status': 'ok', 'url': perfil.foto_referencia.url})
+    except PerfilBiometrico.DoesNotExist:
+        # Si no tiene foto, retornamos status especial para pedir que se tome una
+        return JsonResponse({'status': 'no_photo'})
+    
+
+
+#VISTA DE RECONOCER FOTO Y GUARDAR FOTO DE LA PERSONA
+
+# 1. VISTA DE ENROLAMIENTO (Página HTML)
+@login_required
+def enrolamiento_biometrico(request):
+    # Si ya tiene foto, no debería estar aquí, lo mandamos al dashboard
+    if PerfilBiometrico.objects.filter(user=request.user).exists():
+        return redirect('exam_dashboard')
+    
+    # Si viene de un intento de examen, guardamos el ID para redirigirlo después
+    next_exam = request.GET.get('next_exam')
+    return render(request, 'enrolamiento.html', {'next_exam': next_exam})
+
+# 2. API PARA GUARDAR LA FOTO (AJAX)
+@login_required
+@csrf_exempt # O usa el token en el fetch (recomendado usar token, aquí simplifico)
+def guardar_foto_biometrica(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            imagen_b64 = data.get('imagen') # La foto en base64
+            
+            if not imagen_b64:
+                return JsonResponse({'status': 'error', 'message': 'No se recibió imagen'})
+
+            # Decodificar la imagen base64
+            format, imgstr = imagen_b64.split(';base64,') 
+            ext = format.split('/')[-1] 
+            
+            # Crear nombre de archivo único: "referencia_IDUSER.jpg"
+            filename = f"referencia_{request.user.id}.{ext}"
+            data_img = ContentFile(base64.b64decode(imgstr), name=filename)
+
+            # Guardar o Actualizar
+            perfil, created = PerfilBiometrico.objects.get_or_create(user=request.user)
+            perfil.foto_referencia.save(filename, data_img)
+            perfil.save()
+
+            return JsonResponse({'status': 'ok'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)})
+    return JsonResponse({'status': 'error', 'message': 'Método no permitido'})
+
+# 3. API PARA OBTENER LA URL DE LA FOTO (Para welcome_exam)
+@login_required
+def get_user_reference_photo(request):
+    try:
+        perfil = PerfilBiometrico.objects.get(user=request.user)
+        if perfil.foto_referencia:
+            return JsonResponse({'status': 'ok', 'url': perfil.foto_referencia.url})
+    except PerfilBiometrico.DoesNotExist:
+        pass
+    return JsonResponse({'status': 'error', 'message': 'No existe perfil'})

@@ -1,10 +1,11 @@
-console.log("--- CONTENT.JS: FUSIÓN FINAL (ESCRITURA OK + APPS DINÁMICAS) ---");
+console.log("--- CONTENT.JS: VERSIÓN CORREGIDA (CÁMARA + BOTÓN PÁNICO) ---");
 
-// Estado
+// Estado Inicial (4 chequeos)
 let checks = { 
     agent: false, 
     browser: false, 
-    appsClean: false 
+    appsClean: false,
+    camera: false 
 };
 
 // Elementos DOM
@@ -30,23 +31,21 @@ if (welcomeMatch) {
 }
 let isExamActive = (currentPage === 'exam');
 
+// Notificar carga
 chrome.runtime.sendMessage({ type: 'PAGE_LOADED', page: currentPage, examen_id: currentExamenId });
 
 // --- LÓGICA BIENVENIDA ---
 if (currentPage === 'welcome') {
-    // Limpieza de memoria para permitir re-intentos
     chrome.storage.local.remove(['plagioFlag', 'isFinishingExam']);
-    
-    // Limpieza de timer para que empiece de 0 si es un nuevo intento
-    if (currentExamenId) {
-        localStorage.removeItem('exam_end_time_' + currentExamenId);
-    }
+    if (currentExamenId) localStorage.removeItem('exam_end_time_' + currentExamenId);
 
+    // Iniciar chequeo cíclico
     setTimeout(() => chrome.runtime.sendMessage({ type: 'CHECK_ENVIRONMENT' }), 500);
     setInterval(() => {
         chrome.runtime.sendMessage({ type: 'CHECK_ENVIRONMENT' });
     }, 2000);
 
+    // Listener para el botón (si existe)
     if (startButton) {
         startButton.addEventListener('click', onStartButtonClick);
     }
@@ -62,21 +61,21 @@ if (currentPage === 'exam') {
         return false;
     }
 
+    // Bloqueos básicos
     window.addEventListener('contextmenu', blockEvent);
     window.addEventListener('copy', blockEvent);
     window.addEventListener('paste', blockEvent);
     window.addEventListener('cut', blockEvent);
 
-    // --- ¡AQUÍ ESTÁ EL ARREGLO DE LA TECLA 'F'! ---
+    // Bloqueo de teclas F (F1-F12) pero permitiendo escribir "F"
     window.addEventListener('keydown', function(e) {
-        // Solo bloquea F1 hasta F12. Deja pasar la letra "F" normal.
         if (/^F([1-9]|1[0-2])$/.test(e.key)) {
             console.warn(`Tecla F bloqueada: ${e.key}`);
             blockEvent(e);
         }
     });
-    // ----------------------------------------------
 
+    // Fullscreen check
     window.addEventListener('fullscreenchange', async function() {
         if (document.fullscreenElement) return; 
         try {
@@ -86,7 +85,6 @@ if (currentPage === 'exam') {
                 return; 
             }
         } catch (e) { console.error(e); }
-        console.warn("Plagio: Salida fullscreen");
         chrome.runtime.sendMessage({ type: 'PLAGIO_DETECTED', reason: 'salida de pantalla completa' });
     });
 
@@ -104,7 +102,7 @@ if (currentPage === 'exam') {
     }, 3000);
 }
 
-// --- LISTENER MENSAJES ---
+// --- LISTENER MENSAJES (EXTENSIÓN Y CÁMARA) ---
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     switch (message.type) {
         case 'AGENT_STATUS':
@@ -120,11 +118,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             const allApps = message.allApps || [];
             
             checks.appsClean = (openApps.length === 0);
-            renderAppsGrid(allApps, openApps); // Renderizado dinámico
+            renderAppsGrid(allApps, openApps);
 
             if (!checks.appsClean && statusMessage) {
                 statusMessage.textContent = "Detectado: " + openApps.join(", ");
-                statusMessage.style.color = "red";
+                statusMessage.className = "text-center text-danger fw-bold mb-4";
             } else if (statusMessage && checks.agent && checks.browser) {
                 statusMessage.textContent = "";
             }
@@ -137,7 +135,23 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (currentPage === 'welcome') updateWelcomeUI();
 });
 
-// --- RENDERIZADO DINÁMICO DE APPS ---
+// Listener para mensajes de la CÁMARA (desde la página web)
+window.addEventListener("message", (event) => {
+    if (event.source !== window) return;
+
+    if (event.data.type && event.data.type === 'CAMERA_CHECK_RESULT') {
+        checks.camera = event.data.status;
+        if (currentPage === 'welcome') updateWelcomeUI();
+    }
+    
+    // Listener para finalización de examen
+    if (event.data && event.data.type === 'FROM_PAGE_EXAM_FINISHED') {
+        chrome.storage.local.set({ isFinishingExam: true });
+        chrome.runtime.sendMessage({ type: 'EXAM_FINISHED' });
+    }
+});
+
+// --- RENDERIZADO VISUAL ---
 function renderAppsGrid(allApps, openApps) {
     if (!appsContainer) return;
     appsContainer.innerHTML = '';
@@ -159,40 +173,60 @@ function renderAppsGrid(allApps, openApps) {
     });
 }
 
-// --- UI HELPERS ---
 function updateCheckUI(element, success, text) {
     if (!element) return;
     element.textContent = success ? "OK" : text;
     element.className = success ? 'badge bg-success rounded-pill p-2 w-75' : 'badge bg-danger rounded-pill p-2 w-75 text-wrap';
 }
 
+// --- LÓGICA PRINCIPAL DEL BOTÓN (AQUÍ ESTABA EL ERROR) ---
 function updateWelcomeUI() {
     if (!progressBar || !startButton) return;
+    
+    // Calcular progreso
     let passed = 0;
     if (checks.agent) passed++;
     if (checks.browser) passed++;
     if (checks.appsClean) passed++;
-    let progress = Math.round((passed/3)*100);
+    if (checks.camera) passed++; 
+    
+    let progress = Math.round((passed/4)*100);
     
     progressBar.style.width = `${progress}%`;
     progressBar.textContent = `${progress}%`;
     
+    // ESTADO 1: INCOMPLETO (< 100%)
     if (progress < 100) {
         progressBar.className = "progress-bar bg-warning";
-        // Botón de pánico (Cerrar todo)
+        
+        // ¿Podemos ayudar al usuario? 
+        // Si el agente está OK, pero fallan las APPS o el NAVEGADOR, habilitamos el botón de "Corregir".
         if (checks.agent && (!checks.browser || !checks.appsClean)) {
             startButton.disabled = false;
             startButton.textContent = "Corregir Todo y Comenzar";
-            startButton.className = "btn btn-primary btn-lg shadow";
-        } else {
+            startButton.className = "btn btn-primary btn-lg shadow animate__animated animate__pulse";
+        } 
+        // Si falta el AGENTE o la CÁMARA, el botón debe estar gris porque el script no puede arreglar eso solo.
+        else {
             startButton.disabled = true;
-            startButton.textContent = "Verificando...";
             startButton.className = "btn btn-secondary btn-lg";
+            
+            if (!checks.agent) {
+                startButton.textContent = "Esperando Agente...";
+                if(statusMessage) statusMessage.textContent = "Ejecuta el archivo 'run_agent.bat'";
+            } else if (!checks.camera) {
+                startButton.textContent = "Esperando Cámara...";
+                if(statusMessage) statusMessage.textContent = "Ponte frente a la cámara";
+            }
         }
-    } else {
+    } 
+    // ESTADO 2: COMPLETO (100%)
+    else {
         progressBar.className = "progress-bar bg-success";
-        statusMessage.textContent = "Todo listo.";
-        statusMessage.style.color = "green";
+        if(statusMessage) {
+            statusMessage.textContent = "Todo listo.";
+            statusMessage.className = "text-center text-success fw-bold mb-4";
+        }
         startButton.disabled = false;
         startButton.textContent = "Comenzar Examen";
         startButton.className = "btn btn-success btn-lg shadow";
@@ -201,14 +235,23 @@ function updateWelcomeUI() {
 
 function onStartButtonClick() {
     if (!startButton) return;
-    if (checks.agent && checks.browser && checks.appsClean) {
+    
+    // Si todo está OK, iniciamos
+    if (checks.agent && checks.browser && checks.appsClean && checks.camera) {
         const url = startButton.getAttribute('data-url');
         if (url) window.location.href = url;
-    } else {
-        statusMessage.textContent = "Cerrando todo...";
+    } 
+    // Si no, intentamos cerrar apps (Botón de pánico)
+    else {
+        if(statusMessage) statusMessage.textContent = "Cerrando aplicaciones...";
         chrome.runtime.sendMessage({ type: 'CLOSE_ALL' });
+        
         startButton.disabled = true;
-        setTimeout(() => { startButton.disabled = false; }, 2000);
+        setTimeout(() => { 
+            startButton.disabled = false; 
+            // Forzamos un re-check visual
+            updateWelcomeUI();
+        }, 2000);
     }
 }
 
@@ -227,10 +270,3 @@ function checkPlagioFlag() {
         }
     });
 }
-
-window.addEventListener("message", async (e) => {
-    if (e.data && e.data.type === 'FROM_PAGE_EXAM_FINISHED') {
-        await chrome.storage.local.set({ isFinishingExam: true });
-        chrome.runtime.sendMessage({ type: 'EXAM_FINISHED' });
-    }
-});

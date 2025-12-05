@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+
+<style>
+    /* Estilos para la cámara */
+    #video-container { position: relative; margin: 0 auto; width: 320px; height: 240px; background: #000; border-radius: 8px; overflow: hidden; }
+    video { width: 100%; height: 100%; object-fit: cover; }
+    canvas { position: absolute; top: 0; left: 0; }
+</style>
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -13,7 +22,7 @@
                     
                     <div class="alert alert-info mb-4">
                         <i class="fas fa-info-circle"></i> 
-                        Antes de iniciar, el sistema verificará que tu entorno sea seguro.
+                        El sistema verificará tu identidad biométrica y la seguridad de tu entorno.
                     </div>
 
                     <div class="card mb-4 bg-light">
@@ -31,6 +40,16 @@
                                     <p class="mb-1 fw-bold">Navegador Limpio</p>
                                     <span id="check-browser" class="badge bg-danger rounded-pill p-2 w-75">PENDIENTE</span>
                                 </div>
+                            </div>
+
+                            <hr>
+                            
+                            <div class="text-center mb-4">
+                                <h6 class="fw-bold text-muted mb-2">Verificación Biométrica (Comparación)</h6>
+                                <div id="video-container" class="shadow-sm">
+                                    <video id="video" autoplay muted></video>
+                                </div>
+                                <div id="camera-status" class="mt-2 fw-bold text-warning">Cargando modelos IA...</div>
                             </div>
 
                             <hr>
@@ -77,4 +96,143 @@
     </div>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const video = document.getElementById('video');
+        const statusText = document.getElementById('camera-status');
+        let faceMatcher = null; 
+        
+        // URL de los modelos
+        const MODEL_URL = 'https://justadudewhohacks.github.io/face-api.js/models';
+
+        // 1. INICIO: Cargar Modelos IA
+        statusText.innerText = "Cargando cerebro...";
+        
+        Promise.all([
+            faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
+            faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
+            faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
+            // --- ESTA LÍNEA ES OBLIGATORIA PARA LEER LA FOTO DE PERFIL ---
+            faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL) 
+        ]).then(async () => {
+            console.log("Modelos cargados.");
+            statusText.innerText = "Analizando tu foto de perfil...";
+            
+            // 2. Descargar foto de referencia y crear Matcher
+            await loadReferenceData();
+            
+        }).catch(err => {
+            console.error("Error IA:", err);
+            statusText.innerText = "Error cargando modelos. Recarga la página.";
+            statusText.classList.add('text-danger');
+        });
+
+        // Función para procesar la foto guardada
+        async function loadReferenceData() {
+            try {
+                const res = await fetch('/api/get_referencia/');
+                const data = await res.json();
+
+                if (data.status === 'ok') {
+                    // Descargar imagen
+                    const img = await faceapi.fetchImage(data.url);
+                    
+                    // Detectar cara en la foto (Usa SSD Mobilenet por precisión)
+                    const detection = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
+
+                    if (detection) {
+                        faceMatcher = new faceapi.FaceMatcher(detection);
+                        console.log("Biometría lista.");
+                        startVideo(); 
+                    } else {
+                        statusText.innerText = "⚠️ Tu foto de perfil no es clara.";
+                        alert("Error: No detecto un rostro en tu foto guardada. Ve a Enrolamiento nuevamente.");
+                    }
+                } else {
+                    statusText.innerText = "⚠️ Sin foto de referencia.";
+                    alert("No tienes foto. Redirigiendo a registro...");
+                    window.location.href = "/enrolamiento/?next_exam={{ examen_id }}"; 
+                }
+            } catch (error) {
+                console.error("Error referencia:", error);
+                statusText.innerText = "Error al obtener tu foto de referencia.";
+                statusText.className = "text-danger fw-bold";
+            }
+        }
+
+        // 3. Iniciar Cámara
+        function startVideo() {
+            statusText.innerText = "Iniciando cámara...";
+            navigator.mediaDevices.getUserMedia({ video: {} })
+                .then(stream => {
+                    video.srcObject = stream;
+                    statusText.innerText = "Verificando identidad...";
+                    
+                    // Esperar a que el video arranque de verdad
+                    video.onplay = () => {
+                        startDetectionLoop();
+                    };
+                })
+                .catch(err => {
+                    console.error("Error cámara:", err);
+                    statusText.innerText = "Cámara bloqueada o no encontrada.";
+                    statusText.className = "text-danger fw-bold";
+                    notifyExtension(false);
+                });
+        }
+
+        // 4. Bucle de Detección
+        function startDetectionLoop() {
+            const canvas = faceapi.createCanvasFromMedia(video);
+            document.getElementById('video-container').append(canvas);
+            const displaySize = { width: video.width || 320, height: video.height || 240 };
+            faceapi.matchDimensions(canvas, displaySize);
+
+            setInterval(async () => {
+                if (video.paused || video.ended || !faceMatcher) return;
+
+                // Detectar cara en vivo (Usamos TinyFace para velocidad)
+                const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
+                                                .withFaceLandmarks()
+                                                .withFaceDescriptors();
+                
+                const context = canvas.getContext('2d');
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                if (detections.length === 0) {
+                    updateStatus(false, "❌ No se detecta rostro");
+                } else if (detections.length > 1) {
+                    updateStatus(false, "❌ Múltiples personas");
+                } else {
+                    const singleResult = detections[0];
+                    const bestMatch = faceMatcher.findBestMatch(singleResult.descriptor);
+
+                    if (bestMatch.distance < 0.6) {
+                        const box = singleResult.detection.box;
+                        const drawBox = new faceapi.draw.DrawBox(box, { label: "Tú", boxColor: "green" });
+                        drawBox.draw(canvas);
+                        
+                        updateStatus(true, "✅ Identidad Confirmada");
+                    } else {
+                        const box = singleResult.detection.box;
+                        const drawBox = new faceapi.draw.DrawBox(box, { label: "Desconocido", boxColor: "red" });
+                        drawBox.draw(canvas);
+
+                        updateStatus(false, "⛔ ROSTRO NO COINCIDE");
+                    }
+                }
+            }, 500); 
+        }
+
+        function updateStatus(isOk, text) {
+            statusText.innerText = text;
+            statusText.className = isOk ? "mt-2 fw-bold text-success" : "mt-2 fw-bold text-danger";
+            notifyExtension(isOk);
+        }
+
+        function notifyExtension(isOk) {
+            window.postMessage({ type: 'CAMERA_CHECK_RESULT', status: isOk }, '*');
+        }
+    });
+</script>
 {% endblock %}

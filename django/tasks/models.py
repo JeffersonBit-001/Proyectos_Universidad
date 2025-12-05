@@ -270,3 +270,31 @@ class SalonAlumnos(models.Model):
         return f"Alumno {self.id_alumno.username} en {self.id_salon.nombre_salon}"    
     
 
+# --- AGREGAR AL FINAL DE django/tasks/models.py ---
+#---modelos de CAMARA E IA
+
+class PerfilBiometrico(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    foto_referencia = models.ImageField(upload_to='biometria/referencias/', help_text="Foto oficial para comparar")
+    fecha_registro = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Biometría de {self.user.username}"
+
+class IncidenciaExamen(models.Model):
+    TIPOS_INCIDENCIA = [
+        ('AUSENCIA', 'Usuario no detectado en cámara'),
+        ('MULTIPLE', 'Múltiples personas detectadas'),
+        ('SUPLANTACION', 'Rostro no coincide con el perfil'),
+        ('CELULAR', 'Uso de celular detectado'), # Requiere modelo avanzado, pero dejamos la opción
+    ]
+    
+    examen = models.ForeignKey(Examen, on_delete=models.CASCADE)
+    alumno = models.ForeignKey(User, on_delete=models.CASCADE)
+    tipo = models.CharField(max_length=20, choices=TIPOS_INCIDENCIA)
+    minuto_ocurrencia = models.CharField(max_length=10, help_text="Ej: 10:45")
+    evidencia = models.ImageField(upload_to='biometria/incidentes/', null=True, blank=True, help_text="Captura del momento")
+    fecha = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'incidencias_examen'

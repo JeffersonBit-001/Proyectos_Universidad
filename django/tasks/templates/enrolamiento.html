@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white text-center">
+                    <h3><i class="fas fa-camera"></i> Configuración Inicial</h3>
+                </div>
+                <div class="card-body text-center">
+                    <p class="lead">Para garantizar la seguridad de tus exámenes, necesitamos registrar tu identidad.</p>
+                    <p class="text-muted small">Esta foto se usará para verificar que eres tú en todos tus futuros exámenes.</p>
+
+                    <div style="position: relative; width: 320px; height: 240px; margin: 0 auto; background: #000; border-radius: 10px; overflow: hidden;">
+                        <video id="video" autoplay muted style="width: 100%; height: 100%; object-fit: cover;"></video>
+                        <canvas id="overlay" style="position: absolute; top: 0; left: 0;"></canvas>
+                    </div>
+
+                    <div id="status-msg" class="mt-3 fw-bold text-warning">Cargando sistema...</div>
+
+                    <button id="btn-capture" class="btn btn-primary mt-3 btn-lg shadow" disabled>
+                        <i class="fas fa-camera"></i> Tomar Foto y Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        
+        const video = document.getElementById('video');
+        const btnCapture = document.getElementById('btn-capture');
+        const statusMsg = document.getElementById('status-msg');
+        let modelsLoaded = false;
+        let faceDetected = false;
+
+        // 1. Cargar Modelos (Usamos una URL confiable)
+        const MODEL_URL = 'https://justadudewhohacks.github.io/face-api.js/models';
+
+        Promise.all([
+            faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
+            faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
+        ]).then(() => {
+            console.log("Modelos cargados correctamente");
+            modelsLoaded = true;
+            startVideo();
+        }).catch(err => {
+            console.error("Error cargando modelos:", err);
+            statusMsg.innerText = "Error cargando Inteligencia Artificial. Recarga la página.";
+            statusMsg.className = "mt-3 fw-bold text-danger";
+        });
+
+        function startVideo() {
+            navigator.mediaDevices.getUserMedia({ video: {} })
+                .then(stream => {
+                    video.srcObject = stream;
+                    statusMsg.innerText = "Busca una buena iluminación y mira a la cámara.";
+                    
+                    // --- CORRECCIÓN CRÍTICA AQUÍ ---
+                    // No llamamos a detectFaceLoop() directamente.
+                    // Esperamos al evento 'play' del video para asegurar que no esté pausado.
+                    video.onplay = () => {
+                        console.log("Video iniciado, comenzando detección...");
+                        detectFaceLoop();
+                    };
+                })
+                .catch(err => {
+                    console.error("Error de cámara:", err);
+                    statusMsg.innerText = "Error: No se detecta cámara. Verifica permisos.";
+                    statusMsg.className = "mt-3 fw-bold text-danger";
+                });
+        }
+
+        async function detectFaceLoop() {
+            // Si el video se pausa o termina, detenemos el bucle, pero si modelsLoaded es true, seguimos
+            if(!modelsLoaded) return;
+            if(video.paused || video.ended) {
+                // Si está pausado, intentamos de nuevo en el siguiente frame sin procesar
+                requestAnimationFrame(detectFaceLoop); 
+                return;
+            }
+            
+            try {
+                const options = new faceapi.TinyFaceDetectorOptions();
+                // Detectar rostro
+                const detection = await faceapi.detectSingleFace(video, options);
+                
+                if (detection) {
+                    if(detection.score > 0.5) { 
+                        faceDetected = true;
+                        statusMsg.innerText = "✅ Rostro detectado. ¡Sonríe!";
+                        statusMsg.className = "mt-3 fw-bold text-success";
+                        btnCapture.disabled = false;
+                        btnCapture.className = "btn btn-success mt-3 btn-lg shadow animate__animated animate__pulse";
+                    }
+                } else {
+                    faceDetected = false;
+                    statusMsg.innerText = "🔍 Buscando rostro... Acércate más.";
+                    statusMsg.className = "mt-3 fw-bold text-warning";
+                    btnCapture.disabled = true;
+                    btnCapture.className = "btn btn-secondary mt-3 btn-lg shadow";
+                }
+            } catch (error) {
+                console.error("Error en detección:", error);
+            }
+            
+            // Repetir el bucle
+            requestAnimationFrame(detectFaceLoop);
+        }
+
+        // 2. Capturar y Enviar
+        btnCapture.addEventListener('click', () => {
+            if(!faceDetected) return;
+
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+            const dataURL = canvas.toDataURL('image/jpeg'); 
+
+            btnCapture.disabled = true;
+            btnCapture.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Guardando...';
+
+            fetch('/api/guardar_biometria/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}' 
+                },
+                body: JSON.stringify({ imagen: dataURL })
+            })
+            .then(async res => {
+                if (!res.ok) {
+                    const text = await res.text();
+                    throw new Error(`Error ${res.status}`);
+                }
+                return res.json();
+            })
+            .then(data => {
+                if(data.status === 'ok') {
+                    alert("¡Identidad registrada con éxito!");
+                    // Redirigir según corresponda
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const nextExam = urlParams.get('next_exam');
+                    if(nextExam) {
+                        window.location.href = `/exam/${nextExam}/welcome/`;
+                    } else {
+                        window.location.href = "{% url 'exam_dashboard' %}";
+                    }
+                } else {
+                    throw new Error(data.message || "Error desconocido");
+                }
+            })
+            .catch(error => {
+                console.error("Error al guardar:", error);
+                alert("❌ Falló el guardado. Verifica que existan las carpetas media/biometria/referencias");
+                btnCapture.disabled = false;
+                btnCapture.innerHTML = '<i class="fas fa-camera"></i> Reintentar';
+            });
+        });
+    });
+</script>
+{% endblock %}

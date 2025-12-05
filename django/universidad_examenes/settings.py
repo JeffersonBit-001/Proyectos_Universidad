@@ -161,3 +161,22 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "chrome-extension://dkoapjjnbnhkefaldbmmobfgibepjjja"
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Cierra la sesión cuando el usuario cierra el navegador
+# --- SEGURIDAD DE SESIONES PARA EXÁMENES ---
+
+# --- SEGURIDAD DE SESIONES PARA EXÁMENES ---
+
+# 1. Esto mata la sesión apenas se cierra el navegador.
+# Si el alumno cierra Chrome, la próxima vez tendrá que loguearse.
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# 2. (Opcional pero recomendado) Tiempo máximo de vida de la sesión en segundos.
+# Por ejemplo, 3 horas (10800 segundos) por si dejan la PC prendida.
+SESSION_COOKIE_AGE = 10800 
+
+# 3. Seguridad para HTTPS (Solo actívalo cuando ya tengas el candadito SSL en producción)
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
