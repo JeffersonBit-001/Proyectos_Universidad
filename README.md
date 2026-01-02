@@ -7,3 +7,6 @@ Detector de plagio:
 - Control absoluto del profesor
 - Contiene preguntas para marcar y escribir
 - Revisión automática por el sistema o por el mismo profesor.
+- Agregar salones, alumnos y usuarios
+- Creación de examenes por categoría
+- Escalable para más funciones
